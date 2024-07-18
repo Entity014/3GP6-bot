@@ -1,1 +1,1 @@
-# 3PG6-bot
+# 3GP6-bot
