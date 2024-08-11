@@ -2,7 +2,7 @@
 ARG ROS_DISTRO=humble
 
 # Use the official ROS2 Docker image as the base image
-FROM osrf/ros:${ROS_DISTRO}-desktop as base
+FROM ros:${ROS_DISTRO}-desktop as base
 ENV ROS_DISTRO=${ROS_DISTRO}
 ENV HOME=/home
 SHELL ["/bin/bash", "-c"]
