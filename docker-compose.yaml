@@ -1,0 +1,49 @@
+services:
+  3gp6_compose:
+    image: 3gp6
+    build:
+      context: .
+      dockerfile: docker/Dockerfile
+      args:
+        ROS_DISTRO: humble
+    stdin_open: true
+    tty: true
+    network_mode: host
+    ipc: host
+    privileged: true
+    stop_grace_period: 1s
+    environment:
+      - ROS_DOMAIN_ID=10
+      - DISPLAY=${DISPLAY}
+      - QT_X11_NO_MITSHM=1
+      - NVIDIA_DRIVER_CAPABILITIES=all
+    volumes:
+      # mount X11 socket
+      - /tmp/.X11-unix:/tmp/.X11-unix:rw
+      - ${XAUTHORITY:-$HOME/.Xauthority}:/root/.Xauthority
+      # mount workspace
+      - ./robot_ws:/home/robot_ws:rw
+
+  # uros-agent:
+  #   image: husarion/micro-ros-agent:humble
+  #   stdin_open: true
+  #   tty: true
+  #   network_mode: host
+  #   ipc: host
+  #   privileged: true
+  #   stop_grace_period: 1s
+  #   volumes:
+  #     - /dev:/dev
+  #   # devices:
+  #   #   - /dev/ttyACM0:/dev/ttyACM0
+  #   environment:
+  #     - ROS_DOMAIN_ID=10
+  #   command: sleep infinity
+
+  # uros1-agent:
+  #   extends: uros-agent
+  #   command: ros2 run micro_ros_agent micro_ros_agent serial -D /dev/ttyACM0 serial -b 115200
+
+  joy:
+    extends: 3gp6_compose
+    command: bash -c "source ~/.bashrc && ros2 launch robot_core joy.launch.py"
