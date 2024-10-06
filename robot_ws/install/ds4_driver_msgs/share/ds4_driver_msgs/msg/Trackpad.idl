@@ -1,0 +1,28 @@
+// generated from rosidl_adapter/resource/msg.idl.em
+// with input from ds4_driver_msgs/msg/Trackpad.msg
+// generated code does not contain a copyright notice
+
+
+module ds4_driver_msgs {
+  module msg {
+    @verbatim (language="comment", text=
+      "Trackpad message for DualShock 4")
+    struct Trackpad {
+      @verbatim (language="comment", text=
+        "Touch ID (increments every touch)")
+      uint16 id;
+
+      @verbatim (language="comment", text=
+        "0: inactive, 1: active")
+      int32 active;
+
+      @verbatim (language="comment", text=
+        "0.0: left edge, 1.0: right edge")
+      float x;
+
+      @verbatim (language="comment", text=
+        "0.0: left edge, 1.0: right edge")
+      float y;
+    };
+  };
+};

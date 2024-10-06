@@ -1,0 +1,119 @@
+// generated from rosidl_adapter/resource/msg.idl.em
+// with input from ds4_driver_msgs/msg/Report.msg
+// generated code does not contain a copyright notice
+
+#include "std_msgs/msg/Header.idl"
+
+module ds4_driver_msgs {
+  module msg {
+    @verbatim (language="comment", text=
+      "Raw report from DualShock 4")
+    struct Report {
+      std_msgs::msg::Header header;
+
+      @verbatim (language="comment", text=
+        "Left: 0, Right: 255")
+      uint8 left_analog_x;
+
+      @verbatim (language="comment", text=
+        "Up: 0, Down: 255")
+      uint8 left_analog_y;
+
+      uint8 right_analog_x;
+
+      uint8 right_analog_y;
+
+      @verbatim (language="comment", text=
+        "Released: 0, Pressed: 255")
+      uint8 l2_analog;
+
+      @verbatim (language="comment", text=
+        "Released: 0, Pressed: 255")
+      uint8 r2_analog;
+
+      @verbatim (language="comment", text=
+        "Released: 0, Pressed: 1")
+      boolean dpad_up;
+
+      boolean dpad_down;
+
+      boolean dpad_left;
+
+      boolean dpad_right;
+
+      boolean button_cross;
+
+      boolean button_circle;
+
+      boolean button_square;
+
+      boolean button_triangle;
+
+      boolean button_l1;
+
+      boolean button_l2;
+
+      boolean button_l3;
+
+      boolean button_r1;
+
+      boolean button_r2;
+
+      boolean button_r3;
+
+      boolean button_share;
+
+      boolean button_options;
+
+      boolean button_trackpad;
+
+      boolean button_ps;
+
+      @verbatim (language="comment", text=
+        "IMU")
+      int16 lin_acc_x;
+
+      int16 lin_acc_y;
+
+      int16 lin_acc_z;
+
+      int16 ang_vel_x;
+
+      int16 ang_vel_y;
+
+      int16 ang_vel_z;
+
+      @verbatim (language="comment", text=
+        "Top-left: (0, 0), Bottom-right: (1919, 942)")
+      uint16 trackpad_touch0_id;
+
+      uint16 trackpad_touch0_active;
+
+      uint16 trackpad_touch0_x;
+
+      uint16 trackpad_touch0_y;
+
+      uint16 trackpad_touch1_id;
+
+      uint16 trackpad_touch1_active;
+
+      uint16 trackpad_touch1_x;
+
+      uint16 trackpad_touch1_y;
+
+      uint8 timestamp;
+
+      @verbatim (language="comment", text=
+        "Full: 8, Full (and charging): 11")
+      uint8 battery;
+
+      @verbatim (language="comment", text=
+        "Unused: 0, Plugged: 1")
+      boolean plug_usb;
+
+      boolean plug_audio;
+
+      boolean plug_mic;
+    };
+  };
+};

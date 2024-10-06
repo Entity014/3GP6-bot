@@ -1,0 +1,106 @@
+// generated from rosidl_adapter/resource/msg.idl.em
+// with input from ds4_driver_msgs/msg/Status.msg
+// generated code does not contain a copyright notice
+
+#include "ds4_driver_msgs/msg/Trackpad.idl"
+#include "sensor_msgs/msg/Imu.idl"
+#include "std_msgs/msg/Header.idl"
+
+module ds4_driver_msgs {
+  module msg {
+    @verbatim (language="comment", text=
+      "Human-readable and more ROS-compatible status of the device")
+    struct Status {
+      std_msgs::msg::Header header;
+
+      @verbatim (language="comment", text=
+        "Stick" "\n"
+        "Left: 1.0, Right: -1.0")
+      float axis_left_x;
+
+      @verbatim (language="comment", text=
+        "Up: 1.0, Down: -1.0")
+      float axis_left_y;
+
+      float axis_right_x;
+
+      float axis_right_y;
+
+      @verbatim (language="comment", text=
+        "Shoulder buttons [0, 1.0]")
+      float axis_l2;
+
+      float axis_r2;
+
+      @verbatim (language="comment", text=
+        "Buttons (0: Not pressed, 1: Pressed)")
+      int32 button_dpad_up;
+
+      int32 button_dpad_down;
+
+      int32 button_dpad_left;
+
+      int32 button_dpad_right;
+
+      int32 button_cross;
+
+      int32 button_circle;
+
+      int32 button_square;
+
+      int32 button_triangle;
+
+      int32 button_l1;
+
+      int32 button_l2;
+
+      int32 button_l3;
+
+      int32 button_r1;
+
+      int32 button_r2;
+
+      int32 button_r3;
+
+      int32 button_share;
+
+      int32 button_options;
+
+      int32 button_trackpad;
+
+      int32 button_ps;
+
+      @verbatim (language="comment", text=
+        "Gyro")
+      sensor_msgs::msg::Imu imu;
+
+      @verbatim (language="comment", text=
+        "Battery" "\n"
+        "[0.0, 1.0]")
+      float battery_percentage;
+
+      @verbatim (language="comment", text=
+        "0: No, 1: Yes")
+      int32 battery_full_charging;
+
+      @verbatim (language="comment", text=
+        "Trackpads")
+      ds4_driver_msgs::msg::Trackpad touch0;
+
+      ds4_driver_msgs::msg::Trackpad touch1;
+
+      @verbatim (language="comment", text=
+        "Plugs" "\n"
+        "0: No, 1: Yes")
+      int32 plug_usb;
+
+      @verbatim (language="comment", text=
+        "0: No, 1: Yes")
+      int32 plug_audio;
+
+      @verbatim (language="comment", text=
+        "0: No, 1: Yes")
+      int32 plug_mic;
+    };
+  };
+};
