@@ -124,7 +124,6 @@ class Ps4Controller(Node):
             if self.pre_pick != msgin.button_triangle:
                 if msgin.button_triangle == 1:
                     self.joints.linear.x = 90.0
-                    self.joints.linear.y = 180.0
                     self.joints.linear.z = 30.0
                     self.joints.angular.x = 90.0
                     self.joints.angular.y = 90.0
@@ -133,7 +132,6 @@ class Ps4Controller(Node):
             if self.pre_place != msgin.button_circle:
                 if msgin.button_circle == 1:
                     self.joints.linear.x = 90.0
-                    self.joints.linear.y = 165.0
                     self.joints.linear.z = 10.0
                     self.joints.angular.x = 90.0
                     self.joints.angular.y = 20.0
