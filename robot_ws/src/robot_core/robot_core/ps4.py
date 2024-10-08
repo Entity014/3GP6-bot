@@ -36,7 +36,7 @@ class Ps4Controller(Node):
         self.velocity = Twist()
         self.max_speed = 1.0
         self.max_speed_joint1 = 15  # 360
-        self.max_speed_joint2 = 1  # 360
+        self.max_speed_joint2 = 50  # 360
         self.max_speed_joint3 = 1  # 180
         self.max_speed_joint4 = 90  # 360
         self.max_speed_joint5 = 1  # 180
@@ -95,14 +95,19 @@ class Ps4Controller(Node):
             else:
                 self.joints.linear.x = 90.0
 
-            self.joints.linear.z += msgin.axis_left_y * self.max_speed_joint3 * -1
+            # self.joints.linear.z += msgin.axis_left_y * self.max_speed_joint3 * -1
 
-            # self.joints.linear.y += msgin.axis_left_y * self.max_speed_joint2
+            if abs(msgin.axis_left_y) > 0:
+                self.joints.linear.y = 90.0 + (
+                    msgin.axis_left_y * self.max_speed_joint1 * -1
+                )
+            else:
+                self.joints.linear.y = 90.0
 
-            # if msgin.button_dpad_up == 1:
-            #     self.joints.linear.y -= msgin.button_dpad_up * self.max_speed_joint2
-            # elif msgin.button_dpad_down == 1:
-            #     self.joints.linear.y += msgin.button_dpad_down * self.max_speed_joint2
+            if msgin.button_dpad_up == 1:
+                self.joints.linear.z -= msgin.button_dpad_up * self.max_speed_joint3
+            elif msgin.button_dpad_down == 1:
+                self.joints.linear.z += msgin.button_dpad_down * self.max_speed_joint3
 
             if msgin.button_r2 == 1:
                 self.joints.angular.x = 90.0 + (msgin.button_r2 * self.max_speed_joint4)
