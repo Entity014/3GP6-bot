@@ -1,0 +1,385 @@
+[0.000000] (-) TimerEvent: {}
+[0.000406] (ds4_driver_msgs) JobQueued: {'identifier': 'ds4_driver_msgs', 'dependencies': OrderedDict()}
+[0.000503] (robot_core) JobQueued: {'identifier': 'robot_core', 'dependencies': OrderedDict()}
+[0.000560] (robot_description) JobQueued: {'identifier': 'robot_description', 'dependencies': OrderedDict()}
+[0.000606] (ds4_driver) JobQueued: {'identifier': 'ds4_driver', 'dependencies': OrderedDict([('ds4_driver_msgs', '/home/robot_ws/install/ds4_driver_msgs')])}
+[0.000647] (ds4_driver_msgs) JobStarted: {'identifier': 'ds4_driver_msgs'}
+[0.005021] (robot_core) JobStarted: {'identifier': 'robot_core'}
+[0.007371] (robot_description) JobStarted: {'identifier': 'robot_description'}
+[0.010556] (ds4_driver_msgs) JobProgress: {'identifier': 'ds4_driver_msgs', 'progress': 'cmake'}
+[0.010895] (ds4_driver_msgs) JobProgress: {'identifier': 'ds4_driver_msgs', 'progress': 'build'}
+[0.011345] (ds4_driver_msgs) Command: {'cmd': ['/usr/bin/cmake', '--build', '/home/robot_ws/build/ds4_driver_msgs', '--', '-j16', '-l16'], 'cwd': '/home/robot_ws/build/ds4_driver_msgs', 'env': OrderedDict([('HOSTNAME', 'entity014'), ('SHLVL', '1'), ('LD_LIBRARY_PATH', '/home/robot_ws/install/ds4_driver_msgs/lib:/usr/lib/x86_64-linux-gnu/gazebo-11/plugins:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/x86_64-linux-gnu:/opt/ros/humble/lib'), ('HOME', '/home'), ('ROS_PYTHON_VERSION', '3'), ('COLCON_PREFIX_PATH', '/home/robot_ws/install'), ('ROS_DISTRO', 'humble'), ('_', '/usr/bin/colcon'), ('ROS_VERSION', '2'), ('NVIDIA_DRIVER_CAPABILITIES', 'all'), ('TERM', 'xterm'), ('ROS_LOCALHOST_ONLY', '0'), ('QT_X11_NO_MITSHM', '1'), ('PATH', '/opt/ros/humble/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin'), ('XDG_RUNTIME_DIR', '/tmp/runtime-root'), ('DISPLAY', ':0'), ('LANG', 'C.UTF-8'), ('RMW_IMPLEMENTATION', 'rmw_cyclonedds_cpp'), ('ROS_DOMAIN_ID', '10'), ('AMENT_PREFIX_PATH', '/home/robot_ws/install/robot_description:/home/robot_ws/install/robot_core:/home/robot_ws/install/ds4_driver:/home/robot_ws/install/ds4_driver_msgs:/opt/ros/humble'), ('NO_AT_BRIDGE', '1'), ('PWD', '/home/robot_ws/build/ds4_driver_msgs'), ('LC_ALL', 'C.UTF-8'), ('PYTHONPATH', '/home/robot_ws/install/robot_description/local/lib/python3.10/dist-packages:/home/robot_ws/install/robot_core/local/lib/python3.10/dist-packages:/home/robot_ws/install/ds4_driver/local/lib/python3.10/dist-packages:/home/robot_ws/install/ds4_driver_msgs/local/lib/python3.10/dist-packages:/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages'), ('COLCON', '1'), ('CMAKE_PREFIX_PATH', '/home/robot_ws/install/robot_description:/home/robot_ws/install/robot_core:/home/robot_ws/install/ds4_driver:/home/robot_ws/install/ds4_driver_msgs:/opt/ros/humble')]), 'shell': False}
+[0.013027] (robot_core) JobProgress: {'identifier': 'robot_core', 'progress': 'cmake'}
+[0.013298] (robot_core) JobProgress: {'identifier': 'robot_core', 'progress': 'build'}
+[0.013520] (robot_core) Command: {'cmd': ['/usr/bin/cmake', '--build', '/home/robot_ws/build/robot_core', '--', '-j16', '-l16'], 'cwd': '/home/robot_ws/build/robot_core', 'env': OrderedDict([('HOSTNAME', 'entity014'), ('SHLVL', '1'), ('LD_LIBRARY_PATH', '/home/robot_ws/install/ds4_driver_msgs/lib:/usr/lib/x86_64-linux-gnu/gazebo-11/plugins:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/x86_64-linux-gnu:/opt/ros/humble/lib'), ('HOME', '/home'), ('ROS_PYTHON_VERSION', '3'), ('COLCON_PREFIX_PATH', '/home/robot_ws/install'), ('ROS_DISTRO', 'humble'), ('_', '/usr/bin/colcon'), ('ROS_VERSION', '2'), ('NVIDIA_DRIVER_CAPABILITIES', 'all'), ('TERM', 'xterm'), ('ROS_LOCALHOST_ONLY', '0'), ('QT_X11_NO_MITSHM', '1'), ('PATH', '/opt/ros/humble/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin'), ('XDG_RUNTIME_DIR', '/tmp/runtime-root'), ('DISPLAY', ':0'), ('LANG', 'C.UTF-8'), ('RMW_IMPLEMENTATION', 'rmw_cyclonedds_cpp'), ('ROS_DOMAIN_ID', '10'), ('AMENT_PREFIX_PATH', '/home/robot_ws/install/robot_description:/home/robot_ws/install/robot_core:/home/robot_ws/install/ds4_driver:/home/robot_ws/install/ds4_driver_msgs:/opt/ros/humble'), ('NO_AT_BRIDGE', '1'), ('PWD', '/home/robot_ws/build/robot_core'), ('LC_ALL', 'C.UTF-8'), ('PYTHONPATH', '/home/robot_ws/install/robot_description/local/lib/python3.10/dist-packages:/home/robot_ws/install/robot_core/local/lib/python3.10/dist-packages:/home/robot_ws/install/ds4_driver/local/lib/python3.10/dist-packages:/home/robot_ws/install/ds4_driver_msgs/local/lib/python3.10/dist-packages:/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages'), ('COLCON', '1'), ('CMAKE_PREFIX_PATH', '/home/robot_ws/install/robot_description:/home/robot_ws/install/robot_core:/home/robot_ws/install/ds4_driver:/home/robot_ws/install/ds4_driver_msgs:/opt/ros/humble')]), 'shell': False}
+[0.015305] (robot_description) JobProgress: {'identifier': 'robot_description', 'progress': 'cmake'}
+[0.015582] (robot_description) JobProgress: {'identifier': 'robot_description', 'progress': 'build'}
+[0.015778] (robot_description) Command: {'cmd': ['/usr/bin/cmake', '--build', '/home/robot_ws/build/robot_description', '--', '-j16', '-l16'], 'cwd': '/home/robot_ws/build/robot_description', 'env': OrderedDict([('HOSTNAME', 'entity014'), ('SHLVL', '1'), ('LD_LIBRARY_PATH', '/home/robot_ws/install/ds4_driver_msgs/lib:/usr/lib/x86_64-linux-gnu/gazebo-11/plugins:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/x86_64-linux-gnu:/opt/ros/humble/lib'), ('HOME', '/home'), ('ROS_PYTHON_VERSION', '3'), ('COLCON_PREFIX_PATH', '/home/robot_ws/install'), ('ROS_DISTRO', 'humble'), ('_', '/usr/bin/colcon'), ('ROS_VERSION', '2'), ('NVIDIA_DRIVER_CAPABILITIES', 'all'), ('TERM', 'xterm'), ('ROS_LOCALHOST_ONLY', '0'), ('QT_X11_NO_MITSHM', '1'), ('PATH', '/opt/ros/humble/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin'), ('XDG_RUNTIME_DIR', '/tmp/runtime-root'), ('DISPLAY', ':0'), ('LANG', 'C.UTF-8'), ('RMW_IMPLEMENTATION', 'rmw_cyclonedds_cpp'), ('ROS_DOMAIN_ID', '10'), ('AMENT_PREFIX_PATH', '/home/robot_ws/install/robot_description:/home/robot_ws/install/robot_core:/home/robot_ws/install/ds4_driver:/home/robot_ws/install/ds4_driver_msgs:/opt/ros/humble'), ('NO_AT_BRIDGE', '1'), ('PWD', '/home/robot_ws/build/robot_description'), ('LC_ALL', 'C.UTF-8'), ('PYTHONPATH', '/home/robot_ws/install/robot_description/local/lib/python3.10/dist-packages:/home/robot_ws/install/robot_core/local/lib/python3.10/dist-packages:/home/robot_ws/install/ds4_driver/local/lib/python3.10/dist-packages:/home/robot_ws/install/ds4_driver_msgs/local/lib/python3.10/dist-packages:/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages'), ('COLCON', '1'), ('CMAKE_PREFIX_PATH', '/home/robot_ws/install/robot_description:/home/robot_ws/install/robot_core:/home/robot_ws/install/ds4_driver:/home/robot_ws/install/ds4_driver_msgs:/opt/ros/humble')]), 'shell': False}
+[0.076078] (ds4_driver_msgs) StdoutLine: {'line': b'[  1%] Built target ds4_driver_msgs__cpp\n'}
+[0.099997] (-) TimerEvent: {}
+[0.106384] (ds4_driver_msgs) StdoutLine: {'line': b'[ 12%] Built target ds4_driver_msgs__rosidl_generator_c\n'}
+[0.122692] (robot_core) StdoutLine: {'line': b'Built target ament_cmake_python_copy_src\n'}
+[0.130358] (ds4_driver_msgs) StdoutLine: {'line': b'[ 12%] Built target ament_cmake_python_copy_ds4_driver_msgs\n'}
+[0.169111] (robot_description) StdoutLine: {'line': b'Built target ament_cmake_python_copy_src\n'}
+[0.200273] (-) TimerEvent: {}
+[0.236041] (ds4_driver_msgs) StdoutLine: {'line': b'[ 29%] Built target ds4_driver_msgs__rosidl_typesupport_cpp\n'}
+[0.237121] (ds4_driver_msgs) StdoutLine: {'line': b'[ 34%] Built target ds4_driver_msgs__rosidl_typesupport_introspection_cpp\n'}
+[0.240084] (ds4_driver_msgs) StdoutLine: {'line': b'[ 45%] Built target ds4_driver_msgs__rosidl_typesupport_fastrtps_cpp\n'}
+[0.246922] (ds4_driver_msgs) StdoutLine: {'line': b'[ 56%] Built target ds4_driver_msgs__rosidl_typesupport_c\n'}
+[0.258445] (ds4_driver_msgs) StdoutLine: {'line': b'[ 67%] Built target ds4_driver_msgs__rosidl_typesupport_introspection_c\n'}
+[0.262362] (ds4_driver_msgs) StdoutLine: {'line': b'[ 78%] Built target ds4_driver_msgs__rosidl_typesupport_fastrtps_c\n'}
+[0.286518] (ds4_driver_msgs) StdoutLine: {'line': b'[ 78%] Built target ds4_driver_msgs\n'}
+[0.300626] (-) TimerEvent: {}
+[0.315734] (ds4_driver_msgs) StdoutLine: {'line': b'[ 80%] Built target ds4_driver_msgs__py\n'}
+[0.344477] (ds4_driver_msgs) StdoutLine: {'line': b'[ 89%] Built target ds4_driver_msgs__rosidl_generator_py\n'}
+[0.400878] (-) TimerEvent: {}
+[0.440477] (ds4_driver_msgs) StdoutLine: {'line': b'[ 94%] Built target ds4_driver_msgs__rosidl_typesupport_fastrtps_c__pyext\n'}
+[0.441767] (ds4_driver_msgs) StdoutLine: {'line': b'[ 96%] Built target ds4_driver_msgs__rosidl_typesupport_c__pyext\n'}
+[0.443407] (ds4_driver_msgs) StdoutLine: {'line': b'[100%] Built target ds4_driver_msgs__rosidl_typesupport_introspection_c__pyext\n'}
+[0.501126] (-) TimerEvent: {}
+[0.602517] (-) TimerEvent: {}
+[0.621753] (robot_core) StdoutLine: {'line': b'running egg_info\n'}
+[0.622512] (robot_description) StdoutLine: {'line': b'running egg_info\n'}
+[0.622909] (robot_core) StdoutLine: {'line': b'writing src.egg-info/PKG-INFO\n'}
+[0.623155] (robot_core) StdoutLine: {'line': b'writing dependency_links to src.egg-info/dependency_links.txt\n'}
+[0.623283] (robot_core) StdoutLine: {'line': b'writing top-level names to src.egg-info/top_level.txt\n'}
+[0.623994] (robot_description) StdoutLine: {'line': b'writing src.egg-info/PKG-INFO\n'}
+[0.626379] (robot_description) StdoutLine: {'line': b'writing dependency_links to src.egg-info/dependency_links.txt\n'}
+[0.627923] (robot_description) StdoutLine: {'line': b'writing top-level names to src.egg-info/top_level.txt\n'}
+[0.632999] (robot_core) StdoutLine: {'line': b"reading manifest file 'src.egg-info/SOURCES.txt'\n"}
+[0.636587] (robot_core) StdoutLine: {'line': b"writing manifest file 'src.egg-info/SOURCES.txt'\n"}
+[0.638102] (robot_description) StdoutLine: {'line': b"reading manifest file 'src.egg-info/SOURCES.txt'\n"}
+[0.641031] (robot_description) StdoutLine: {'line': b"writing manifest file 'src.egg-info/SOURCES.txt'\n"}
+[0.693533] (robot_core) StdoutLine: {'line': b'Built target ament_cmake_python_build_src_egg\n'}
+[0.694948] (robot_description) StdoutLine: {'line': b'Built target ament_cmake_python_build_src_egg\n'}
+[0.701054] (robot_core) CommandEnded: {'returncode': 0}
+[0.702505] (-) TimerEvent: {}
+[0.703454] (ds4_driver_msgs) StdoutLine: {'line': b'running egg_info\n'}
+[0.703566] (robot_description) CommandEnded: {'returncode': 0}
+[0.704320] (ds4_driver_msgs) StdoutLine: {'line': b'writing ds4_driver_msgs.egg-info/PKG-INFO\n'}
+[0.704463] (ds4_driver_msgs) StdoutLine: {'line': b'writing dependency_links to ds4_driver_msgs.egg-info/dependency_links.txt\n'}
+[0.704637] (ds4_driver_msgs) StdoutLine: {'line': b'writing top-level names to ds4_driver_msgs.egg-info/top_level.txt\n'}
+[0.706653] (ds4_driver_msgs) StdoutLine: {'line': b"reading manifest file 'ds4_driver_msgs.egg-info/SOURCES.txt'\n"}
+[0.707310] (ds4_driver_msgs) StdoutLine: {'line': b"writing manifest file 'ds4_driver_msgs.egg-info/SOURCES.txt'\n"}
+[0.721604] (robot_core) JobProgress: {'identifier': 'robot_core', 'progress': 'install'}
+[0.727682] (robot_core) Command: {'cmd': ['/usr/bin/cmake', '--install', '/home/robot_ws/build/robot_core'], 'cwd': '/home/robot_ws/build/robot_core', 'env': OrderedDict([('HOSTNAME', 'entity014'), ('SHLVL', '1'), ('LD_LIBRARY_PATH', '/home/robot_ws/install/ds4_driver_msgs/lib:/usr/lib/x86_64-linux-gnu/gazebo-11/plugins:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/x86_64-linux-gnu:/opt/ros/humble/lib'), ('HOME', '/home'), ('ROS_PYTHON_VERSION', '3'), ('COLCON_PREFIX_PATH', '/home/robot_ws/install'), ('ROS_DISTRO', 'humble'), ('_', '/usr/bin/colcon'), ('ROS_VERSION', '2'), ('NVIDIA_DRIVER_CAPABILITIES', 'all'), ('TERM', 'xterm'), ('ROS_LOCALHOST_ONLY', '0'), ('QT_X11_NO_MITSHM', '1'), ('PATH', '/opt/ros/humble/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin'), ('XDG_RUNTIME_DIR', '/tmp/runtime-root'), ('DISPLAY', ':0'), ('LANG', 'C.UTF-8'), ('RMW_IMPLEMENTATION', 'rmw_cyclonedds_cpp'), ('ROS_DOMAIN_ID', '10'), ('AMENT_PREFIX_PATH', '/home/robot_ws/install/robot_description:/home/robot_ws/install/robot_core:/home/robot_ws/install/ds4_driver:/home/robot_ws/install/ds4_driver_msgs:/opt/ros/humble'), ('NO_AT_BRIDGE', '1'), ('PWD', '/home/robot_ws/build/robot_core'), ('LC_ALL', 'C.UTF-8'), ('PYTHONPATH', '/home/robot_ws/install/robot_description/local/lib/python3.10/dist-packages:/home/robot_ws/install/robot_core/local/lib/python3.10/dist-packages:/home/robot_ws/install/ds4_driver/local/lib/python3.10/dist-packages:/home/robot_ws/install/ds4_driver_msgs/local/lib/python3.10/dist-packages:/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages'), ('COLCON', '1'), ('CMAKE_PREFIX_PATH', '/home/robot_ws/install/robot_description:/home/robot_ws/install/robot_core:/home/robot_ws/install/ds4_driver:/home/robot_ws/install/ds4_driver_msgs:/opt/ros/humble')]), 'shell': False}
+[0.728720] (robot_description) JobProgress: {'identifier': 'robot_description', 'progress': 'install'}
+[0.729123] (robot_description) Command: {'cmd': ['/usr/bin/cmake', '--install', '/home/robot_ws/build/robot_description'], 'cwd': '/home/robot_ws/build/robot_description', 'env': OrderedDict([('HOSTNAME', 'entity014'), ('SHLVL', '1'), ('LD_LIBRARY_PATH', '/home/robot_ws/install/ds4_driver_msgs/lib:/usr/lib/x86_64-linux-gnu/gazebo-11/plugins:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/x86_64-linux-gnu:/opt/ros/humble/lib'), ('HOME', '/home'), ('ROS_PYTHON_VERSION', '3'), ('COLCON_PREFIX_PATH', '/home/robot_ws/install'), ('ROS_DISTRO', 'humble'), ('_', '/usr/bin/colcon'), ('ROS_VERSION', '2'), ('NVIDIA_DRIVER_CAPABILITIES', 'all'), ('TERM', 'xterm'), ('ROS_LOCALHOST_ONLY', '0'), ('QT_X11_NO_MITSHM', '1'), ('PATH', '/opt/ros/humble/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin'), ('XDG_RUNTIME_DIR', '/tmp/runtime-root'), ('DISPLAY', ':0'), ('LANG', 'C.UTF-8'), ('RMW_IMPLEMENTATION', 'rmw_cyclonedds_cpp'), ('ROS_DOMAIN_ID', '10'), ('AMENT_PREFIX_PATH', '/home/robot_ws/install/robot_description:/home/robot_ws/install/robot_core:/home/robot_ws/install/ds4_driver:/home/robot_ws/install/ds4_driver_msgs:/opt/ros/humble'), ('NO_AT_BRIDGE', '1'), ('PWD', '/home/robot_ws/build/robot_description'), ('LC_ALL', 'C.UTF-8'), ('PYTHONPATH', '/home/robot_ws/install/robot_description/local/lib/python3.10/dist-packages:/home/robot_ws/install/robot_core/local/lib/python3.10/dist-packages:/home/robot_ws/install/ds4_driver/local/lib/python3.10/dist-packages:/home/robot_ws/install/ds4_driver_msgs/local/lib/python3.10/dist-packages:/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages'), ('COLCON', '1'), ('CMAKE_PREFIX_PATH', '/home/robot_ws/install/robot_description:/home/robot_ws/install/robot_core:/home/robot_ws/install/ds4_driver:/home/robot_ws/install/ds4_driver_msgs:/opt/ros/humble')]), 'shell': False}
+[0.730412] (ds4_driver_msgs) StdoutLine: {'line': b'[100%] Built target ament_cmake_python_build_ds4_driver_msgs_egg\n'}
+[0.742079] (robot_core) StdoutLine: {'line': b'-- Install configuration: ""\n'}
+[0.743299] (robot_core) StdoutLine: {'line': b'-- Up-to-date: /home/robot_ws/install/robot_core/share/robot_core/environment/pythonpath.sh\n'}
+[0.744145] (robot_core) StdoutLine: {'line': b'-- Up-to-date: /home/robot_ws/install/robot_core/share/robot_core/environment/pythonpath.dsv\n'}
+[0.744792] (robot_core) StdoutLine: {'line': b'-- Up-to-date: /home/robot_ws/install/robot_core/local/lib/python3.10/dist-packages/src-0.0.0-py3.10.egg-info\n'}
+[0.744863] (robot_core) StdoutLine: {'line': b'-- Installing: /home/robot_ws/install/robot_core/local/lib/python3.10/dist-packages/src-0.0.0-py3.10.egg-info/top_level.txt\n'}
+[0.744959] (robot_core) StdoutLine: {'line': b'-- Installing: /home/robot_ws/install/robot_core/local/lib/python3.10/dist-packages/src-0.0.0-py3.10.egg-info/SOURCES.txt\n'}
+[0.745027] (robot_core) StdoutLine: {'line': b'-- Installing: /home/robot_ws/install/robot_core/local/lib/python3.10/dist-packages/src-0.0.0-py3.10.egg-info/PKG-INFO\n'}
+[0.745123] (robot_core) StdoutLine: {'line': b'-- Installing: /home/robot_ws/install/robot_core/local/lib/python3.10/dist-packages/src-0.0.0-py3.10.egg-info/dependency_links.txt\n'}
+[0.745192] (robot_core) StdoutLine: {'line': b'-- Up-to-date: /home/robot_ws/install/robot_core/local/lib/python3.10/dist-packages/src\n'}
+[0.745260] (robot_core) StdoutLine: {'line': b'-- Up-to-date: /home/robot_ws/install/robot_core/local/lib/python3.10/dist-packages/src/__init__.py\n'}
+[0.745848] (robot_description) StdoutLine: {'line': b'-- Install configuration: ""\n'}
+[0.747331] (robot_core) StdoutLine: {'line': b'-- Up-to-date: /home/robot_ws/install/robot_core/local/lib/python3.10/dist-packages/src/joy.py\n'}
+[0.747824] (robot_description) StdoutLine: {'line': b'-- Up-to-date: /home/robot_ws/install/robot_description/share/robot_description/environment/pythonpath.sh\n'}
+[0.748171] (robot_description) StdoutLine: {'line': b'-- Up-to-date: /home/robot_ws/install/robot_description/share/robot_description/environment/pythonpath.dsv\n'}
+[0.748509] (robot_description) StdoutLine: {'line': b'-- Up-to-date: /home/robot_ws/install/robot_description/local/lib/python3.10/dist-packages/src-0.0.0-py3.10.egg-info\n'}
+[0.748832] (robot_description) StdoutLine: {'line': b'-- Installing: /home/robot_ws/install/robot_description/local/lib/python3.10/dist-packages/src-0.0.0-py3.10.egg-info/top_level.txt\n'}
+[0.749409] (robot_description) StdoutLine: {'line': b'-- Installing: /home/robot_ws/install/robot_description/local/lib/python3.10/dist-packages/src-0.0.0-py3.10.egg-info/SOURCES.txt\n'}
+[0.749922] (robot_description) StdoutLine: {'line': b'-- Installing: /home/robot_ws/install/robot_description/local/lib/python3.10/dist-packages/src-0.0.0-py3.10.egg-info/PKG-INFO\n'}
+[0.750199] (robot_description) StdoutLine: {'line': b'-- Installing: /home/robot_ws/install/robot_description/local/lib/python3.10/dist-packages/src-0.0.0-py3.10.egg-info/dependency_links.txt\n'}
+[0.750506] (robot_description) StdoutLine: {'line': b'-- Up-to-date: /home/robot_ws/install/robot_description/local/lib/python3.10/dist-packages/src\n'}
+[0.750814] (robot_description) StdoutLine: {'line': b'-- Up-to-date: /home/robot_ws/install/robot_description/local/lib/python3.10/dist-packages/src/__init__.py\n'}
+[0.759140] (ds4_driver_msgs) CommandEnded: {'returncode': 0}
+[0.802852] (-) TimerEvent: {}
+[0.813932] (robot_core) StdoutLine: {'line': b"Listing '/home/robot_ws/install/robot_core/local/lib/python3.10/dist-packages/src'...\n"}
+[0.816802] (robot_core) StdoutLine: {'line': b'-- Up-to-date: /home/robot_ws/install/robot_core/share/robot_core/src\n'}
+[0.817049] (robot_core) StdoutLine: {'line': b'-- Up-to-date: /home/robot_ws/install/robot_core/share/robot_core/src/__init__.py\n'}
+[0.819058] (robot_core) StdoutLine: {'line': b'-- Up-to-date: /home/robot_ws/install/robot_core/share/robot_core/src/joy.py\n'}
+[0.820541] (robot_core) StdoutLine: {'line': b'-- Up-to-date: /home/robot_ws/install/robot_core/share/robot_core/launch\n'}
+[0.821031] (robot_core) StdoutLine: {'line': b'-- Up-to-date: /home/robot_ws/install/robot_core/share/robot_core/launch/joy.launch.py\n'}
+[0.821348] (robot_core) StdoutLine: {'line': b'-- Up-to-date: /home/robot_ws/install/robot_core/share/robot_core/config\n'}
+[0.821670] (robot_core) StdoutLine: {'line': b'-- Up-to-date: /home/robot_ws/install/robot_core/share/robot_core/config/joystick.yaml\n'}
+[0.821949] (robot_core) StdoutLine: {'line': b'-- Up-to-date: /home/robot_ws/install/robot_core/lib/robot_core/joy.py\n'}
+[0.822229] (robot_core) StdoutLine: {'line': b'-- Up-to-date: /home/robot_ws/install/robot_core/lib/robot_core/robot_core\n'}
+[0.822526] (robot_core) StdoutLine: {'line': b'-- Up-to-date: /home/robot_ws/install/robot_core/lib/robot_core/robot_core/ps4 copy.py\n'}
+[0.822807] (robot_core) StdoutLine: {'line': b'-- Up-to-date: /home/robot_ws/install/robot_core/lib/robot_core/robot_core/__init__.py\n'}
+[0.823074] (robot_core) StdoutLine: {'line': b'-- Installing: /home/robot_ws/install/robot_core/lib/robot_core/robot_core/ps4.py\n'}
+[0.823328] (robot_description) StdoutLine: {'line': b"Listing '/home/robot_ws/install/robot_description/local/lib/python3.10/dist-packages/src'...\n"}
+[0.823865] (robot_core) StdoutLine: {'line': b'-- Up-to-date: /home/robot_ws/install/robot_core/share/ament_index/resource_index/package_run_dependencies/robot_core\n'}
+[0.824261] (robot_core) StdoutLine: {'line': b'-- Up-to-date: /home/robot_ws/install/robot_core/share/ament_index/resource_index/parent_prefix_path/robot_core\n'}
+[0.824668] (robot_core) StdoutLine: {'line': b'-- Up-to-date: /home/robot_ws/install/robot_core/share/robot_core/environment/ament_prefix_path.sh\n'}
+[0.826097] (robot_core) StdoutLine: {'line': b'-- Up-to-date: /home/robot_ws/install/robot_core/share/robot_core/environment/ament_prefix_path.dsv\n'}
+[0.827933] (robot_core) StdoutLine: {'line': b'-- Up-to-date: /home/robot_ws/install/robot_core/share/robot_core/environment/path.sh\n'}
+[0.828778] (robot_core) StdoutLine: {'line': b'-- Up-to-date: /home/robot_ws/install/robot_core/share/robot_core/environment/path.dsv\n'}
+[0.830422] (robot_core) StdoutLine: {'line': b'-- Up-to-date: /home/robot_ws/install/robot_core/share/robot_core/local_setup.bash\n'}
+[0.830975] (robot_core) StdoutLine: {'line': b'-- Up-to-date: /home/robot_ws/install/robot_core/share/robot_core/local_setup.sh\n'}
+[0.831094] (robot_core) StdoutLine: {'line': b'-- Up-to-date: /home/robot_ws/install/robot_core/share/robot_core/local_setup.zsh\n'}
+[0.831175] (robot_core) StdoutLine: {'line': b'-- Up-to-date: /home/robot_ws/install/robot_core/share/robot_core/local_setup.dsv\n'}
+[0.831246] (robot_core) StdoutLine: {'line': b'-- Installing: /home/robot_ws/install/robot_core/share/robot_core/package.dsv\n'}
+[0.831336] (robot_core) StdoutLine: {'line': b'-- Up-to-date: /home/robot_ws/install/robot_core/share/ament_index/resource_index/packages/robot_core\n'}
+[0.831410] (robot_core) StdoutLine: {'line': b'-- Up-to-date: /home/robot_ws/install/robot_core/share/robot_core/cmake/robot_coreConfig.cmake\n'}
+[0.831552] (robot_core) StdoutLine: {'line': b'-- Up-to-date: /home/robot_ws/install/robot_core/share/robot_core/cmake/robot_coreConfig-version.cmake\n'}
+[0.831643] (robot_core) StdoutLine: {'line': b'-- Up-to-date: /home/robot_ws/install/robot_core/share/robot_core/package.xml\n'}
+[0.831715] (robot_core) CommandEnded: {'returncode': 0}
+[0.832450] (robot_description) StdoutLine: {'line': b'-- Up-to-date: /home/robot_ws/install/robot_description/share/robot_description/config\n'}
+[0.832731] (robot_description) StdoutLine: {'line': b'-- Up-to-date: /home/robot_ws/install/robot_description/share/robot_description/launch\n'}
+[0.832927] (robot_description) StdoutLine: {'line': b'-- Up-to-date: /home/robot_ws/install/robot_description/share/robot_description/src\n'}
+[0.832966] (robot_description) StdoutLine: {'line': b'-- Up-to-date: /home/robot_ws/install/robot_description/share/robot_description/src/__init__.py\n'}
+[0.832997] (robot_description) StdoutLine: {'line': b'-- Up-to-date: /home/robot_ws/install/robot_description/share/robot_description/urdf\n'}
+[0.833028] (robot_description) StdoutLine: {'line': b'-- Up-to-date: /home/robot_ws/install/robot_description/share/robot_description/worlds\n'}
+[0.833391] (robot_description) StdoutLine: {'line': b'-- Up-to-date: /home/robot_ws/install/robot_description/share/ament_index/resource_index/package_run_dependencies/robot_description\n'}
+[0.833626] (robot_description) StdoutLine: {'line': b'-- Up-to-date: /home/robot_ws/install/robot_description/share/ament_index/resource_index/parent_prefix_path/robot_description\n'}
+[0.833716] (robot_description) StdoutLine: {'line': b'-- Up-to-date: /home/robot_ws/install/robot_description/share/robot_description/environment/ament_prefix_path.sh\n'}
+[0.833784] (robot_description) StdoutLine: {'line': b'-- Up-to-date: /home/robot_ws/install/robot_description/share/robot_description/environment/ament_prefix_path.dsv\n'}
+[0.833851] (robot_description) StdoutLine: {'line': b'-- Up-to-date: /home/robot_ws/install/robot_description/share/robot_description/environment/path.sh\n'}
+[0.833952] (robot_description) StdoutLine: {'line': b'-- Up-to-date: /home/robot_ws/install/robot_description/share/robot_description/environment/path.dsv\n'}
+[0.834042] (robot_description) StdoutLine: {'line': b'-- Up-to-date: /home/robot_ws/install/robot_description/share/robot_description/local_setup.bash\n'}
+[0.834109] (robot_description) StdoutLine: {'line': b'-- Up-to-date: /home/robot_ws/install/robot_description/share/robot_description/local_setup.sh\n'}
+[0.834177] (robot_description) StdoutLine: {'line': b'-- Up-to-date: /home/robot_ws/install/robot_description/share/robot_description/local_setup.zsh\n'}
+[0.834244] (robot_description) StdoutLine: {'line': b'-- Up-to-date: /home/robot_ws/install/robot_description/share/robot_description/local_setup.dsv\n'}
+[0.834311] (robot_description) StdoutLine: {'line': b'-- Installing: /home/robot_ws/install/robot_description/share/robot_description/package.dsv\n'}
+[0.834421] (robot_description) StdoutLine: {'line': b'-- Up-to-date: /home/robot_ws/install/robot_description/share/ament_index/resource_index/packages/robot_description\n'}
+[0.834596] (robot_description) StdoutLine: {'line': b'-- Up-to-date: /home/robot_ws/install/robot_description/share/robot_description/cmake/robot_descriptionConfig.cmake\n'}
+[0.834679] (robot_description) StdoutLine: {'line': b'-- Up-to-date: /home/robot_ws/install/robot_description/share/robot_description/cmake/robot_descriptionConfig-version.cmake\n'}
+[0.834755] (robot_description) StdoutLine: {'line': b'-- Up-to-date: /home/robot_ws/install/robot_description/share/robot_description/package.xml\n'}
+[0.846693] (robot_description) CommandEnded: {'returncode': 0}
+[0.881547] (robot_core) JobEnded: {'identifier': 'robot_core', 'rc': 0}
+[0.896765] (robot_description) JobEnded: {'identifier': 'robot_description', 'rc': 0}
+[0.902902] (-) TimerEvent: {}
+[0.921016] (ds4_driver_msgs) JobProgress: {'identifier': 'ds4_driver_msgs', 'progress': 'install'}
+[0.921417] (ds4_driver_msgs) Command: {'cmd': ['/usr/bin/cmake', '--install', '/home/robot_ws/build/ds4_driver_msgs'], 'cwd': '/home/robot_ws/build/ds4_driver_msgs', 'env': OrderedDict([('HOSTNAME', 'entity014'), ('SHLVL', '1'), ('LD_LIBRARY_PATH', '/home/robot_ws/install/ds4_driver_msgs/lib:/usr/lib/x86_64-linux-gnu/gazebo-11/plugins:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/x86_64-linux-gnu:/opt/ros/humble/lib'), ('HOME', '/home'), ('ROS_PYTHON_VERSION', '3'), ('COLCON_PREFIX_PATH', '/home/robot_ws/install'), ('ROS_DISTRO', 'humble'), ('_', '/usr/bin/colcon'), ('ROS_VERSION', '2'), ('NVIDIA_DRIVER_CAPABILITIES', 'all'), ('TERM', 'xterm'), ('ROS_LOCALHOST_ONLY', '0'), ('QT_X11_NO_MITSHM', '1'), ('PATH', '/opt/ros/humble/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin'), ('XDG_RUNTIME_DIR', '/tmp/runtime-root'), ('DISPLAY', ':0'), ('LANG', 'C.UTF-8'), ('RMW_IMPLEMENTATION', 'rmw_cyclonedds_cpp'), ('ROS_DOMAIN_ID', '10'), ('AMENT_PREFIX_PATH', '/home/robot_ws/install/robot_description:/home/robot_ws/install/robot_core:/home/robot_ws/install/ds4_driver:/home/robot_ws/install/ds4_driver_msgs:/opt/ros/humble'), ('NO_AT_BRIDGE', '1'), ('PWD', '/home/robot_ws/build/ds4_driver_msgs'), ('LC_ALL', 'C.UTF-8'), ('PYTHONPATH', '/home/robot_ws/install/robot_description/local/lib/python3.10/dist-packages:/home/robot_ws/install/robot_core/local/lib/python3.10/dist-packages:/home/robot_ws/install/ds4_driver/local/lib/python3.10/dist-packages:/home/robot_ws/install/ds4_driver_msgs/local/lib/python3.10/dist-packages:/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages'), ('COLCON', '1'), ('CMAKE_PREFIX_PATH', '/home/robot_ws/install/robot_description:/home/robot_ws/install/robot_core:/home/robot_ws/install/ds4_driver:/home/robot_ws/install/ds4_driver_msgs:/opt/ros/humble')]), 'shell': False}
+[0.929087] (ds4_driver_msgs) StdoutLine: {'line': b'-- Install configuration: ""\n'}
+[0.929379] (ds4_driver_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/robot_ws/install/ds4_driver_msgs/share/ament_index/resource_index/rosidl_interfaces/ds4_driver_msgs\n'}
+[0.929490] (ds4_driver_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/robot_ws/install/ds4_driver_msgs/include/ds4_driver_msgs/ds4_driver_msgs\n'}
+[0.929588] (ds4_driver_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/robot_ws/install/ds4_driver_msgs/include/ds4_driver_msgs/ds4_driver_msgs/msg\n'}
+[0.929657] (ds4_driver_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/robot_ws/install/ds4_driver_msgs/include/ds4_driver_msgs/ds4_driver_msgs/msg/feedback.h\n'}
+[0.929724] (ds4_driver_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/robot_ws/install/ds4_driver_msgs/include/ds4_driver_msgs/ds4_driver_msgs/msg/detail\n'}
+[0.929790] (ds4_driver_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/robot_ws/install/ds4_driver_msgs/include/ds4_driver_msgs/ds4_driver_msgs/msg/detail/feedback__type_support.h\n'}
+[0.929858] (ds4_driver_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/robot_ws/install/ds4_driver_msgs/include/ds4_driver_msgs/ds4_driver_msgs/msg/detail/trackpad__type_support.h\n'}
+[0.929925] (ds4_driver_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/robot_ws/install/ds4_driver_msgs/include/ds4_driver_msgs/ds4_driver_msgs/msg/detail/report__struct.h\n'}
+[0.929991] (ds4_driver_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/robot_ws/install/ds4_driver_msgs/include/ds4_driver_msgs/ds4_driver_msgs/msg/detail/status__functions.c\n'}
+[0.930058] (ds4_driver_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/robot_ws/install/ds4_driver_msgs/include/ds4_driver_msgs/ds4_driver_msgs/msg/detail/report__type_support.h\n'}
+[0.930124] (ds4_driver_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/robot_ws/install/ds4_driver_msgs/include/ds4_driver_msgs/ds4_driver_msgs/msg/detail/report__functions.h\n'}
+[0.930190] (ds4_driver_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/robot_ws/install/ds4_driver_msgs/include/ds4_driver_msgs/ds4_driver_msgs/msg/detail/status__type_support.h\n'}
+[0.930256] (ds4_driver_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/robot_ws/install/ds4_driver_msgs/include/ds4_driver_msgs/ds4_driver_msgs/msg/detail/trackpad__struct.h\n'}
+[0.930322] (ds4_driver_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/robot_ws/install/ds4_driver_msgs/include/ds4_driver_msgs/ds4_driver_msgs/msg/detail/report__functions.c\n'}
+[0.930389] (ds4_driver_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/robot_ws/install/ds4_driver_msgs/include/ds4_driver_msgs/ds4_driver_msgs/msg/detail/feedback__functions.h\n'}
+[0.930569] (ds4_driver_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/robot_ws/install/ds4_driver_msgs/include/ds4_driver_msgs/ds4_driver_msgs/msg/detail/trackpad__functions.h\n'}
+[0.930749] (ds4_driver_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/robot_ws/install/ds4_driver_msgs/include/ds4_driver_msgs/ds4_driver_msgs/msg/detail/feedback__struct.h\n'}
+[0.930814] (ds4_driver_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/robot_ws/install/ds4_driver_msgs/include/ds4_driver_msgs/ds4_driver_msgs/msg/detail/status__struct.h\n'}
+[0.930878] (ds4_driver_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/robot_ws/install/ds4_driver_msgs/include/ds4_driver_msgs/ds4_driver_msgs/msg/detail/status__functions.h\n'}
+[0.930974] (ds4_driver_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/robot_ws/install/ds4_driver_msgs/include/ds4_driver_msgs/ds4_driver_msgs/msg/detail/trackpad__functions.c\n'}
+[0.931053] (ds4_driver_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/robot_ws/install/ds4_driver_msgs/include/ds4_driver_msgs/ds4_driver_msgs/msg/detail/feedback__functions.c\n'}
+[0.931131] (ds4_driver_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/robot_ws/install/ds4_driver_msgs/include/ds4_driver_msgs/ds4_driver_msgs/msg/status.h\n'}
+[0.931208] (ds4_driver_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/robot_ws/install/ds4_driver_msgs/include/ds4_driver_msgs/ds4_driver_msgs/msg/trackpad.h\n'}
+[0.931285] (ds4_driver_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/robot_ws/install/ds4_driver_msgs/include/ds4_driver_msgs/ds4_driver_msgs/msg/report.h\n'}
+[0.931409] (ds4_driver_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/robot_ws/install/ds4_driver_msgs/include/ds4_driver_msgs/ds4_driver_msgs/msg/rosidl_generator_c__visibility_control.h\n'}
+[0.931536] (ds4_driver_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/robot_ws/install/ds4_driver_msgs/share/ds4_driver_msgs/environment/library_path.sh\n'}
+[0.931603] (ds4_driver_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/robot_ws/install/ds4_driver_msgs/share/ds4_driver_msgs/environment/library_path.dsv\n'}
+[0.931666] (ds4_driver_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/robot_ws/install/ds4_driver_msgs/lib/libds4_driver_msgs__rosidl_generator_c.so\n'}
+[0.931730] (ds4_driver_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/robot_ws/install/ds4_driver_msgs/include/ds4_driver_msgs/ds4_driver_msgs\n'}
+[0.931792] (ds4_driver_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/robot_ws/install/ds4_driver_msgs/include/ds4_driver_msgs/ds4_driver_msgs/msg\n'}
+[0.931855] (ds4_driver_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/robot_ws/install/ds4_driver_msgs/include/ds4_driver_msgs/ds4_driver_msgs/msg/detail\n'}
+[0.931921] (ds4_driver_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/robot_ws/install/ds4_driver_msgs/include/ds4_driver_msgs/ds4_driver_msgs/msg/detail/feedback__rosidl_typesupport_fastrtps_c.h\n'}
+[0.931985] (ds4_driver_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/robot_ws/install/ds4_driver_msgs/include/ds4_driver_msgs/ds4_driver_msgs/msg/detail/report__rosidl_typesupport_fastrtps_c.h\n'}
+[0.932047] (ds4_driver_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/robot_ws/install/ds4_driver_msgs/include/ds4_driver_msgs/ds4_driver_msgs/msg/detail/status__rosidl_typesupport_fastrtps_c.h\n'}
+[0.932109] (ds4_driver_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/robot_ws/install/ds4_driver_msgs/include/ds4_driver_msgs/ds4_driver_msgs/msg/detail/trackpad__rosidl_typesupport_fastrtps_c.h\n'}
+[0.932172] (ds4_driver_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/robot_ws/install/ds4_driver_msgs/include/ds4_driver_msgs/ds4_driver_msgs/msg/rosidl_typesupport_fastrtps_c__visibility_control.h\n'}
+[0.932235] (ds4_driver_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/robot_ws/install/ds4_driver_msgs/lib/libds4_driver_msgs__rosidl_typesupport_fastrtps_c.so\n'}
+[0.932298] (ds4_driver_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/robot_ws/install/ds4_driver_msgs/include/ds4_driver_msgs/ds4_driver_msgs\n'}
+[0.932359] (ds4_driver_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/robot_ws/install/ds4_driver_msgs/include/ds4_driver_msgs/ds4_driver_msgs/msg\n'}
+[0.932420] (ds4_driver_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/robot_ws/install/ds4_driver_msgs/include/ds4_driver_msgs/ds4_driver_msgs/msg/detail\n'}
+[0.932520] (ds4_driver_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/robot_ws/install/ds4_driver_msgs/include/ds4_driver_msgs/ds4_driver_msgs/msg/detail/status__builder.hpp\n'}
+[0.933024] (ds4_driver_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/robot_ws/install/ds4_driver_msgs/include/ds4_driver_msgs/ds4_driver_msgs/msg/detail/status__traits.hpp\n'}
+[0.933549] (ds4_driver_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/robot_ws/install/ds4_driver_msgs/include/ds4_driver_msgs/ds4_driver_msgs/msg/detail/feedback__traits.hpp\n'}
+[0.934070] (ds4_driver_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/robot_ws/install/ds4_driver_msgs/include/ds4_driver_msgs/ds4_driver_msgs/msg/detail/status__struct.hpp\n'}
+[0.934930] (ds4_driver_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/robot_ws/install/ds4_driver_msgs/include/ds4_driver_msgs/ds4_driver_msgs/msg/detail/report__struct.hpp\n'}
+[0.935616] (ds4_driver_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/robot_ws/install/ds4_driver_msgs/include/ds4_driver_msgs/ds4_driver_msgs/msg/detail/feedback__builder.hpp\n'}
+[0.935961] (ds4_driver_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/robot_ws/install/ds4_driver_msgs/include/ds4_driver_msgs/ds4_driver_msgs/msg/detail/report__builder.hpp\n'}
+[0.936237] (ds4_driver_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/robot_ws/install/ds4_driver_msgs/include/ds4_driver_msgs/ds4_driver_msgs/msg/detail/report__traits.hpp\n'}
+[0.936603] (ds4_driver_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/robot_ws/install/ds4_driver_msgs/include/ds4_driver_msgs/ds4_driver_msgs/msg/detail/trackpad__struct.hpp\n'}
+[0.936871] (ds4_driver_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/robot_ws/install/ds4_driver_msgs/include/ds4_driver_msgs/ds4_driver_msgs/msg/detail/trackpad__builder.hpp\n'}
+[0.937122] (ds4_driver_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/robot_ws/install/ds4_driver_msgs/include/ds4_driver_msgs/ds4_driver_msgs/msg/detail/feedback__struct.hpp\n'}
+[0.937373] (ds4_driver_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/robot_ws/install/ds4_driver_msgs/include/ds4_driver_msgs/ds4_driver_msgs/msg/detail/trackpad__traits.hpp\n'}
+[0.937653] (ds4_driver_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/robot_ws/install/ds4_driver_msgs/include/ds4_driver_msgs/ds4_driver_msgs/msg/status.hpp\n'}
+[0.937912] (ds4_driver_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/robot_ws/install/ds4_driver_msgs/include/ds4_driver_msgs/ds4_driver_msgs/msg/trackpad.hpp\n'}
+[0.938161] (ds4_driver_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/robot_ws/install/ds4_driver_msgs/include/ds4_driver_msgs/ds4_driver_msgs/msg/report.hpp\n'}
+[0.938403] (ds4_driver_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/robot_ws/install/ds4_driver_msgs/include/ds4_driver_msgs/ds4_driver_msgs/msg/feedback.hpp\n'}
+[0.938683] (ds4_driver_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/robot_ws/install/ds4_driver_msgs/include/ds4_driver_msgs/ds4_driver_msgs\n'}
+[0.938933] (ds4_driver_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/robot_ws/install/ds4_driver_msgs/include/ds4_driver_msgs/ds4_driver_msgs/msg\n'}
+[0.939216] (ds4_driver_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/robot_ws/install/ds4_driver_msgs/include/ds4_driver_msgs/ds4_driver_msgs/msg/detail\n'}
+[0.939480] (ds4_driver_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/robot_ws/install/ds4_driver_msgs/include/ds4_driver_msgs/ds4_driver_msgs/msg/detail/trackpad__rosidl_typesupport_fastrtps_cpp.hpp\n'}
+[0.939757] (ds4_driver_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/robot_ws/install/ds4_driver_msgs/include/ds4_driver_msgs/ds4_driver_msgs/msg/detail/feedback__rosidl_typesupport_fastrtps_cpp.hpp\n'}
+[0.940004] (ds4_driver_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/robot_ws/install/ds4_driver_msgs/include/ds4_driver_msgs/ds4_driver_msgs/msg/detail/dds_fastrtps\n'}
+[0.940249] (ds4_driver_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/robot_ws/install/ds4_driver_msgs/include/ds4_driver_msgs/ds4_driver_msgs/msg/detail/report__rosidl_typesupport_fastrtps_cpp.hpp\n'}
+[0.940513] (ds4_driver_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/robot_ws/install/ds4_driver_msgs/include/ds4_driver_msgs/ds4_driver_msgs/msg/detail/status__rosidl_typesupport_fastrtps_cpp.hpp\n'}
+[0.940771] (ds4_driver_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/robot_ws/install/ds4_driver_msgs/include/ds4_driver_msgs/ds4_driver_msgs/msg/rosidl_typesupport_fastrtps_cpp__visibility_control.h\n'}
+[0.941133] (ds4_driver_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/robot_ws/install/ds4_driver_msgs/lib/libds4_driver_msgs__rosidl_typesupport_fastrtps_cpp.so\n'}
+[0.941377] (ds4_driver_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/robot_ws/install/ds4_driver_msgs/include/ds4_driver_msgs/ds4_driver_msgs\n'}
+[0.941748] (ds4_driver_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/robot_ws/install/ds4_driver_msgs/include/ds4_driver_msgs/ds4_driver_msgs/msg\n'}
+[0.942007] (ds4_driver_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/robot_ws/install/ds4_driver_msgs/include/ds4_driver_msgs/ds4_driver_msgs/msg/detail\n'}
+[0.942305] (ds4_driver_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/robot_ws/install/ds4_driver_msgs/include/ds4_driver_msgs/ds4_driver_msgs/msg/detail/trackpad__rosidl_typesupport_introspection_c.h\n'}
+[0.942704] (ds4_driver_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/robot_ws/install/ds4_driver_msgs/include/ds4_driver_msgs/ds4_driver_msgs/msg/detail/report__rosidl_typesupport_introspection_c.h\n'}
+[0.942997] (ds4_driver_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/robot_ws/install/ds4_driver_msgs/include/ds4_driver_msgs/ds4_driver_msgs/msg/detail/report__type_support.c\n'}
+[0.943254] (ds4_driver_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/robot_ws/install/ds4_driver_msgs/include/ds4_driver_msgs/ds4_driver_msgs/msg/detail/status__rosidl_typesupport_introspection_c.h\n'}
+[0.943537] (ds4_driver_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/robot_ws/install/ds4_driver_msgs/include/ds4_driver_msgs/ds4_driver_msgs/msg/detail/trackpad__type_support.c\n'}
+[0.943805] (ds4_driver_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/robot_ws/install/ds4_driver_msgs/include/ds4_driver_msgs/ds4_driver_msgs/msg/detail/feedback__rosidl_typesupport_introspection_c.h\n'}
+[0.944057] (ds4_driver_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/robot_ws/install/ds4_driver_msgs/include/ds4_driver_msgs/ds4_driver_msgs/msg/detail/status__type_support.c\n'}
+[0.944303] (ds4_driver_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/robot_ws/install/ds4_driver_msgs/include/ds4_driver_msgs/ds4_driver_msgs/msg/detail/feedback__type_support.c\n'}
+[0.944576] (ds4_driver_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/robot_ws/install/ds4_driver_msgs/include/ds4_driver_msgs/ds4_driver_msgs/msg/rosidl_typesupport_introspection_c__visibility_control.h\n'}
+[0.944704] (ds4_driver_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/robot_ws/install/ds4_driver_msgs/lib/libds4_driver_msgs__rosidl_typesupport_introspection_c.so\n'}
+[0.944728] (ds4_driver_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/robot_ws/install/ds4_driver_msgs/lib/libds4_driver_msgs__rosidl_typesupport_c.so\n'}
+[0.944752] (ds4_driver_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/robot_ws/install/ds4_driver_msgs/include/ds4_driver_msgs/ds4_driver_msgs\n'}
+[0.944775] (ds4_driver_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/robot_ws/install/ds4_driver_msgs/include/ds4_driver_msgs/ds4_driver_msgs/msg\n'}
+[0.944798] (ds4_driver_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/robot_ws/install/ds4_driver_msgs/include/ds4_driver_msgs/ds4_driver_msgs/msg/detail\n'}
+[0.944820] (ds4_driver_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/robot_ws/install/ds4_driver_msgs/include/ds4_driver_msgs/ds4_driver_msgs/msg/detail/status__type_support.cpp\n'}
+[0.944843] (ds4_driver_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/robot_ws/install/ds4_driver_msgs/include/ds4_driver_msgs/ds4_driver_msgs/msg/detail/report__type_support.cpp\n'}
+[0.944866] (ds4_driver_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/robot_ws/install/ds4_driver_msgs/include/ds4_driver_msgs/ds4_driver_msgs/msg/detail/trackpad__rosidl_typesupport_introspection_cpp.hpp\n'}
+[0.944890] (ds4_driver_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/robot_ws/install/ds4_driver_msgs/include/ds4_driver_msgs/ds4_driver_msgs/msg/detail/trackpad__type_support.cpp\n'}
+[0.944914] (ds4_driver_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/robot_ws/install/ds4_driver_msgs/include/ds4_driver_msgs/ds4_driver_msgs/msg/detail/status__rosidl_typesupport_introspection_cpp.hpp\n'}
+[0.944937] (ds4_driver_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/robot_ws/install/ds4_driver_msgs/include/ds4_driver_msgs/ds4_driver_msgs/msg/detail/feedback__rosidl_typesupport_introspection_cpp.hpp\n'}
+[0.944960] (ds4_driver_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/robot_ws/install/ds4_driver_msgs/include/ds4_driver_msgs/ds4_driver_msgs/msg/detail/report__rosidl_typesupport_introspection_cpp.hpp\n'}
+[0.944989] (ds4_driver_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/robot_ws/install/ds4_driver_msgs/include/ds4_driver_msgs/ds4_driver_msgs/msg/detail/feedback__type_support.cpp\n'}
+[0.945013] (ds4_driver_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/robot_ws/install/ds4_driver_msgs/lib/libds4_driver_msgs__rosidl_typesupport_introspection_cpp.so\n'}
+[0.945036] (ds4_driver_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/robot_ws/install/ds4_driver_msgs/lib/libds4_driver_msgs__rosidl_typesupport_cpp.so\n'}
+[0.945062] (ds4_driver_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/robot_ws/install/ds4_driver_msgs/share/ds4_driver_msgs/environment/pythonpath.sh\n'}
+[0.945085] (ds4_driver_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/robot_ws/install/ds4_driver_msgs/share/ds4_driver_msgs/environment/pythonpath.dsv\n'}
+[0.945108] (ds4_driver_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/robot_ws/install/ds4_driver_msgs/local/lib/python3.10/dist-packages/ds4_driver_msgs-0.0.0-py3.10.egg-info\n'}
+[0.945131] (ds4_driver_msgs) StdoutLine: {'line': b'-- Installing: /home/robot_ws/install/ds4_driver_msgs/local/lib/python3.10/dist-packages/ds4_driver_msgs-0.0.0-py3.10.egg-info/top_level.txt\n'}
+[0.945154] (ds4_driver_msgs) StdoutLine: {'line': b'-- Installing: /home/robot_ws/install/ds4_driver_msgs/local/lib/python3.10/dist-packages/ds4_driver_msgs-0.0.0-py3.10.egg-info/SOURCES.txt\n'}
+[0.945178] (ds4_driver_msgs) StdoutLine: {'line': b'-- Installing: /home/robot_ws/install/ds4_driver_msgs/local/lib/python3.10/dist-packages/ds4_driver_msgs-0.0.0-py3.10.egg-info/PKG-INFO\n'}
+[0.945202] (ds4_driver_msgs) StdoutLine: {'line': b'-- Installing: /home/robot_ws/install/ds4_driver_msgs/local/lib/python3.10/dist-packages/ds4_driver_msgs-0.0.0-py3.10.egg-info/dependency_links.txt\n'}
+[0.945227] (ds4_driver_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/robot_ws/install/ds4_driver_msgs/local/lib/python3.10/dist-packages/ds4_driver_msgs\n'}
+[0.945253] (ds4_driver_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/robot_ws/install/ds4_driver_msgs/local/lib/python3.10/dist-packages/ds4_driver_msgs/ds4_driver_msgs_s__rosidl_typesupport_introspection_c.cpython-310-x86_64-linux-gnu.so\n'}
+[0.945277] (ds4_driver_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/robot_ws/install/ds4_driver_msgs/local/lib/python3.10/dist-packages/ds4_driver_msgs/__init__.py\n'}
+[0.945301] (ds4_driver_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/robot_ws/install/ds4_driver_msgs/local/lib/python3.10/dist-packages/ds4_driver_msgs/_ds4_driver_msgs_s.ep.rosidl_typesupport_fastrtps_c.c\n'}
+[0.945324] (ds4_driver_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/robot_ws/install/ds4_driver_msgs/local/lib/python3.10/dist-packages/ds4_driver_msgs/ds4_driver_msgs_s__rosidl_typesupport_fastrtps_c.cpython-310-x86_64-linux-gnu.so\n'}
+[0.945348] (ds4_driver_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/robot_ws/install/ds4_driver_msgs/local/lib/python3.10/dist-packages/ds4_driver_msgs/_ds4_driver_msgs_s.ep.rosidl_typesupport_c.c\n'}
+[0.945371] (ds4_driver_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/robot_ws/install/ds4_driver_msgs/local/lib/python3.10/dist-packages/ds4_driver_msgs/_ds4_driver_msgs_s.ep.rosidl_typesupport_introspection_c.c\n'}
+[0.945398] (ds4_driver_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/robot_ws/install/ds4_driver_msgs/local/lib/python3.10/dist-packages/ds4_driver_msgs/ds4_driver_msgs_s__rosidl_typesupport_c.cpython-310-x86_64-linux-gnu.so\n'}
+[0.945422] (ds4_driver_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/robot_ws/install/ds4_driver_msgs/local/lib/python3.10/dist-packages/ds4_driver_msgs/msg\n'}
+[0.945452] (ds4_driver_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/robot_ws/install/ds4_driver_msgs/local/lib/python3.10/dist-packages/ds4_driver_msgs/msg/_feedback_s.c\n'}
+[0.945476] (ds4_driver_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/robot_ws/install/ds4_driver_msgs/local/lib/python3.10/dist-packages/ds4_driver_msgs/msg/__init__.py\n'}
+[0.945501] (ds4_driver_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/robot_ws/install/ds4_driver_msgs/local/lib/python3.10/dist-packages/ds4_driver_msgs/msg/_trackpad.py\n'}
+[0.945527] (ds4_driver_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/robot_ws/install/ds4_driver_msgs/local/lib/python3.10/dist-packages/ds4_driver_msgs/msg/_feedback.py\n'}
+[0.945552] (ds4_driver_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/robot_ws/install/ds4_driver_msgs/local/lib/python3.10/dist-packages/ds4_driver_msgs/msg/_trackpad_s.c\n'}
+[0.945578] (ds4_driver_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/robot_ws/install/ds4_driver_msgs/local/lib/python3.10/dist-packages/ds4_driver_msgs/msg/_status.py\n'}
+[0.945604] (ds4_driver_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/robot_ws/install/ds4_driver_msgs/local/lib/python3.10/dist-packages/ds4_driver_msgs/msg/_report.py\n'}
+[0.945629] (ds4_driver_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/robot_ws/install/ds4_driver_msgs/local/lib/python3.10/dist-packages/ds4_driver_msgs/msg/_report_s.c\n'}
+[0.945653] (ds4_driver_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/robot_ws/install/ds4_driver_msgs/local/lib/python3.10/dist-packages/ds4_driver_msgs/msg/_status_s.c\n'}
+[0.945678] (ds4_driver_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/robot_ws/install/ds4_driver_msgs/local/lib/python3.10/dist-packages/ds4_driver_msgs/libds4_driver_msgs__rosidl_generator_py.so\n'}
+[0.962624] (ds4_driver_msgs) StdoutLine: {'line': b"Listing '/home/robot_ws/install/ds4_driver_msgs/local/lib/python3.10/dist-packages/ds4_driver_msgs'...\n"}
+[0.962736] (ds4_driver_msgs) StdoutLine: {'line': b"Listing '/home/robot_ws/install/ds4_driver_msgs/local/lib/python3.10/dist-packages/ds4_driver_msgs/msg'...\n"}
+[0.965261] (ds4_driver_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/robot_ws/install/ds4_driver_msgs/local/lib/python3.10/dist-packages/ds4_driver_msgs/ds4_driver_msgs_s__rosidl_typesupport_fastrtps_c.cpython-310-x86_64-linux-gnu.so\n'}
+[0.965426] (ds4_driver_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/robot_ws/install/ds4_driver_msgs/local/lib/python3.10/dist-packages/ds4_driver_msgs/ds4_driver_msgs_s__rosidl_typesupport_introspection_c.cpython-310-x86_64-linux-gnu.so\n'}
+[0.965722] (ds4_driver_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/robot_ws/install/ds4_driver_msgs/local/lib/python3.10/dist-packages/ds4_driver_msgs/ds4_driver_msgs_s__rosidl_typesupport_c.cpython-310-x86_64-linux-gnu.so\n'}
+[0.965896] (ds4_driver_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/robot_ws/install/ds4_driver_msgs/lib/libds4_driver_msgs__rosidl_generator_py.so\n'}
+[0.966079] (ds4_driver_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/robot_ws/install/ds4_driver_msgs/share/ds4_driver_msgs/msg/Feedback.idl\n'}
+[0.966119] (ds4_driver_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/robot_ws/install/ds4_driver_msgs/share/ds4_driver_msgs/msg/Status.idl\n'}
+[0.966149] (ds4_driver_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/robot_ws/install/ds4_driver_msgs/share/ds4_driver_msgs/msg/Report.idl\n'}
+[0.966177] (ds4_driver_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/robot_ws/install/ds4_driver_msgs/share/ds4_driver_msgs/msg/Trackpad.idl\n'}
+[0.966204] (ds4_driver_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/robot_ws/install/ds4_driver_msgs/share/ds4_driver_msgs/msg/Feedback.msg\n'}
+[0.966233] (ds4_driver_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/robot_ws/install/ds4_driver_msgs/share/ds4_driver_msgs/msg/Status.msg\n'}
+[0.966261] (ds4_driver_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/robot_ws/install/ds4_driver_msgs/share/ds4_driver_msgs/msg/Report.msg\n'}
+[0.966288] (ds4_driver_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/robot_ws/install/ds4_driver_msgs/share/ds4_driver_msgs/msg/Trackpad.msg\n'}
+[0.966314] (ds4_driver_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/robot_ws/install/ds4_driver_msgs/share/ament_index/resource_index/package_run_dependencies/ds4_driver_msgs\n'}
+[0.966341] (ds4_driver_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/robot_ws/install/ds4_driver_msgs/share/ament_index/resource_index/parent_prefix_path/ds4_driver_msgs\n'}
+[0.966369] (ds4_driver_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/robot_ws/install/ds4_driver_msgs/share/ds4_driver_msgs/environment/ament_prefix_path.sh\n'}
+[0.966486] (ds4_driver_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/robot_ws/install/ds4_driver_msgs/share/ds4_driver_msgs/environment/ament_prefix_path.dsv\n'}
+[0.966567] (ds4_driver_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/robot_ws/install/ds4_driver_msgs/share/ds4_driver_msgs/environment/path.sh\n'}
+[0.966618] (ds4_driver_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/robot_ws/install/ds4_driver_msgs/share/ds4_driver_msgs/environment/path.dsv\n'}
+[0.966664] (ds4_driver_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/robot_ws/install/ds4_driver_msgs/share/ds4_driver_msgs/local_setup.bash\n'}
+[0.966695] (ds4_driver_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/robot_ws/install/ds4_driver_msgs/share/ds4_driver_msgs/local_setup.sh\n'}
+[0.966722] (ds4_driver_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/robot_ws/install/ds4_driver_msgs/share/ds4_driver_msgs/local_setup.zsh\n'}
+[0.966748] (ds4_driver_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/robot_ws/install/ds4_driver_msgs/share/ds4_driver_msgs/local_setup.dsv\n'}
+[0.966775] (ds4_driver_msgs) StdoutLine: {'line': b'-- Installing: /home/robot_ws/install/ds4_driver_msgs/share/ds4_driver_msgs/package.dsv\n'}
+[0.966802] (ds4_driver_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/robot_ws/install/ds4_driver_msgs/share/ament_index/resource_index/packages/ds4_driver_msgs\n'}
+[0.966829] (ds4_driver_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/robot_ws/install/ds4_driver_msgs/share/ds4_driver_msgs/cmake/export_ds4_driver_msgs__rosidl_generator_cExport.cmake\n'}
+[0.966856] (ds4_driver_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/robot_ws/install/ds4_driver_msgs/share/ds4_driver_msgs/cmake/export_ds4_driver_msgs__rosidl_generator_cExport-noconfig.cmake\n'}
+[0.966882] (ds4_driver_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/robot_ws/install/ds4_driver_msgs/share/ds4_driver_msgs/cmake/export_ds4_driver_msgs__rosidl_typesupport_fastrtps_cExport.cmake\n'}
+[0.966907] (ds4_driver_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/robot_ws/install/ds4_driver_msgs/share/ds4_driver_msgs/cmake/export_ds4_driver_msgs__rosidl_typesupport_fastrtps_cExport-noconfig.cmake\n'}
+[0.966933] (ds4_driver_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/robot_ws/install/ds4_driver_msgs/share/ds4_driver_msgs/cmake/export_ds4_driver_msgs__rosidl_generator_cppExport.cmake\n'}
+[0.966959] (ds4_driver_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/robot_ws/install/ds4_driver_msgs/share/ds4_driver_msgs/cmake/export_ds4_driver_msgs__rosidl_typesupport_fastrtps_cppExport.cmake\n'}
+[0.966985] (ds4_driver_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/robot_ws/install/ds4_driver_msgs/share/ds4_driver_msgs/cmake/export_ds4_driver_msgs__rosidl_typesupport_fastrtps_cppExport-noconfig.cmake\n'}
+[0.967025] (ds4_driver_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/robot_ws/install/ds4_driver_msgs/share/ds4_driver_msgs/cmake/ds4_driver_msgs__rosidl_typesupport_introspection_cExport.cmake\n'}
+[0.967103] (ds4_driver_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/robot_ws/install/ds4_driver_msgs/share/ds4_driver_msgs/cmake/ds4_driver_msgs__rosidl_typesupport_introspection_cExport-noconfig.cmake\n'}
+[0.967164] (ds4_driver_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/robot_ws/install/ds4_driver_msgs/share/ds4_driver_msgs/cmake/ds4_driver_msgs__rosidl_typesupport_cExport.cmake\n'}
+[0.967221] (ds4_driver_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/robot_ws/install/ds4_driver_msgs/share/ds4_driver_msgs/cmake/ds4_driver_msgs__rosidl_typesupport_cExport-noconfig.cmake\n'}
+[0.967246] (ds4_driver_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/robot_ws/install/ds4_driver_msgs/share/ds4_driver_msgs/cmake/ds4_driver_msgs__rosidl_typesupport_introspection_cppExport.cmake\n'}
+[0.967271] (ds4_driver_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/robot_ws/install/ds4_driver_msgs/share/ds4_driver_msgs/cmake/ds4_driver_msgs__rosidl_typesupport_introspection_cppExport-noconfig.cmake\n'}
+[0.967294] (ds4_driver_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/robot_ws/install/ds4_driver_msgs/share/ds4_driver_msgs/cmake/ds4_driver_msgs__rosidl_typesupport_cppExport.cmake\n'}
+[0.967318] (ds4_driver_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/robot_ws/install/ds4_driver_msgs/share/ds4_driver_msgs/cmake/ds4_driver_msgs__rosidl_typesupport_cppExport-noconfig.cmake\n'}
+[0.967344] (ds4_driver_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/robot_ws/install/ds4_driver_msgs/share/ds4_driver_msgs/cmake/export_ds4_driver_msgs__rosidl_generator_pyExport.cmake\n'}
+[0.967368] (ds4_driver_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/robot_ws/install/ds4_driver_msgs/share/ds4_driver_msgs/cmake/export_ds4_driver_msgs__rosidl_generator_pyExport-noconfig.cmake\n'}
+[0.967392] (ds4_driver_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/robot_ws/install/ds4_driver_msgs/share/ds4_driver_msgs/cmake/rosidl_cmake-extras.cmake\n'}
+[0.967416] (ds4_driver_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/robot_ws/install/ds4_driver_msgs/share/ds4_driver_msgs/cmake/ament_cmake_export_dependencies-extras.cmake\n'}
+[0.967446] (ds4_driver_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/robot_ws/install/ds4_driver_msgs/share/ds4_driver_msgs/cmake/ament_cmake_export_include_directories-extras.cmake\n'}
+[0.967470] (ds4_driver_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/robot_ws/install/ds4_driver_msgs/share/ds4_driver_msgs/cmake/ament_cmake_export_libraries-extras.cmake\n'}
+[0.967494] (ds4_driver_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/robot_ws/install/ds4_driver_msgs/share/ds4_driver_msgs/cmake/ament_cmake_export_targets-extras.cmake\n'}
+[0.967517] (ds4_driver_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/robot_ws/install/ds4_driver_msgs/share/ds4_driver_msgs/cmake/rosidl_cmake_export_typesupport_targets-extras.cmake\n'}
+[0.967542] (ds4_driver_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/robot_ws/install/ds4_driver_msgs/share/ds4_driver_msgs/cmake/rosidl_cmake_export_typesupport_libraries-extras.cmake\n'}
+[0.967566] (ds4_driver_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/robot_ws/install/ds4_driver_msgs/share/ds4_driver_msgs/cmake/ds4_driver_msgsConfig.cmake\n'}
+[0.967589] (ds4_driver_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/robot_ws/install/ds4_driver_msgs/share/ds4_driver_msgs/cmake/ds4_driver_msgsConfig-version.cmake\n'}
+[0.967635] (ds4_driver_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/robot_ws/install/ds4_driver_msgs/share/ds4_driver_msgs/package.xml\n'}
+[0.968836] (ds4_driver_msgs) CommandEnded: {'returncode': 0}
+[1.003014] (-) TimerEvent: {}
+[1.070430] (ds4_driver_msgs) JobEnded: {'identifier': 'ds4_driver_msgs', 'rc': 0}
+[1.070995] (ds4_driver) JobStarted: {'identifier': 'ds4_driver'}
+[1.077898] (ds4_driver) JobProgress: {'identifier': 'ds4_driver', 'progress': 'cmake'}
+[1.078328] (ds4_driver) JobProgress: {'identifier': 'ds4_driver', 'progress': 'build'}
+[1.078600] (ds4_driver) Command: {'cmd': ['/usr/bin/cmake', '--build', '/home/robot_ws/build/ds4_driver', '--', '-j16', '-l16'], 'cwd': '/home/robot_ws/build/ds4_driver', 'env': OrderedDict([('HOSTNAME', 'entity014'), ('SHLVL', '1'), ('LD_LIBRARY_PATH', '/home/robot_ws/install/ds4_driver_msgs/lib:/usr/lib/x86_64-linux-gnu/gazebo-11/plugins:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/x86_64-linux-gnu:/opt/ros/humble/lib'), ('HOME', '/home'), ('ROS_PYTHON_VERSION', '3'), ('COLCON_PREFIX_PATH', '/home/robot_ws/install'), ('ROS_DISTRO', 'humble'), ('_', '/usr/bin/colcon'), ('ROS_VERSION', '2'), ('NVIDIA_DRIVER_CAPABILITIES', 'all'), ('TERM', 'xterm'), ('ROS_LOCALHOST_ONLY', '0'), ('QT_X11_NO_MITSHM', '1'), ('PATH', '/opt/ros/humble/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin'), ('XDG_RUNTIME_DIR', '/tmp/runtime-root'), ('DISPLAY', ':0'), ('LANG', 'C.UTF-8'), ('RMW_IMPLEMENTATION', 'rmw_cyclonedds_cpp'), ('ROS_DOMAIN_ID', '10'), ('AMENT_PREFIX_PATH', '/home/robot_ws/install/robot_description:/home/robot_ws/install/robot_core:/home/robot_ws/install/ds4_driver:/home/robot_ws/install/ds4_driver_msgs:/opt/ros/humble'), ('NO_AT_BRIDGE', '1'), ('PWD', '/home/robot_ws/build/ds4_driver'), ('LC_ALL', 'C.UTF-8'), ('PYTHONPATH', '/home/robot_ws/install/robot_description/local/lib/python3.10/dist-packages:/home/robot_ws/install/robot_core/local/lib/python3.10/dist-packages:/home/robot_ws/install/ds4_driver/local/lib/python3.10/dist-packages:/home/robot_ws/install/ds4_driver_msgs/local/lib/python3.10/dist-packages:/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages'), ('COLCON', '1'), ('CMAKE_PREFIX_PATH', '/home/robot_ws/install/ds4_driver_msgs:/home/robot_ws/install/robot_description:/home/robot_ws/install/robot_core:/home/robot_ws/install/ds4_driver:/opt/ros/humble')]), 'shell': False}
+[1.103137] (-) TimerEvent: {}
+[1.120631] (ds4_driver) StdoutLine: {'line': b'Built target ament_cmake_python_copy_ds4_driver\n'}
+[1.203531] (-) TimerEvent: {}
+[1.260721] (ds4_driver) StdoutLine: {'line': b'running egg_info\n'}
+[1.261071] (ds4_driver) StdoutLine: {'line': b'writing ds4_driver.egg-info/PKG-INFO\n'}
+[1.261185] (ds4_driver) StdoutLine: {'line': b'writing dependency_links to ds4_driver.egg-info/dependency_links.txt\n'}
+[1.261262] (ds4_driver) StdoutLine: {'line': b'writing top-level names to ds4_driver.egg-info/top_level.txt\n'}
+[1.262420] (ds4_driver) StdoutLine: {'line': b"reading manifest file 'ds4_driver.egg-info/SOURCES.txt'\n"}
+[1.262609] (ds4_driver) StdoutLine: {'line': b"writing manifest file 'ds4_driver.egg-info/SOURCES.txt'\n"}
+[1.280443] (ds4_driver) StdoutLine: {'line': b'Built target ament_cmake_python_build_ds4_driver_egg\n'}
+[1.289587] (ds4_driver) CommandEnded: {'returncode': 0}
+[1.303464] (-) TimerEvent: {}
+[1.306190] (ds4_driver) JobProgress: {'identifier': 'ds4_driver', 'progress': 'install'}
+[1.306449] (ds4_driver) Command: {'cmd': ['/usr/bin/cmake', '--install', '/home/robot_ws/build/ds4_driver'], 'cwd': '/home/robot_ws/build/ds4_driver', 'env': OrderedDict([('HOSTNAME', 'entity014'), ('SHLVL', '1'), ('LD_LIBRARY_PATH', '/home/robot_ws/install/ds4_driver_msgs/lib:/usr/lib/x86_64-linux-gnu/gazebo-11/plugins:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/x86_64-linux-gnu:/opt/ros/humble/lib'), ('HOME', '/home'), ('ROS_PYTHON_VERSION', '3'), ('COLCON_PREFIX_PATH', '/home/robot_ws/install'), ('ROS_DISTRO', 'humble'), ('_', '/usr/bin/colcon'), ('ROS_VERSION', '2'), ('NVIDIA_DRIVER_CAPABILITIES', 'all'), ('TERM', 'xterm'), ('ROS_LOCALHOST_ONLY', '0'), ('QT_X11_NO_MITSHM', '1'), ('PATH', '/opt/ros/humble/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin'), ('XDG_RUNTIME_DIR', '/tmp/runtime-root'), ('DISPLAY', ':0'), ('LANG', 'C.UTF-8'), ('RMW_IMPLEMENTATION', 'rmw_cyclonedds_cpp'), ('ROS_DOMAIN_ID', '10'), ('AMENT_PREFIX_PATH', '/home/robot_ws/install/robot_description:/home/robot_ws/install/robot_core:/home/robot_ws/install/ds4_driver:/home/robot_ws/install/ds4_driver_msgs:/opt/ros/humble'), ('NO_AT_BRIDGE', '1'), ('PWD', '/home/robot_ws/build/ds4_driver'), ('LC_ALL', 'C.UTF-8'), ('PYTHONPATH', '/home/robot_ws/install/robot_description/local/lib/python3.10/dist-packages:/home/robot_ws/install/robot_core/local/lib/python3.10/dist-packages:/home/robot_ws/install/ds4_driver/local/lib/python3.10/dist-packages:/home/robot_ws/install/ds4_driver_msgs/local/lib/python3.10/dist-packages:/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages'), ('COLCON', '1'), ('CMAKE_PREFIX_PATH', '/home/robot_ws/install/ds4_driver_msgs:/home/robot_ws/install/robot_description:/home/robot_ws/install/robot_core:/home/robot_ws/install/ds4_driver:/opt/ros/humble')]), 'shell': False}
+[1.311548] (ds4_driver) StdoutLine: {'line': b'-- Install configuration: ""\n'}
+[1.311812] (ds4_driver) StdoutLine: {'line': b'-- Up-to-date: /home/robot_ws/install/ds4_driver/share/ds4_driver/environment/pythonpath.sh\n'}
+[1.311885] (ds4_driver) StdoutLine: {'line': b'-- Up-to-date: /home/robot_ws/install/ds4_driver/share/ds4_driver/environment/pythonpath.dsv\n'}
+[1.311949] (ds4_driver) StdoutLine: {'line': b'-- Up-to-date: /home/robot_ws/install/ds4_driver/local/lib/python3.10/dist-packages/ds4_driver-0.2.1-py3.10.egg-info\n'}
+[1.312013] (ds4_driver) StdoutLine: {'line': b'-- Installing: /home/robot_ws/install/ds4_driver/local/lib/python3.10/dist-packages/ds4_driver-0.2.1-py3.10.egg-info/top_level.txt\n'}
+[1.312081] (ds4_driver) StdoutLine: {'line': b'-- Installing: /home/robot_ws/install/ds4_driver/local/lib/python3.10/dist-packages/ds4_driver-0.2.1-py3.10.egg-info/SOURCES.txt\n'}
+[1.312234] (ds4_driver) StdoutLine: {'line': b'-- Installing: /home/robot_ws/install/ds4_driver/local/lib/python3.10/dist-packages/ds4_driver-0.2.1-py3.10.egg-info/PKG-INFO\n'}
+[1.312318] (ds4_driver) StdoutLine: {'line': b'-- Installing: /home/robot_ws/install/ds4_driver/local/lib/python3.10/dist-packages/ds4_driver-0.2.1-py3.10.egg-info/dependency_links.txt\n'}
+[1.312386] (ds4_driver) StdoutLine: {'line': b'-- Up-to-date: /home/robot_ws/install/ds4_driver/local/lib/python3.10/dist-packages/ds4_driver\n'}
+[1.312461] (ds4_driver) StdoutLine: {'line': b'-- Up-to-date: /home/robot_ws/install/ds4_driver/local/lib/python3.10/dist-packages/ds4_driver/__init__.py\n'}
+[1.312527] (ds4_driver) StdoutLine: {'line': b'-- Up-to-date: /home/robot_ws/install/ds4_driver/local/lib/python3.10/dist-packages/ds4_driver/controller_ros.py\n'}
+[1.312588] (ds4_driver) StdoutLine: {'line': b'-- Up-to-date: /home/robot_ws/install/ds4_driver/local/lib/python3.10/dist-packages/ds4_driver/logger.py\n'}
+[1.312650] (ds4_driver) StdoutLine: {'line': b'-- Up-to-date: /home/robot_ws/install/ds4_driver/local/lib/python3.10/dist-packages/ds4_driver/controller.py\n'}
+[1.331593] (ds4_driver) StdoutLine: {'line': b"Listing '/home/robot_ws/install/ds4_driver/local/lib/python3.10/dist-packages/ds4_driver'...\n"}
+[1.334339] (ds4_driver) StdoutLine: {'line': b'-- Up-to-date: /home/robot_ws/install/ds4_driver/share/ds4_driver//config\n'}
+[1.334499] (ds4_driver) StdoutLine: {'line': b'-- Up-to-date: /home/robot_ws/install/ds4_driver/share/ds4_driver//config/twist_6dof.yaml\n'}
+[1.334572] (ds4_driver) StdoutLine: {'line': b'-- Up-to-date: /home/robot_ws/install/ds4_driver/share/ds4_driver//config/params.yaml\n'}
+[1.334635] (ds4_driver) StdoutLine: {'line': b'-- Up-to-date: /home/robot_ws/install/ds4_driver/share/ds4_driver//config/twist_2dof.yaml\n'}
+[1.334740] (ds4_driver) StdoutLine: {'line': b'-- Up-to-date: /home/robot_ws/install/ds4_driver/share/ds4_driver//launch\n'}
+[1.334799] (ds4_driver) StdoutLine: {'line': b'-- Up-to-date: /home/robot_ws/install/ds4_driver/share/ds4_driver//launch/ds4_driver.launch.xml\n'}
+[1.334859] (ds4_driver) StdoutLine: {'line': b'-- Up-to-date: /home/robot_ws/install/ds4_driver/share/ds4_driver//launch/demo.launch.xml\n'}
+[1.334917] (ds4_driver) StdoutLine: {'line': b'-- Up-to-date: /home/robot_ws/install/ds4_driver/share/ds4_driver//launch/ds4_twist.launch.xml\n'}
+[1.334975] (ds4_driver) StdoutLine: {'line': b'-- Up-to-date: /home/robot_ws/install/ds4_driver/lib/ds4_driver/demo.py\n'}
+[1.335033] (ds4_driver) StdoutLine: {'line': b'-- Up-to-date: /home/robot_ws/install/ds4_driver/lib/ds4_driver/ds4_driver_node.py\n'}
+[1.335090] (ds4_driver) StdoutLine: {'line': b'-- Up-to-date: /home/robot_ws/install/ds4_driver/lib/ds4_driver/ds4_twist_node.py\n'}
+[1.335148] (ds4_driver) StdoutLine: {'line': b'-- Up-to-date: /home/robot_ws/install/ds4_driver/share/ament_index/resource_index/package_run_dependencies/ds4_driver\n'}
+[1.335216] (ds4_driver) StdoutLine: {'line': b'-- Up-to-date: /home/robot_ws/install/ds4_driver/share/ament_index/resource_index/parent_prefix_path/ds4_driver\n'}
+[1.335275] (ds4_driver) StdoutLine: {'line': b'-- Up-to-date: /home/robot_ws/install/ds4_driver/share/ds4_driver/environment/ament_prefix_path.sh\n'}
+[1.335333] (ds4_driver) StdoutLine: {'line': b'-- Up-to-date: /home/robot_ws/install/ds4_driver/share/ds4_driver/environment/ament_prefix_path.dsv\n'}
+[1.335390] (ds4_driver) StdoutLine: {'line': b'-- Up-to-date: /home/robot_ws/install/ds4_driver/share/ds4_driver/environment/path.sh\n'}
+[1.335452] (ds4_driver) StdoutLine: {'line': b'-- Up-to-date: /home/robot_ws/install/ds4_driver/share/ds4_driver/environment/path.dsv\n'}
+[1.335520] (ds4_driver) StdoutLine: {'line': b'-- Up-to-date: /home/robot_ws/install/ds4_driver/share/ds4_driver/local_setup.bash\n'}
+[1.335577] (ds4_driver) StdoutLine: {'line': b'-- Up-to-date: /home/robot_ws/install/ds4_driver/share/ds4_driver/local_setup.sh\n'}
+[1.335720] (ds4_driver) StdoutLine: {'line': b'-- Up-to-date: /home/robot_ws/install/ds4_driver/share/ds4_driver/local_setup.zsh\n'}
+[1.335831] (ds4_driver) StdoutLine: {'line': b'-- Up-to-date: /home/robot_ws/install/ds4_driver/share/ds4_driver/local_setup.dsv\n'}
+[1.335927] (ds4_driver) StdoutLine: {'line': b'-- Installing: /home/robot_ws/install/ds4_driver/share/ds4_driver/package.dsv\n'}
+[1.336068] (ds4_driver) StdoutLine: {'line': b'-- Up-to-date: /home/robot_ws/install/ds4_driver/share/ament_index/resource_index/packages/ds4_driver\n'}
+[1.336142] (ds4_driver) StdoutLine: {'line': b'-- Up-to-date: /home/robot_ws/install/ds4_driver/share/ds4_driver/cmake/ds4_driverConfig.cmake\n'}
+[1.336275] (ds4_driver) StdoutLine: {'line': b'-- Up-to-date: /home/robot_ws/install/ds4_driver/share/ds4_driver/cmake/ds4_driverConfig-version.cmake\n'}
+[1.336366] (ds4_driver) StdoutLine: {'line': b'-- Up-to-date: /home/robot_ws/install/ds4_driver/share/ds4_driver/package.xml\n'}
+[1.336859] (ds4_driver) CommandEnded: {'returncode': 0}
+[1.360280] (ds4_driver) JobEnded: {'identifier': 'ds4_driver', 'rc': 0}
+[1.360930] (-) EventReactorShutdown: {}

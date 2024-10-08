@@ -44,10 +44,10 @@ class Ps4Controller(Node):
         self.joy_state = 0
         self.joints = Twist()
         self.joints.linear.x = 90.0
-        self.joints.linear.y = 175.0
-        self.joints.linear.z = 90.0
+        self.joints.linear.y = 165.0
+        self.joints.linear.z = 10.0
         self.joints.angular.x = 90.0
-        self.joints.angular.y = 30.0
+        self.joints.angular.y = 20.0
         self.joints.angular.z = 180.0
 
         # set Home 90 175 90 90 30 180
@@ -95,7 +95,7 @@ class Ps4Controller(Node):
             else:
                 self.joints.linear.x = 90.0
 
-            # self.joints.linear.z += msgin.axis_left_y * self.max_speed_joint3 * -1
+            self.joints.linear.z += msgin.axis_left_y * self.max_speed_joint3 * -1
 
             # self.joints.linear.y += msgin.axis_left_y * self.max_speed_joint2
 
@@ -116,20 +116,11 @@ class Ps4Controller(Node):
             elif msgin.button_l1 == 1:
                 self.joints.angular.y += msgin.button_l1 * self.max_speed_joint5
 
-            if self.pre_home != msgin.button_square:
-                if msgin.button_square == 1:
-                    self.joints.linear.x = 90.0
-                    self.joints.linear.y = 175.0
-                    self.joints.linear.z = 90.0
-                    self.joints.angular.x = 90.0
-                    self.joints.angular.y = 30.0
-                self.pre_home = msgin.button_square
-
             if self.pre_pick != msgin.button_triangle:
                 if msgin.button_triangle == 1:
                     self.joints.linear.x = 90.0
                     self.joints.linear.y = 180.0
-                    self.joints.linear.z = 40.0
+                    self.joints.linear.z = 30.0
                     self.joints.angular.x = 90.0
                     self.joints.angular.y = 90.0
                 self.pre_pick = msgin.button_triangle
