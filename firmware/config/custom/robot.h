@@ -14,6 +14,10 @@
 #define KI_STEERING 0.005
 #define KD_STEERING 0
 
+#define KP_JOINT1 0.1
+#define KI_JOINT1 0.001
+#define KD_JOINT1 0
+
 #define KP_JOINT2 3
 #define KI_JOINT2 0.05
 #define KD_JOINT2 0.001

@@ -35,8 +35,8 @@ class Ps4Controller(Node):
 
         self.velocity = Twist()
         self.max_speed = 1.0
-        self.max_speed_joint1 = 10  # 360
-        self.max_speed_joint2 = 50  # 360
+        self.max_speed_joint1 = 15  # 360
+        self.max_speed_joint2 = 1  # 360
         self.max_speed_joint3 = 1  # 180
         self.max_speed_joint4 = 90  # 360
         self.max_speed_joint5 = 1  # 180
@@ -44,15 +44,22 @@ class Ps4Controller(Node):
         self.joy_state = 0
         self.joints = Twist()
         self.joints.linear.x = 90.0
-        self.joints.linear.y = 90.0
+        self.joints.linear.y = 175.0
         self.joints.linear.z = 90.0
         self.joints.angular.x = 90.0
-        self.joints.angular.y = 90.0
+        self.joints.angular.y = 30.0
         self.joints.angular.z = 180.0
+
+        # set Home 90 175 90 90 30 180
+        # set Pick 90 180 40 90 90 180
+        # set Place 90 165 10 90 20 180
 
         self.gripper_state = 0
         self.pre_trackpad = 0.0
         self.pre_toggle = 0.0
+        self.pre_home = 0.0
+        self.pre_pick = 0.0
+        self.pre_place = 0.0
 
     def sub_joystick_callback(self, msgin):
         self.max_speed = (
@@ -88,23 +95,14 @@ class Ps4Controller(Node):
             else:
                 self.joints.linear.x = 90.0
 
-            if abs(msgin.axis_left_y) > 0:
-                self.joints.linear.z += msgin.axis_left_y * self.max_speed_joint3 * -1
-            else:
-                self.joints.linear.y = 90.0
+            # self.joints.linear.z += msgin.axis_left_y * self.max_speed_joint3 * -1
 
             # self.joints.linear.y += msgin.axis_left_y * self.max_speed_joint2
 
-            if msgin.button_dpad_up == 1:
-                self.joints.linear.y = 90.0 - (
-                    msgin.button_dpad_up * self.max_speed_joint2
-                )
-            elif msgin.button_dpad_down == 1:
-                self.joints.linear.y = 90.0 + (
-                    msgin.button_dpad_down * self.max_speed_joint2
-                )
-            elif msgin.button_dpad_up == 0 and msgin.button_dpad_down == 0:
-                self.joints.linear.y = 90.0
+            # if msgin.button_dpad_up == 1:
+            #     self.joints.linear.y -= msgin.button_dpad_up * self.max_speed_joint2
+            # elif msgin.button_dpad_down == 1:
+            #     self.joints.linear.y += msgin.button_dpad_down * self.max_speed_joint2
 
             if msgin.button_r2 == 1:
                 self.joints.angular.x = 90.0 + (msgin.button_r2 * self.max_speed_joint4)
@@ -114,9 +112,36 @@ class Ps4Controller(Node):
                 self.joints.angular.x = 90.0
 
             if msgin.button_r1 == 1:
-                self.joints.angular.y += msgin.button_r1 * self.max_speed_joint5
+                self.joints.angular.y -= msgin.button_r1 * self.max_speed_joint5
             elif msgin.button_l1 == 1:
-                self.joints.angular.y -= msgin.button_l1 * self.max_speed_joint5
+                self.joints.angular.y += msgin.button_l1 * self.max_speed_joint5
+
+            if self.pre_home != msgin.button_square:
+                if msgin.button_square == 1:
+                    self.joints.linear.x = 90.0
+                    self.joints.linear.y = 175.0
+                    self.joints.linear.z = 90.0
+                    self.joints.angular.x = 90.0
+                    self.joints.angular.y = 30.0
+                self.pre_home = msgin.button_square
+
+            if self.pre_pick != msgin.button_triangle:
+                if msgin.button_triangle == 1:
+                    self.joints.linear.x = 90.0
+                    self.joints.linear.y = 180.0
+                    self.joints.linear.z = 40.0
+                    self.joints.angular.x = 90.0
+                    self.joints.angular.y = 90.0
+                self.pre_pick = msgin.button_triangle
+
+            if self.pre_place != msgin.button_circle:
+                if msgin.button_circle == 1:
+                    self.joints.linear.x = 90.0
+                    self.joints.linear.y = 165.0
+                    self.joints.linear.z = 10.0
+                    self.joints.angular.x = 90.0
+                    self.joints.angular.y = 20.0
+                self.pre_place = msgin.button_circle
 
             if self.pre_toggle != msgin.button_cross:
                 if msgin.button_cross == 1:

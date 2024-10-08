@@ -214,8 +214,8 @@ Kinematics::velocities Swerve2Drive::calculateVelocities(Swerve2Drive::heading h
 Kinematics::req_velocity Swerve2Drive::calculateReqVelocity(Kinematics::velocities_rpm velocities_rpm)
 {
     Kinematics::req_velocity req_velocity;
-    req_velocity.req_a = velocities_rpm.x_rpm + velocities_rpm.tan_rpm;
-    req_velocity.req_b = velocities_rpm.x_rpm - velocities_rpm.tan_rpm;
+    req_velocity.req_a = velocities_rpm.x_rpm + (4 * velocities_rpm.tan_rpm);
+    req_velocity.req_b = velocities_rpm.x_rpm - (4 * velocities_rpm.tan_rpm);
     req_velocity.req_c = velocities_rpm.y_rpm;
     req_velocity.req_d = velocities_rpm.y_rpm;
     return req_velocity;

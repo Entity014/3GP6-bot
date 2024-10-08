@@ -134,7 +134,7 @@ Adafruit_PWMServoDriver servo_array = Adafruit_PWMServoDriver();
 
 bool hall_array[2] = {false, false};
 double joint_array[3] = {0.0, 0.0, 0.0};
-double joint_command[6] = {90.0, 173.0, 120.0, 90.0, 90.0, 180.0};
+double joint_command[6] = {90.0, 173.0, 90.0, 90.0, 90.0, 180.0};
 Kinematics::heading offset_heading;
 Kinematics::heading total_heading;
 
@@ -382,15 +382,15 @@ void moveArm()
 {
   tcaSelect(0);
   moveServo(0, joint_command[0]);
-  if ((joint_command[1] - joint_array[1] >= 1) || (joint_command[1] - joint_array[1] <= -1))
-  {
-    moveServo(1, 90.0 + map(joint2_pid.compute(joint_command[1], joint_array[1]), -90, 90, 90, -90));
-  }
-  else
-  {
-    moveServo(1, 90);
-  }
-  // moveServo(1, joint_command[1]);
+  // if ((joint_command[1] - joint_array[1] >= 1) || (joint_command[1] - joint_array[1] <= -1))
+  // {
+  //   moveServo(1, 90.0 + map(joint2_pid.compute(joint_command[1], joint_array[1]), -90, 90, 90, -90));
+  // }
+  // else
+  // {
+  //   moveServo(1, 90);
+  // }
+  moveServo(1, joint_command[1]);
   moveServo(2, joint_command[2]);
   moveServo(3, joint_command[3]);
   moveServo(4, joint_command[4]);

@@ -114,6 +114,7 @@ PID motor2_pid(PWM_MIN, PWM_MAX, KP_STEERING, KI_STEERING, KD_STEERING);
 PID motor3_pid(PWM_MIN, PWM_MAX, KP_DRIVE, KI_DRIVE, KD_DRIVE);
 PID motor4_pid(PWM_MIN, PWM_MAX, KP_STEERING, KI_STEERING, KD_STEERING);
 
+PID joint1_pid(-90.0, 90.0, KP_JOINT1, KI_JOINT1, KD_JOINT1);
 PID joint2_pid(-90.0, 90.0, KP_JOINT2, KI_JOINT2, KD_JOINT2);
 
 Kinematics kinematics(
@@ -134,7 +135,7 @@ Adafruit_PWMServoDriver servo_array = Adafruit_PWMServoDriver();
 
 bool hall_array[2] = {false, false};
 double joint_array[3] = {0.0, 0.0, 0.0};
-double joint_command[6] = {90.0, 173.0, 90.0, 90.0, 90.0, 180.0};
+double joint_command[6] = {90.0, 175.0, 90.0, 90.0, 30.0, 180.0};
 Kinematics::heading offset_heading;
 Kinematics::heading total_heading;
 
@@ -382,15 +383,24 @@ void moveArm()
 {
   tcaSelect(0);
   moveServo(0, joint_command[0]);
-  // if ((joint_command[1] - joint_array[1] >= 1) || (joint_command[1] - joint_array[1] <= -1))
+  // if ((joint_command[0] - joint_array[0] >= 2) || (joint_command[0] - joint_array[0] <= -2))
   // {
-  //   moveServo(1, 90.0 + map(joint2_pid.compute(joint_command[1], joint_array[1]), -90, 90, 90, -90));
+  //   moveServo(0, 90.0 + map(joint1_pid.compute(joint_command[0], joint_array[0]), -90, 90, 90, -90));
+  //   debug_joint_msg.linear.z = map(joint1_pid.compute(joint_command[0], joint_array[0]), -90, 90, 90, -90);
   // }
   // else
   // {
-  //   moveServo(1, 90);
+  //   moveServo(0, 90);
   // }
-  moveServo(1, joint_command[1]);
+  if ((joint_command[1] - joint_array[1] >= 2) || (joint_command[1] - joint_array[1] <= -2))
+  {
+    moveServo(1, 90.0 + map(joint2_pid.compute(joint_command[1], joint_array[1]), -90, 90, 90, -90));
+  }
+  else
+  {
+    moveServo(1, 90);
+  }
+  // moveServo(1, joint_command[1]);
   moveServo(2, joint_command[2]);
   moveServo(3, joint_command[3]);
   moveServo(4, joint_command[4]);
