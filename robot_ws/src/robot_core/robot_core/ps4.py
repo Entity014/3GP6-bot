@@ -44,7 +44,7 @@ class Ps4Controller(Node):
         self.joy_state = 0
         self.joints = Twist()
         self.joints.linear.x = 90.0
-        self.joints.linear.y = 165.0
+        self.joints.linear.y = 90.0
         self.joints.linear.z = 10.0
         self.joints.angular.x = 90.0
         self.joints.angular.y = 20.0
@@ -104,10 +104,13 @@ class Ps4Controller(Node):
             else:
                 self.joints.linear.y = 90.0
 
-            if msgin.button_dpad_up == 1:
-                self.joints.linear.z -= msgin.button_dpad_up * self.max_speed_joint3
-            elif msgin.button_dpad_down == 1:
-                self.joints.linear.z += msgin.button_dpad_down * self.max_speed_joint3
+            if self.joints.linear.z <= 180 or self.joints.linear.z >= 0:
+                if msgin.button_dpad_up == 1:
+                    self.joints.linear.z -= msgin.button_dpad_up * self.max_speed_joint3
+                elif msgin.button_dpad_down == 1:
+                    self.joints.linear.z += (
+                        msgin.button_dpad_down * self.max_speed_joint3
+                    )
 
             if msgin.button_r2 == 1:
                 self.joints.angular.x = 90.0 + (msgin.button_r2 * self.max_speed_joint4)
@@ -116,10 +119,11 @@ class Ps4Controller(Node):
             elif msgin.button_r2 == 0 and msgin.button_l2 == 0:
                 self.joints.angular.x = 90.0
 
-            if msgin.button_r1 == 1:
-                self.joints.angular.y -= msgin.button_r1 * self.max_speed_joint5
-            elif msgin.button_l1 == 1:
-                self.joints.angular.y += msgin.button_l1 * self.max_speed_joint5
+            if self.joints.angular.y <= 180 or self.joints.angular.y >= 0:
+                if msgin.button_r1 == 1:
+                    self.joints.angular.y -= msgin.button_r1 * self.max_speed_joint5
+                elif msgin.button_l1 == 1:
+                    self.joints.angular.y += msgin.button_l1 * self.max_speed_joint5
 
             if self.pre_pick != msgin.button_triangle:
                 if msgin.button_triangle == 1:

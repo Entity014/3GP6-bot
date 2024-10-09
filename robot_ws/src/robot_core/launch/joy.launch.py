@@ -19,8 +19,15 @@ def generate_launch_description():
         package="ds4_driver",
         executable="ds4_driver_node.py",
     )
+    node_microros = Node(
+        package="micro_ros_agent",
+        executable="micro_ros_agent",
+        output="screen",
+        arguments=["serial", "--dev", "/dev/ttyACM0"],
+    )
 
     ld.add_action(ps4_driver)
     ld.add_action(joy)
+    ld.add_action(node_microros)
 
     return ld
