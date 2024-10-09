@@ -79,7 +79,7 @@ class Ps4Controller(Node):
             linear_y = msgin.axis_left_x * self.max_speed
             angular_z = msgin.axis_right_x * self.max_speed
             self.velocity.linear.x = linear_x
-            self.velocity.linear.y = linear_y
+            self.velocity.linear.y = 0.0
             self.velocity.angular.z = angular_z
 
         elif self.joy_state == 1:
