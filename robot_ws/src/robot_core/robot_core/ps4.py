@@ -88,10 +88,10 @@ class Ps4Controller(Node):
             msg_feedback.set_led = True
             self.pub_set_feedback.publish(msg_feedback)
 
-            if abs(msgin.axis_right_x) > 0:
-                self.joints.linear.x = 90.0 + (
-                    msgin.axis_right_x * self.max_speed_joint1 * -1
-                )
+            if msgin.axis_right_x > 0:
+                self.joints.linear.x = 90.0 + (msgin.axis_right_x * 15 * -1)
+            elif msgin.axis_right_x < 0:
+                self.joints.linear.x = 90.0 + (msgin.axis_right_x * 10 * -1)
             else:
                 self.joints.linear.x = 90.0
 
