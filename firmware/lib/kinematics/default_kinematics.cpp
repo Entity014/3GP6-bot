@@ -43,6 +43,11 @@ Kinematics::rpm SkidSteer::getRPM(float linear_x, float linear_y, float angular_
     return calculateRPM(calculateReqVelocity(calculateRPMVelocities(linear_x, linear_y, angular_z)));
 }
 
+Kinematics::velocities SkidSteer::getVelocities(float rpm1, float rpm2, float rpm3, float rpm4)
+{
+    return calculateVelocities(rpm1, rpm2, rpm3, rpm4);
+}
+
 Kinematics::velocities SkidSteer::calculateVelocities(float rpm1, float rpm2, float rpm3, float rpm4)
 {
     Kinematics::velocities vel;

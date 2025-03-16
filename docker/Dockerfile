@@ -24,6 +24,9 @@ RUN apt install -y ros-${ROS_DISTRO}-turtlebot3-gazebo
 # Install Robot Localization packages
 RUN apt install -y ros-${ROS_DISTRO}-robot-localization
 
+# Install Pytree packages
+RUN apt install -y ros-${ROS_DISTRO}-py-trees-*
+
 # Install additional Python modules
 RUN pip3 install matplotlib transforms3d numpy evdev
 
@@ -36,6 +39,7 @@ RUN touch /home/.bashrc
 RUN echo 'source /opt/ros/$ROS_DISTRO/setup.bash' >> /home/.bashrc \
     && echo 'source /home/robot_ws/install/setup.bash' >> /home/.bashrc
 
+RUN apt-get update --fix-missing
 RUN apt-get install -y ros-${ROS_DISTRO}-xacro ros-${ROS_DISTRO}-controller-manager ros-${ROS_DISTRO}-ros2-control \ 
     ros-${ROS_DISTRO}-ros2-controllers ros-${ROS_DISTRO}-gazebo-ros2-control ros-${ROS_DISTRO}-joint-state-publisher \
     ros-${ROS_DISTRO}-tf-transformations ros-${ROS_DISTRO}-imu-tools ros-${ROS_DISTRO}-joy
@@ -48,8 +52,8 @@ RUN chmod -R 0700 /tmp/runtime-root
 ENV NO_AT_BRIDGE 1
 
 WORKDIR /opt
-RUN git clone https://github.com/naoki-mizuno/ds4drv --branch devel \
-    && cd ds4drv \
-    && python3 setup.py install
+# RUN git clone https://github.com/naoki-mizuno/ds4drv --branch devel \
+#     && cd ds4drv \
+#     && python3 setup.py install
 
 WORKDIR /home/robot_ws

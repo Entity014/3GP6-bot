@@ -20,7 +20,7 @@ protected:
     geometry_msgs__msg__Vector3 accel_;
     geometry_msgs__msg__Quaternion ori_;
 
-    Adafruit_BNO055 bno055 = Adafruit_BNO055(55);
+    Adafruit_BNO055 bno055 = Adafruit_BNO055(55, 0x29);
 
 public:
     BNO055IMU()
@@ -45,6 +45,8 @@ public:
         ori_.y = quat.y();
         ori_.z = quat.z();
         ori_.w = quat.w();
+
+        return ori_;
     }
 
     bool startSensor()

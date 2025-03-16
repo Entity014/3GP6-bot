@@ -13,7 +13,7 @@ services:
     privileged: true
     stop_grace_period: 1s
     environment:
-      - ROS_DOMAIN_ID=10
+      - ROS_DOMAIN_ID=15
       - DISPLAY=${DISPLAY}
       - QT_X11_NO_MITSHM=1
       - NVIDIA_DRIVER_CAPABILITIES=all
@@ -24,35 +24,13 @@ services:
       # mount workspace
       - ./robot_ws:/home/robot_ws:rw
 
-  uros-agent:
-    image: husarion/micro-ros-agent:humble
-    stdin_open: true
-    tty: true
-    network_mode: host
-    ipc: host
-    privileged: true
-    stop_grace_period: 1s
-    volumes:
-      - /dev:/dev
-    # devices:
-    #   - /dev/ttyACM0:/dev/ttyACM0
-    environment:
-      - ROS_DOMAIN_ID=10
-    command: sleep infinity
-
-  uros1-agent:
-    extends: uros-agent
-    command: ros2 run micro_ros_agent micro_ros_agent serial -D /dev/ttyACM0 serial -b 115200
-
-  joy:
+  gazebo:
     extends: 3gp6_compose
-    command: bash -c "source ~/.bashrc && ros2 launch robot_core joy.launch.py"
+    command: bash -c "source ~/.bashrc && ros2 launch robot_description gazebo.launch.py"
+  autonomy:
+    extends: 3gp6_compose
+    command: bash -c "source ~/.bashrc && ros2 run robot_core autonomy_node.py"
 
-
-  # web_bridge:
-  #   build:
-  #     context: ./ros2-web-bridge
-  #   ports:
-  #     - "3000:3000"
-  #   depends_on:
-  #     - 3gp6_compose
+  viewer:
+    extends: 3gp6_compose
+    command: bash -c "source ~/.bashrc && py-trees-tree-viewer --no-sandbox"

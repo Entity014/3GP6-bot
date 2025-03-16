@@ -68,11 +68,13 @@ endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
   file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/robot_description" TYPE DIRECTORY FILES
-    "/home/robot_ws/src/robot_description/config"
-    "/home/robot_ws/src/robot_description/launch"
-    "/home/robot_ws/src/robot_description/src"
     "/home/robot_ws/src/robot_description/urdf"
+    "/home/robot_ws/src/robot_description/src"
+    "/home/robot_ws/src/robot_description/rviz"
     "/home/robot_ws/src/robot_description/worlds"
+    "/home/robot_ws/src/robot_description/maps"
+    "/home/robot_ws/src/robot_description/launch"
+    "/home/robot_ws/src/robot_description/config"
     )
 endif()
 

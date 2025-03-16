@@ -10,17 +10,18 @@
 #include <sensor_msgs/msg/imu.h>
 #include <nav_msgs/msg/odometry.h>
 #include <geometry_msgs/msg/twist.h>
+#include <geometry_msgs/msg/point.h>
 
 #include "config.h"
 #include "motor.h"
 #include "kinematics.h"
+#include "arm_kinematics.h"
 #include "pid.h"
 #include "odometry.h"
 #include "imu.h"
 #define ENCODER_USE_INTERRUPTS
 #define ENCODER_OPTIMIZE_INTERRUPTS
 #include "encoder.h"
-#include <AS5600.h>
 #include <Adafruit_I2CDevice.h>
 #include <Adafruit_PWMServoDriver.h>
 
@@ -56,23 +57,21 @@
 
 //------------------------------ < Define > -------------------------------------//
 
-// rcl_publisher_t imu_publisher;
+rcl_publisher_t imu_publisher;
 rcl_publisher_t odom_publisher;
-rcl_publisher_t debug_pwm_publisher;
+rcl_publisher_t arm_feedback_publisher;
 rcl_publisher_t debug_encoder_publisher;
-rcl_publisher_t debug_heading_publisher;
 rcl_publisher_t debug_joint_publisher;
 rcl_subscription_t twist_subscriber;
 rcl_subscription_t arm_subscriber;
 
-// sensor_msgs__msg__Imu imu_msg;
+sensor_msgs__msg__Imu imu_msg;
 nav_msgs__msg__Odometry odom_msg;
 geometry_msgs__msg__Twist arm_msg;
 geometry_msgs__msg__Twist twist_msg;
-geometry_msgs__msg__Twist debug_pwm_msg;
+geometry_msgs__msg__Point arm_feedback_msg;
 geometry_msgs__msg__Twist debug_joint_msg;
 geometry_msgs__msg__Twist debug_encoder_msg;
-geometry_msgs__msg__Twist debug_heading_msg;
 
 rclc_executor_t executor;
 rclc_support_t support;
@@ -93,11 +92,12 @@ enum connection_states
   AGENT_DISCONNECTED
 } connection_state;
 
-enum robot_states
+enum arm_states
 {
-  IDLE,
-  RUNNING,
-} robot_state;
+  WAITING,
+  MOVING,
+  DONE,
+} arm_state;
 
 Encoder motor1_encoder(MOTOR1_ENCODER_A, MOTOR1_ENCODER_B, COUNTS_PER_REV1, MOTOR1_ENCODER_INV);
 Encoder motor2_encoder(MOTOR2_ENCODER_A, MOTOR2_ENCODER_B, COUNTS_PER_REV2, MOTOR2_ENCODER_INV);
@@ -110,46 +110,38 @@ Motor motor3_controller(PWM_FREQUENCY, PWM_BITS, MOTOR3_INV, MOTOR3_PWM, MOTOR3_
 Motor motor4_controller(PWM_FREQUENCY, PWM_BITS, MOTOR4_INV, MOTOR4_PWM, MOTOR4_IN_A, MOTOR4_IN_B);
 
 PID motor1_pid(PWM_MIN, PWM_MAX, KP_DRIVE, KI_DRIVE, KD_DRIVE);
-PID motor2_pid(PWM_MIN, PWM_MAX, KP_STEERING, KI_STEERING, KD_STEERING);
+PID motor2_pid(PWM_MIN, PWM_MAX, KP_DRIVE, KI_DRIVE, KD_DRIVE);
 PID motor3_pid(PWM_MIN, PWM_MAX, KP_DRIVE, KI_DRIVE, KD_DRIVE);
-PID motor4_pid(PWM_MIN, PWM_MAX, KP_STEERING, KI_STEERING, KD_STEERING);
+PID motor4_pid(PWM_MIN, PWM_MAX, KP_DRIVE, KI_DRIVE, KD_DRIVE);
 
-PID joint1_pid(-90.0, 90.0, KP_JOINT1, KI_JOINT1, KD_JOINT1);
-PID joint2_pid(-90.0, 90.0, KP_JOINT2, KI_JOINT2, KD_JOINT2);
+PID joint1_pid(0, 180, KP_JOINT1, KI_JOINT1, KD_JOINT1);
+PID joint2_pid(0, 180, KP_JOINT2, KI_JOINT2, KD_JOINT2);
 
 Kinematics kinematics(
-    Kinematics::SWERVE2,
+    Kinematics::SKID_STEER,
     MOTOR_MAX_RPM,
     MAX_RPM_RATIO,
     RPM_RATIO,
     WHEEL_DIAMETER,
     LR_WHEELS_DISTANCE);
 
+Arm_Kinematics arm_kinematics(JOINT1_LENGTH, JOINT2_LENGTH, JOINT3_LENGTH);
+
 Odometry odometry;
-// IMU imu;
+IMU imuSensor;
 
-AS5600 joint_1;
-AS5600 joint_2;
-AS5600 joint_3;
 Adafruit_PWMServoDriver servo_array = Adafruit_PWMServoDriver();
-
-bool hall_array[2] = {false, false};
-double joint_array[3] = {0.0, 0.0, 0.0};
-double joint_command[6] = {90.0, 175.0, 90.0, 90.0, 30.0, 180.0};
-Kinematics::heading offset_heading;
-Kinematics::heading total_heading;
+float joint_arr[4] = {100.0 * DEG_TO_RAD, 0.0 * DEG_TO_RAD, 0.0 * DEG_TO_RAD, 0.0};
 
 //------------------------------ < Fuction Prototype > ------------------------------//
 
+void moveESC(int num, int degree);
 void moveServo(int num, int degree);
-void setHome();
-void setHomeArm();
 void flashLED(int n_times);
 void rclErrorLoop();
 void syncTime();
-void moveArm();
 void moveBase();
-void readSensor();
+void moveArm();
 void publishData();
 bool createEntities();
 bool destroyEntities();
@@ -161,28 +153,29 @@ struct timespec getTime();
 void setup()
 {
   pinMode(LED_PIN, OUTPUT);
-  pinMode(HALL_SENSOR1, INPUT);
-  pinMode(HALL_SENSOR2, INPUT);
-
-  // bool imu_ok = imu.init();
-  // if (!imu_ok)
-  // {
-  //     while (1)
-  //     {
-  //         flashLED(3);
-  //     }
-  // }
 
   Wire.begin();
+  tcaSelect(5);
+  bool imu_ok = imuSensor.init();
+  if (!imu_ok)
+  {
+    while (1)
+    {
+      flashLED(3);
+    }
+  }
+
   tcaSelect(0);
   servo_array.begin();
   servo_array.setOscillatorFrequency(27000000);
   servo_array.setPWMFreq(SERVO_FREQ);
+  moveServo(0, 0);
+  moveServo(1, 0);
+  moveServo(4, 90);
+  moveServo(5, 90);
 
-  tcaSelect(1);
-  joint_1.isConnected();
-  tcaSelect(2);
-  joint_2.isConnected();
+  pinMode(JOINT1_SENSOR, INPUT);
+  pinMode(JOINT2_SENSOR, INPUT);
 
   Serial.begin(115200);
   set_microros_serial_transports(Serial);
@@ -225,7 +218,6 @@ void controlCallback(rcl_timer_t *timer, int64_t last_call_time)
   RCLC_UNUSED(last_call_time);
   if (timer != NULL)
   {
-    readSensor();
     moveBase();
     moveArm();
     publishData();
@@ -238,19 +230,22 @@ void twistCallback(const void *msgin)
 
   if (twist_msg.linear.x != 0 || twist_msg.linear.y != 0 || twist_msg.angular.z != 0)
   {
-    robot_state = RUNNING;
     prev_cmd_time = millis();
   }
 }
 
 void armCallback(const void *msgin)
 {
-  joint_command[0] = arm_msg.linear.x;
-  joint_command[1] = arm_msg.linear.y;
-  joint_command[2] = arm_msg.linear.z;
-  joint_command[3] = arm_msg.angular.x;
-  joint_command[4] = arm_msg.angular.y;
-  joint_command[5] = arm_msg.angular.z;
+  Arm_Kinematics::angle req_joint;
+  Arm_Kinematics::position req_position;
+  req_position.pos_x = arm_msg.linear.x;
+  req_position.pos_y = arm_msg.linear.y;
+  req_position.angle = DEG_TO_RAD * arm_msg.linear.z;
+  req_joint = arm_kinematics.getAngle(req_position);
+  joint_arr[0] = req_joint.joint1;
+  joint_arr[1] = (90 * DEG_TO_RAD) + req_joint.joint2;
+  joint_arr[2] = req_joint.joint3;
+  joint_arr[3] = arm_msg.angular.x;
 }
 
 bool createEntities()
@@ -259,7 +254,7 @@ bool createEntities()
 
   init_options = rcl_get_zero_initialized_init_options();
   rcl_init_options_init(&init_options, allocator);
-  rcl_init_options_set_domain_id(&init_options, 10);
+  rcl_init_options_set_domain_id(&init_options, 15);
 
   rclc_support_init_with_options(&support, 0, NULL, &init_options, &allocator);
 
@@ -271,33 +266,27 @@ bool createEntities()
       &node,
       ROSIDL_GET_MSG_TYPE_SUPPORT(nav_msgs, msg, Odometry),
       "odom/unfiltered"));
-
   RCCHECK(rclc_publisher_init_default(
-      &debug_pwm_publisher,
+      &arm_feedback_publisher,
       &node,
-      ROSIDL_GET_MSG_TYPE_SUPPORT(geometry_msgs, msg, Twist),
-      "debug/pwm"));
+      ROSIDL_GET_MSG_TYPE_SUPPORT(geometry_msgs, msg, Point),
+      "arm/feedback"));
   RCCHECK(rclc_publisher_init_default(
       &debug_encoder_publisher,
       &node,
       ROSIDL_GET_MSG_TYPE_SUPPORT(geometry_msgs, msg, Twist),
       "debug/encoder"));
   RCCHECK(rclc_publisher_init_default(
-      &debug_heading_publisher,
-      &node,
-      ROSIDL_GET_MSG_TYPE_SUPPORT(geometry_msgs, msg, Twist),
-      "debug/heading"));
-  RCCHECK(rclc_publisher_init_default(
       &debug_joint_publisher,
       &node,
       ROSIDL_GET_MSG_TYPE_SUPPORT(geometry_msgs, msg, Twist),
       "debug/joint"));
   // create IMU publisher
-  // RCCHECK(rclc_publisher_init_default(
-  //     &imu_publisher,
-  //     &node,
-  //     ROSIDL_GET_MSG_TYPE_SUPPORT(sensor_msgs, msg, Imu),
-  //     "imu/data"));
+  RCCHECK(rclc_publisher_init_default(
+      &imu_publisher,
+      &node,
+      ROSIDL_GET_MSG_TYPE_SUPPORT(sensor_msgs, msg, Imu),
+      "imu/data"));
 
   // create twist command subscriber
   RCCHECK(rclc_subscription_init_default(
@@ -310,7 +299,7 @@ bool createEntities()
       &arm_subscriber,
       &node,
       ROSIDL_GET_MSG_TYPE_SUPPORT(geometry_msgs, msg, Twist),
-      "arm"));
+      "arm/control"));
 
   // create timer for actuating the motors at 50 Hz (1000/20)
   const unsigned int control_timeout = 20;
@@ -348,15 +337,16 @@ bool destroyEntities()
   (void)rmw_uros_set_context_entity_destroy_session_timeout(rmw_context, 0);
 
   tcaSelect(0);
-  moveServo(0, 90);
-  moveServo(1, 90);
+  moveServo(0, 0);
+  moveServo(1, 0);
+  moveServo(4, 90);
+  moveServo(5, 90);
 
-  rcl_publisher_fini(&debug_pwm_publisher, &node);
   rcl_publisher_fini(&debug_encoder_publisher, &node);
-  rcl_publisher_fini(&debug_heading_publisher, &node);
   rcl_publisher_fini(&debug_joint_publisher, &node);
+  rcl_publisher_fini(&arm_feedback_publisher, &node);
   rcl_publisher_fini(&odom_publisher, &node);
-  // rcl_publisher_fini(&imu_publisher, &node);
+  rcl_publisher_fini(&imu_publisher, &node);
   rcl_subscription_fini(&twist_subscriber, &node);
   rcl_subscription_fini(&arm_subscriber, &node);
   rcl_node_fini(&node);
@@ -369,51 +359,13 @@ bool destroyEntities()
   return true;
 }
 
-void readSensor()
-{
-  tcaSelect(1);
-  joint_array[0] = round(joint_1.rawAngle() * AS5600_RAW_TO_DEGREES);
-  debug_joint_msg.linear.x = joint_array[0];
-  tcaSelect(2);
-  joint_array[1] = round(joint_2.rawAngle() * AS5600_RAW_TO_DEGREES);
-  debug_joint_msg.linear.y = joint_array[1];
-}
-
-void moveArm()
-{
-  tcaSelect(0);
-  moveServo(0, joint_command[0]);
-  // if ((joint_command[0] - joint_array[0] >= 2) || (joint_command[0] - joint_array[0] <= -2))
-  // {
-  //   moveServo(0, 90.0 + map(joint1_pid.compute(joint_command[0], joint_array[0]), -90, 90, 90, -90));
-  //   debug_joint_msg.linear.z = map(joint1_pid.compute(joint_command[0], joint_array[0]), -90, 90, 90, -90);
-  // }
-  // else
-  // {
-  //   moveServo(0, 90);
-  // }
-  // if ((joint_command[1] - joint_array[1] >= 2) || (joint_command[1] - joint_array[1] <= -2))
-  // {
-  //   moveServo(1, 90.0 + map(joint2_pid.compute(joint_command[1], joint_array[1]), -90, 90, 90, -90));
-  // }
-  // else
-  // {
-  //   moveServo(1, 90);
-  // }
-  moveServo(1, joint_command[1]);
-  moveServo(2, joint_command[2]);
-  moveServo(3, joint_command[3]);
-  moveServo(4, joint_command[4]);
-  moveServo(5, joint_command[5]);
-}
-
 void moveBase()
 {
   if (((millis() - prev_cmd_time) >= 500))
   {
-    hall_array[0] = false;
-    hall_array[1] = false;
-    robot_state = IDLE;
+    twist_msg.linear.x = 0.0;
+    twist_msg.linear.y = 0.0;
+    twist_msg.angular.z = 0.0;
     digitalWrite(LED_PIN, HIGH);
   }
 
@@ -422,97 +374,115 @@ void moveBase()
       twist_msg.linear.y,
       twist_msg.angular.z);
 
-  Kinematics::heading req_heading = kinematics.getHeading(
-      twist_msg.linear.x,
-      twist_msg.linear.y,
-      twist_msg.angular.z);
-
   float current_rpm1 = motor1_encoder.getRPM();
-  float current_rpm2 = motor3_encoder.getRPM();
-  Kinematics::heading current_heading;
-  current_heading.motor1 = motor2_encoder.read();
-  current_heading.motor2 = motor4_encoder.read();
+  float current_rpm2 = motor2_encoder.getRPM();
+  float current_rpm3 = motor3_encoder.getRPM();
+  float current_rpm4 = motor4_encoder.getRPM();
 
-  debug_heading_msg.linear.x = int(req_heading.motor1 * RAD_TO_DEG);
-  debug_heading_msg.linear.y = int(req_heading.motor2 * RAD_TO_DEG);
-  debug_heading_msg.linear.z = millis();
-  debug_heading_msg.angular.x = current_heading.motor1;
-  debug_heading_msg.angular.y = current_heading.motor2;
-  debug_heading_msg.angular.z = prev_cmd_time;
+  debug_encoder_msg.linear.x = current_rpm1;
+  debug_encoder_msg.linear.y = current_rpm2;
+  debug_encoder_msg.angular.x = req_rpm.motor1;
+  debug_encoder_msg.angular.y = req_rpm.motor2;
 
-  req_heading.motor1 = (req_heading.motor1 * RAD_TO_DEG) * (2100 / 90);
-  req_heading.motor2 = (req_heading.motor2 * RAD_TO_DEG) * (2100 / 90);
+  motor1_controller.spin(motor1_pid.compute(req_rpm.motor1, current_rpm1));
+  motor2_controller.spin(motor2_pid.compute(req_rpm.motor2, current_rpm2));
+  motor3_controller.spin(motor3_pid.compute(req_rpm.motor3, current_rpm3));
+  motor4_controller.spin(motor4_pid.compute(req_rpm.motor4, current_rpm4));
 
-  debug_encoder_msg.linear.x = req_rpm.motor1;
-  debug_encoder_msg.linear.y = req_rpm.motor2;
-  debug_encoder_msg.angular.x = current_rpm1;
-  debug_encoder_msg.angular.y = current_rpm2;
-
-  debug_pwm_msg.linear.x = motor1_pid.compute(req_rpm.motor1, current_rpm1);
-  debug_pwm_msg.linear.y = motor3_pid.compute(req_rpm.motor2, current_rpm2);
-  debug_pwm_msg.angular.x = motor2_pid.compute(req_heading.motor1, current_heading.motor1);
-  debug_pwm_msg.angular.y = motor4_pid.compute(req_heading.motor2, current_heading.motor2);
-
-  if (robot_state != IDLE)
-  {
-    motor1_controller.spin(motor1_pid.compute(req_rpm.motor1, current_rpm1));
-    motor3_controller.spin(motor3_pid.compute(req_rpm.motor2, current_rpm2));
-    if ((req_heading.motor1 - current_heading.motor1 > 3) || (req_heading.motor1 - current_heading.motor1 < -3))
-    {
-      motor2_controller.spin(motor2_pid.compute(req_heading.motor1, current_heading.motor1));
-    }
-    else
-    {
-      motor2_controller.spin(0);
-    }
-
-    if ((req_heading.motor2 - current_heading.motor2 > 3) || (req_heading.motor2 - current_heading.motor2 < -3))
-    {
-      motor4_controller.spin(motor2_pid.compute(req_heading.motor2, current_heading.motor2));
-    }
-    else
-    {
-      motor4_controller.spin(0);
-    }
-  }
-  else
-  {
-    setHome();
-  }
-  // Kinematics::velocities current_vel = kinematics.getVelocities(
-  //     current_heading,
-  //     current_rpm1,
-  //     current_rpm2);
+  Kinematics::velocities current_vel = kinematics.getVelocities(
+      current_rpm1,
+      current_rpm2,
+      current_rpm3,
+      current_rpm4);
 
   unsigned long now = millis();
   float vel_dt = (now - prev_odom_update) / 1000.0;
   prev_odom_update = now;
-  // odometry.update(
-  //     vel_dt,
-  //     current_vel.linear_x,
-  //     current_vel.linear_y,
-  //     current_vel.angular_z);
+  odometry.update(
+      vel_dt,
+      current_vel.linear_x,
+      current_vel.linear_y,
+      current_vel.angular_z);
 }
 
+void moveArm()
+{
+  float current_joint1 = map(analogRead(JOINT1_SENSOR) * 2.0, 0, 1023, 180, 0);
+  float current_joint2 = map(analogRead(JOINT2_SENSOR) * 2.0, 0, 1023, 180, 0) + 10.0;
+
+  if (abs(joint_arr[0] * RAD_TO_DEG - current_joint1) >= 2)
+  {
+    arm_state = MOVING;
+  }
+  else
+  {
+    arm_state = DONE;
+  }
+
+  tcaSelect(0);
+  Arm_Kinematics::angle arm_joint;
+  Arm_Kinematics::position arm_position;
+
+  debug_joint_msg.linear.x = current_joint1;
+  debug_joint_msg.linear.y = current_joint2;
+  debug_joint_msg.angular.x = joint_arr[0] * RAD_TO_DEG;
+  debug_joint_msg.angular.y = joint_arr[1] * RAD_TO_DEG;
+  debug_joint_msg.angular.z = joint_arr[2] * RAD_TO_DEG;
+
+  moveServo(0, joint_arr[3]);
+  moveServo(1, joint_arr[2] * RAD_TO_DEG);
+  if (arm_state == MOVING)
+  {
+    if (joint_arr[0] * RAD_TO_DEG - current_joint1 <= 2)
+    {
+      moveServo(4, 40);
+    }
+    else if (joint_arr[0] * RAD_TO_DEG - current_joint1 >= 2)
+    {
+      moveServo(4, 140);
+    }
+    else
+    {
+      moveServo(4, 90);
+    }
+  }
+  else
+  {
+    moveServo(4, 90);
+  }
+  // moveServo(4, joint1_pid.compute(joint_arr[0] * RAD_TO_DEG, current_joint1));
+  moveServo(5, joint2_pid.compute(joint_arr[1] * RAD_TO_DEG, current_joint2));
+
+  arm_joint.joint1 = DEG_TO_RAD * current_joint1;
+  arm_joint.joint2 = DEG_TO_RAD * (current_joint2 - 90);
+  arm_joint.joint3 = DEG_TO_RAD * joint_arr[2];
+  // arm_joint.joint1 = DEG_TO_RAD * 45.0;
+  // arm_joint.joint2 = DEG_TO_RAD * -80.0;
+  // arm_joint.joint3 = DEG_TO_RAD * 0.0;
+  arm_position = arm_kinematics.getPosition(arm_joint);
+  arm_feedback_msg.x = arm_position.pos_x;
+  arm_feedback_msg.y = arm_position.pos_y;
+  arm_feedback_msg.z = arm_position.angle;
+}
 void publishData()
 {
+  tcaSelect(5);
   odom_msg = odometry.getData();
-  // imu_msg = imu.getData();
+  imu_msg = imuSensor.getData();
 
   struct timespec time_stamp = getTime();
 
   odom_msg.header.stamp.sec = time_stamp.tv_sec;
   odom_msg.header.stamp.nanosec = time_stamp.tv_nsec;
 
-  // imu_msg.header.stamp.sec = time_stamp.tv_sec;
-  // imu_msg.header.stamp.nanosec = time_stamp.tv_nsec;
+  imu_msg.header.stamp.sec = time_stamp.tv_sec;
+  imu_msg.header.stamp.nanosec = time_stamp.tv_nsec;
 
-  // RCSOFTCHECK(rcl_publish(&imu_publisher, &imu_msg, NULL));
+  RCSOFTCHECK(rcl_publish(&imu_publisher, &imu_msg, NULL));
   RCSOFTCHECK(rcl_publish(&odom_publisher, &odom_msg, NULL));
-  RCSOFTCHECK(rcl_publish(&debug_pwm_publisher, &debug_pwm_msg, NULL));
+  RCSOFTCHECK(rcl_publish(&arm_feedback_publisher, &arm_feedback_msg, NULL));
   RCSOFTCHECK(rcl_publish(&debug_joint_publisher, &debug_joint_msg, NULL));
   RCSOFTCHECK(rcl_publish(&debug_encoder_publisher, &debug_encoder_msg, NULL));
-  RCSOFTCHECK(rcl_publish(&debug_heading_publisher, &debug_heading_msg, NULL));
 }
 
 void syncTime()
@@ -567,33 +537,12 @@ void flashLED(int n_times)
   delay(1000);
 }
 
-void setHome()
-{
-  motor1_controller.spin(0);
-  motor3_controller.spin(0);
-  if (digitalRead(HALL_SENSOR1))
-  {
-    motor2_controller.spin(512);
-  }
-  else
-  {
-    hall_array[0] = true;
-    motor2_controller.spin(0);
-    motor2_encoder.readAndReset();
-  }
-  if (digitalRead(HALL_SENSOR2))
-  {
-    motor4_controller.spin(512);
-  }
-  else
-  {
-    hall_array[1] = true;
-    motor4_controller.spin(0);
-    motor4_encoder.readAndReset();
-  }
-}
-
 void moveServo(int num, int degree)
 {
   servo_array.setPWM(num, 0, map(degree, 0, 180, SERVOMIN, SERVOMAX));
+}
+
+void moveESC(int num, int degree)
+{
+  servo_array.setPWM(num, 0, map(degree, 0, 180, ESCMAX, ESCMIN));
 }
