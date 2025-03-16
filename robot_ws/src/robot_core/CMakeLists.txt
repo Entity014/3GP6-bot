@@ -15,7 +15,6 @@ install(
     DIRECTORY 
     src
     launch
-    config
     DESTINATION share/${PROJECT_NAME}
 )
 

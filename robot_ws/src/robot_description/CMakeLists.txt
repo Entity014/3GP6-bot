@@ -17,7 +17,6 @@ install(
     src
     rviz
     worlds
-    maps
     launch
     config
     DESTINATION share/${PROJECT_NAME}
