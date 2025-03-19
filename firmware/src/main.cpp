@@ -286,7 +286,7 @@ bool createEntities()
       &imu_publisher,
       &node,
       ROSIDL_GET_MSG_TYPE_SUPPORT(sensor_msgs, msg, Imu),
-      "imu/data"));
+      "imu/data_raw"));
 
   // create twist command subscriber
   RCCHECK(rclc_subscription_init_default(
@@ -455,7 +455,7 @@ void moveArm()
 
   arm_joint.joint1 = DEG_TO_RAD * current_joint1;
   arm_joint.joint2 = DEG_TO_RAD * (current_joint2 - 90);
-  arm_joint.joint3 = DEG_TO_RAD * joint_arr[2];
+  arm_joint.joint3 = DEG_TO_RAD * (joint_arr[2] - 100);
   // arm_joint.joint1 = DEG_TO_RAD * 45.0;
   // arm_joint.joint2 = DEG_TO_RAD * -80.0;
   // arm_joint.joint3 = DEG_TO_RAD * 0.0;

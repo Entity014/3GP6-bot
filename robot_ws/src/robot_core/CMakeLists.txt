@@ -13,6 +13,7 @@ ament_python_install_package(src)
 
 install(
     DIRECTORY 
+    config
     src
     launch
     DESTINATION share/${PROJECT_NAME}

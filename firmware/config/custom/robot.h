@@ -15,7 +15,7 @@
 #define KI_JOINT1 0.001
 #define KD_JOINT1 0
 
-#define KP_JOINT2 2.0
+#define KP_JOINT2 4.0
 #define KI_JOINT2 0.02
 #define KD_JOINT2 0
 
