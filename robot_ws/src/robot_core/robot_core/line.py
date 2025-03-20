@@ -71,7 +71,7 @@ class LineFollowing(py_trees.behaviour.Behaviour):
         twist = Twist()
 
         if self.direction.upper() == "F":
-            if centroids[0]["area"] <= 1500:
+            if centroids[0]["area"] <= 1000:
                 twist.linear.x = 0.3
                 twist.angular.z = np.interp(
                     centroids[0]["distance"] - angle, [-160, 160], [3.0, -3.0]
@@ -101,7 +101,7 @@ class LineFollowing(py_trees.behaviour.Behaviour):
     def process(self, img, gray_image):
 
         height, width = gray_image.shape
-        intital = 0.3
+        intital = 0.4
         slice_intervals = [
             intital,
             intital + 0.1,
