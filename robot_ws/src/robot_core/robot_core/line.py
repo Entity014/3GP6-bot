@@ -71,7 +71,7 @@ class LineFollowing(py_trees.behaviour.Behaviour):
         twist = Twist()
 
         if self.direction.upper() == "F":
-            if centroids[0]["area"] <= 1300:
+            if centroids[0]["area"] <= 1000:
                 twist.linear.x = 0.35
                 twist.angular.z = np.interp(
                     centroids[0]["distance"] - angle, [-160, 160], [3.0, -3.0]
