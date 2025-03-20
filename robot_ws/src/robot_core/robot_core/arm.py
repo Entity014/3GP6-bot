@@ -56,16 +56,16 @@ class RobotArm(py_trees.behaviour.Behaviour):
             time.sleep(1)
             return py_trees.common.Status.SUCCESS
         else:
+            twist.linear.x = self.pose_x
+            twist.linear.y = self.pose_y
+            twist.linear.z = self.angle
+            twist.angular.x = 70.0 if self.pick else 0.0
             self.delta_1 = (
                 self.latest_feedback_msg.angular.x - self.latest_feedback_msg.linear.x
             )
             self.delta_2 = (
                 self.latest_feedback_msg.angular.y - self.latest_feedback_msg.linear.y
             )
-            twist.linear.x = self.pose_x
-            twist.linear.y = self.pose_y
-            twist.linear.z = self.angle
-            twist.angular.x = 70.0 if self.pick else 0.0
             # self.logger.info(f"{self.delta_1, self.delta_2}")
             return py_trees.common.Status.RUNNING
 
