@@ -30,7 +30,7 @@ gray_threshold_dict = {
 
 
 class LineFollowing(py_trees.behaviour.Behaviour):
-    def __init__(self, name, node, direction="F", img_timeout=10.0, visualize=True):
+    def __init__(self, name, node, direction="F", img_timeout=10.0, visualize=False):
         super(LineFollowing, self).__init__(name)
         self.node = node
         self.direction = direction
