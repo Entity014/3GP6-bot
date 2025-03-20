@@ -119,12 +119,12 @@ class AutonomyBehavior(Node):
                     RobotArm(
                         f"arm9",
                         tree.node,
-                        [0.39, 0.13, 20.0, True],
+                        [0.39, 0.135, 20.0, True],
                     ),
                     RobotArm(
                         f"arm10",
                         tree.node,
-                        [0.39, 0.13, 20.0, False],
+                        [0.39, 0.135, 20.0, False],
                     ),
                     RobotArm(
                         f"arm11",
