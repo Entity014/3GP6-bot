@@ -58,7 +58,7 @@ class CircleFollowing(py_trees.behaviour.Behaviour):
         if distance is not None and distance2 is not None:
             self.logger.info(f"{distance} {distance2}")
             if self.direction.upper() == "R":
-                if abs(distance) >= 35:
+                if abs(distance) >= 20:
                     twist.angular.z = np.interp(distance, [-320, 320], [0.75, -0.75])
                     if abs(twist.angular.z) < 0.2:
                         twist.angular.z = np.sign(twist.angular.z) * 0.2
@@ -70,7 +70,7 @@ class CircleFollowing(py_trees.behaviour.Behaviour):
                     self.cmd_vel_pub.publish(twist)
                     return py_trees.common.Status.SUCCESS
             elif self.direction.upper() == "F":
-                if abs(distance2) <= 300:
+                if abs(distance2) <= 290:
                     twist.linear.x = 0.05
                     self.cmd_vel_pub.publish(twist)
                     return py_trees.common.Status.RUNNING
