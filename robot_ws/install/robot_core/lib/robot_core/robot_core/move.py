@@ -82,14 +82,14 @@ class RobotRotate(py_trees.behaviour.Behaviour):
         roll_deg, pitch_deg, yaw_deg = np.degrees([roll, pitch, yaw])
         delta_angle = self.set_point - yaw_deg
 
-        self.logger.info(
-            f"Set Point: {self.set_point}°, Yaw: {yaw_deg:.2f}°, Delta Angle: {delta_angle:.2f}°"
-        )
+        # self.logger.info(
+        #     f"Set Point: {self.set_point}°, Yaw: {yaw_deg:.2f}°, Delta Angle: {delta_angle:.2f}°"
+        # )
         twist = Twist()
         if not (abs(delta_angle) <= 5):
             twist.angular.z = np.interp(delta_angle, [-180, 180], [-2.0, 2.0])
-            if abs(twist.angular.z) < 0.2:
-                twist.angular.z = np.sign(twist.angular.z) * 0.2
+            if abs(twist.angular.z) < 0.3:
+                twist.angular.z = np.sign(twist.angular.z) * 0.3
             self.cmd_vel_pub.publish(twist)
             return py_trees.common.Status.RUNNING
         else:

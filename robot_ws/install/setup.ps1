@@ -27,6 +27,7 @@ _colcon_prefix_chain_powershell_source_script "/home/entity014/microros_ws/insta
 _colcon_prefix_chain_powershell_source_script "/home/entity014/turtlebot3_ws/install\local_setup.ps1"
 _colcon_prefix_chain_powershell_source_script "/home/entity014/Ros-Major/650610841_final/install\local_setup.ps1"
 _colcon_prefix_chain_powershell_source_script "/home/entity014/Ros-Major/project_ws/install\local_setup.ps1"
+_colcon_prefix_chain_powershell_source_script "/home/entity014/x_ws/install\local_setup.ps1"
 
 # source this prefix
 $env:COLCON_CURRENT_PREFIX=(Split-Path $PSCommandPath -Parent)

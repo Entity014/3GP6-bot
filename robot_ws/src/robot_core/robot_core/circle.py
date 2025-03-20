@@ -13,7 +13,7 @@ import py_trees
 
 
 class LineFollowingCircle(py_trees.behaviour.Behaviour):
-    def __init__(self, name, node, direction="F", img_timeout=10.0, visualize=True):
+    def __init__(self, name, node, direction="F", img_timeout=10.0, visualize=False):
         super(LineFollowingCircle, self).__init__(name)
         self.node = node
         self.direction = direction
@@ -114,7 +114,7 @@ class LineFollowingCircle(py_trees.behaviour.Behaviour):
 
             roi = gray_image[y_start:y_end, :]
 
-            _, mask = cv2.threshold(roi, 70, 255, cv2.THRESH_BINARY_INV)
+            _, mask = cv2.threshold(roi, 80, 255, cv2.THRESH_BINARY_INV)
             contours, _ = cv2.findContours(
                 mask, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE
             )

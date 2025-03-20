@@ -1,6 +1,7 @@
 import os
 import rclpy
 import cv_bridge
+from ultralytics import YOLO
 from rclpy.duration import Duration
 from sensor_msgs.msg import CompressedImage
 from geometry_msgs.msg import Twist
@@ -11,11 +12,12 @@ import py_trees
 
 
 class CircleFollowing(py_trees.behaviour.Behaviour):
-    def __init__(self, name, node, img_timeout=10.0, visualize=True):
+    def __init__(self, name, node, direction="R", img_timeout=10.0, visualize=True):
         super(CircleFollowing, self).__init__(name)
         self.node = node
         self.img_timeout = Duration(nanoseconds=img_timeout * 1e9)
         self.visualize = visualize
+        self.direction = direction
         self.bridge = cv_bridge.CvBridge()
 
         self.subscription = self.node.create_subscription(
@@ -25,6 +27,13 @@ class CircleFollowing(py_trees.behaviour.Behaviour):
 
         self.start_time = self.node.get_clock().now()
         self.latest_img_msg = None
+        self.model = YOLO(
+            os.path.join(
+                os.path.expanduser("~"),
+                "3GP6-bot",
+                "best.pt",
+            )
+        )
 
     def update(self):
         now = self.node.get_clock().now()
@@ -37,9 +46,8 @@ class CircleFollowing(py_trees.behaviour.Behaviour):
 
         np_arr = np.frombuffer(self.latest_img_msg.data, np.uint8)
         img = cv2.imdecode(np_arr, cv2.IMREAD_UNCHANGED)
-        img = img[240:, :]
 
-        distance = self.detect_circle(img)
+        distance, distance2 = self.process(img)
 
         if self.visualize:
             cv2.imshow("Circle Detection", img)
@@ -47,15 +55,32 @@ class CircleFollowing(py_trees.behaviour.Behaviour):
 
         twist = Twist()
 
-        if abs(distance) >= 15:
-            twist.angular.z = np.interp(distance, [-320, 320], [0.8, -0.8])
-            self.cmd_vel_pub.publish(twist)
-            return py_trees.common.Status.RUNNING
+        if distance is not None and distance2 is not None:
+            self.logger.info(f"{distance} {distance2}")
+            if self.direction.upper() == "R":
+                if abs(distance) >= 30:
+                    twist.angular.z = np.interp(distance, [-320, 320], [0.75, -0.75])
+                    if abs(twist.angular.z) < 0.2:
+                        twist.angular.z = np.sign(twist.angular.z) * 0.2
+                    self.cmd_vel_pub.publish(twist)
+                    return py_trees.common.Status.RUNNING
+                else:
+                    twist.linear.x = 0.0
+                    twist.angular.z = 0.0
+                    self.cmd_vel_pub.publish(twist)
+                    return py_trees.common.Status.SUCCESS
+            elif self.direction.upper() == "F":
+                if abs(distance2) <= 330:
+                    twist.linear.x = 0.05
+                    self.cmd_vel_pub.publish(twist)
+                    return py_trees.common.Status.RUNNING
+                else:
+                    twist.linear.x = 0.0
+                    twist.angular.z = 0.0
+                    self.cmd_vel_pub.publish(twist)
+                    return py_trees.common.Status.SUCCESS
         else:
-            twist.linear.x = 0.0
-            twist.angular.z = 0.0
-            self.cmd_vel_pub.publish(twist)
-            return py_trees.common.Status.SUCCESS
+            return py_trees.common.Status.RUNNING
 
     def terminate(self, new_status):
         self.logger.info(f"Terminated with status {new_status}")
@@ -66,31 +91,51 @@ class CircleFollowing(py_trees.behaviour.Behaviour):
     def img_callback(self, msg):
         self.latest_img_msg = msg
 
-    def detect_circle(self, img):
-        gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
-        blurred = cv2.GaussianBlur(gray, (9, 9), 2)
+    def process(self, img):
 
-        circles = cv2.HoughCircles(
-            blurred,
-            cv2.HOUGH_GRADIENT,
-            dp=1.2,
-            minDist=50,
-            param1=100,
-            param2=30,
-            minRadius=10,
-            maxRadius=100,
-        )
+        img_width = img.shape[1]  # Get image width
+        img_hight = img.shape[0]  # Get image width
+        mid_screen = img_width // 2  # Midpoint of the screen
+        mid_screen2 = img_hight // 2  # Midpoint of the screen
 
-        if circles is not None:
-            circles = np.uint16(np.around(circles))
-            for circle in circles[0, :]:
-                x, y, radius = circle
-                cv2.circle(img, (x, y), radius, (0, 255, 0), 3)
-                cv2.circle(img, (x, y), 2, (0, 0, 255), 3)
-                img_width = img.shape[1]
-                mid_screen = img_width // 2
-                return x - mid_screen
-        return None
+        results = self.model(img)
+
+        # Process detection results
+        for result in results:
+            for box in result.boxes:
+                x_min, y_min, x_max, y_max = box.xyxy[0].cpu().numpy()
+
+                # Compute centroid
+                cx = int((x_min + x_max) / 2)
+                cy = int((y_min + y_max) / 2)
+
+                # Compute distance from mid-screen
+                distance = (cx - mid_screen) - 20
+                distance2 = cy
+                width = x_max - x_min
+                height = y_max - y_min
+
+                # Draw bounding box and centroid
+                if self.visualize:
+                    cv2.rectangle(
+                        img,
+                        (int(x_min), int(y_min)),
+                        (int(x_max), int(y_max)),
+                        (0, 255, 0),
+                        2,
+                    )
+                    cv2.circle(img, (cx, cy), 5, (0, 0, 255), -1)
+                    cv2.putText(
+                        img,
+                        f"({cx}, {cy}) Dist: {distance} Area: {distance2}",
+                        (cx + 5, cy - 5),
+                        cv2.FONT_HERSHEY_SIMPLEX,
+                        0.5,
+                        (255, 255, 255),
+                        2,
+                    )
+                return distance, distance2
+        return None, None
 
 
 def main(args=None):

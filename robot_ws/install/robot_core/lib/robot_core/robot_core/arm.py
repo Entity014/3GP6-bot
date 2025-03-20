@@ -62,10 +62,16 @@ class RobotArm(py_trees.behaviour.Behaviour):
             self.delta_2 = (
                 self.latest_feedback_msg.angular.y - self.latest_feedback_msg.linear.y
             )
-            self.logger.info(f"{self.delta_1, self.delta_2}")
+            twist.linear.x = self.pose_x
+            twist.linear.y = self.pose_y
+            twist.linear.z = self.angle
+            twist.angular.x = 70.0 if self.pick else 0.0
+            # self.logger.info(f"{self.delta_1, self.delta_2}")
             return py_trees.common.Status.RUNNING
 
     def terminate(self, new_status):
+        self.delta_1 = 999
+        self.delta_2 = 999
         self.logger.info(f"Terminated with status {new_status}")
 
     def feedback_callback(self, msg):

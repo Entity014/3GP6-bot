@@ -30,7 +30,7 @@ gray_threshold_dict = {
 
 
 class LineFollowing(py_trees.behaviour.Behaviour):
-    def __init__(self, name, node, direction="F", img_timeout=10.0, visualize=True):
+    def __init__(self, name, node, direction="F", img_timeout=10.0, visualize=False):
         super(LineFollowing, self).__init__(name)
         self.node = node
         self.direction = direction
@@ -185,7 +185,7 @@ class LineFollowing(py_trees.behaviour.Behaviour):
 
 class LineFollowingColor(py_trees.behaviour.Behaviour):
     def __init__(
-        self, name, node, color="red", direction="F", img_timeout=10.0, visualize=True
+        self, name, node, color="red", direction="F", img_timeout=10.0, visualize=False
     ):
         super(LineFollowingColor, self).__init__(name)
         self.node = node
@@ -388,7 +388,7 @@ class LineFollowingColor(py_trees.behaviour.Behaviour):
 
 class ColorFollowing(py_trees.behaviour.Behaviour):
     def __init__(
-        self, name, node, color="red", direction="F", img_timeout=10.0, visualize=True
+        self, name, node, color="red", direction="F", img_timeout=10.0, visualize=False
     ):
         super(ColorFollowing, self).__init__(name)
         self.node = node
@@ -440,7 +440,7 @@ class ColorFollowing(py_trees.behaviour.Behaviour):
         twist = Twist()
 
         if self.direction.upper() == "F":
-            if (delta_ratio1 >= 0.4) and (delta_ratio2 >= 0.4):
+            if (delta_ratio1 >= 0.5) and (delta_ratio2 >= 0.5):
                 try:
                     twist.linear.x = 0.21
                     twist.angular.z = np.interp(
@@ -570,7 +570,7 @@ class ColorFollowing(py_trees.behaviour.Behaviour):
 
 class ColorFollowingLine(py_trees.behaviour.Behaviour):
     def __init__(
-        self, name, node, color="red", direction="F", img_timeout=10.0, visualize=True
+        self, name, node, color="red", direction="F", img_timeout=10.0, visualize=False
     ):
         super(ColorFollowingLine, self).__init__(name)
         self.node = node
@@ -607,7 +607,7 @@ class ColorFollowingLine(py_trees.behaviour.Behaviour):
         hsv_image = cv2.cvtColor(img, cv2.COLOR_BGR2HSV)
         centroids, angle = self.hsv_process(img, hsv_image)
         gray_area = self.gray_process(img, gray_image)
-        self.logger.info(f"{gray_area}")
+        # self.logger.info(f"{gray_area}")
 
         if self.visualize:
             cv2.destroyAllWindows()
@@ -619,9 +619,9 @@ class ColorFollowingLine(py_trees.behaviour.Behaviour):
         if self.direction.upper() == "F":
             if gray_area[0] <= 100:
                 try:
-                    twist.linear.x = 0.2
+                    twist.linear.x = 0.15
                     twist.angular.z = np.interp(
-                        centroids[0]["distance"] - angle, [-250, 250], [2.0, -2.0]
+                        centroids[0]["distance"] - angle, [-250, 250], [2.5, -2.5]
                     )
                 except:
                     twist.linear.x = 0.0

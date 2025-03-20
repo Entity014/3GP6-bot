@@ -13,7 +13,7 @@ import py_trees
 
 
 class AIFollowing(py_trees.behaviour.Behaviour):
-    def __init__(self, name, node, type_="R", img_timeout=10.0, visualize=True):
+    def __init__(self, name, node, type_="R", img_timeout=10.0, visualize=False):
         super(AIFollowing, self).__init__(name)
         self.node = node
         self.type = type_
@@ -33,7 +33,7 @@ class AIFollowing(py_trees.behaviour.Behaviour):
             os.path.join(
                 os.path.expanduser("~"),
                 "3GP6-bot",
-                "best3.pt",
+                "bestPlate.pt",
             )
         )
         self.start_time = self.node.get_clock().now()
@@ -61,8 +61,8 @@ class AIFollowing(py_trees.behaviour.Behaviour):
         twist = Twist()
 
         if self.type.upper() == "R":
-            if abs(distance) >= 20:
-                twist.angular.z = np.interp(distance, [-320, 320], [0.7, -0.7])
+            if abs(distance) >= 45:
+                twist.angular.z = np.interp(distance, [-320, 320], [0.6, -0.6])
                 if abs(twist.angular.z) < 0.2:
                     twist.angular.z = np.sign(twist.angular.z) * 0.2
                 self.cmd_vel_pub.publish(twist)
@@ -111,7 +111,7 @@ class AIFollowing(py_trees.behaviour.Behaviour):
                 cy = int((y_min + y_max) / 2)
 
                 # Compute distance from mid-screen
-                distance = cx - mid_screen
+                distance = (cx - mid_screen) - 30
                 width = x_max - x_min
                 height = y_max - y_min
                 diff_area = 40000 - int(width * height)

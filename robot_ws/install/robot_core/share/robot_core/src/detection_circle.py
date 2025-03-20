@@ -18,7 +18,7 @@ class ImageSubscriber(Node):
         try:
             np_arr = np.frombuffer(msg.data, np.uint8)
             img = cv2.imdecode(np_arr, cv2.IMREAD_UNCHANGED)
-            img = img[200:360, 160:480]
+            img = img[240:, :]
 
             if img is None:
                 self.get_logger().error("Failed to decode image.")
@@ -48,10 +48,10 @@ class ImageSubscriber(Node):
             cv2.HOUGH_GRADIENT,
             dp=1.2,
             minDist=1000,
-            param1=100,
-            param2=20,
+            param1=10,
+            param2=25,
             minRadius=10,
-            maxRadius=18,
+            maxRadius=50,
         )
 
         if circles is not None:

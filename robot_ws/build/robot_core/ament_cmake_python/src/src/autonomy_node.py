@@ -44,7 +44,7 @@ class AutonomyBehavior(Node):
         # bb = py_trees.blackboard.Blackboard()
         # bb.set("loc_list", self.loc_list)
 
-        color = "green"
+        color = "red"
 
         seq = py_trees.composites.Sequence(name="search", memory=True)
         root = py_trees.decorators.OneShot(
@@ -61,74 +61,80 @@ class AutonomyBehavior(Node):
                         tree.node,
                         [0.1, 0.08, -95.0, False],
                     ),
-                    # LineFollowing(f"line1", tree.node, "F"),
-                    # RobotMove(f"move1", tree.node, "F", 0.39),
-                    # RobotRotate(f"rotate1", -90, tree.node),
-                    # RobotArm(
-                    #     f"arm2",
-                    #     tree.node,
-                    #     [0.16, 0.08, -60.0, False],
-                    # ),
-                    # AIFollowing(f"ai1", tree.node, "R"),
-                    # RobotArm(
-                    #     f"arm3",
-                    #     tree.node,
-                    #     [0.37, 0.08, 30.0, False],
-                    # ),
-                    # RobotArm(
-                    #     f"arm4",
-                    #     tree.node,
-                    #     [0.37, 0.08, 30.0, True],
-                    # ),
-                    # RobotArm(
-                    #     f"arm5",
-                    #     tree.node,
-                    #     [0.37, 0.15, 30.0, True],
-                    # ),
-                    # RobotArm(
-                    #     f"arm6",
-                    #     tree.node,
-                    #     [0.1, 0.08, -95.0, True],
-                    # ),
-                    # RobotRotate(f"rotate2", 0, tree.node),
-                    # LineFollowingColor(f"color1", tree.node, color),
-                    # RobotMove(f"move2", tree.node, "F", 1.0),
-                    # RobotRotate(f"rotate3", 0, tree.node),
-                    # ColorFollowing(f"color2", tree.node, color),
-                    # RobotRotate(f"rotate4", 90, tree.node),
-                    # RobotMove(f"move3", tree.node, "F", 2.2),
-                    # RobotArm(
-                    #     f"arm7",
-                    #     tree.node,
-                    #     [0.16, 0.08, -60.0, True],
-                    # ),
-                    # CircleFollowing("moveCircle", tree.node),
-                    # RobotArm(
-                    #     f"arm8",
-                    #     tree.node,
-                    #     [0.39, 0.135, 20.0, True],
-                    # ),
-                    # RobotArm(
-                    #     f"arm9",
-                    #     tree.node,
-                    #     [0.39, 0.13, 20.0, False],
-                    # ),
-                    # RobotArm(
-                    #     f"arm10",
-                    #     tree.node,
-                    #     [0.32, 0.2, 20.0, False],
-                    # ),
-                    # RobotArm(
-                    #     f"arm11",
-                    #     tree.node,
-                    #     [0.1, 0.08, -95.0, False],
-                    # ),
-                    # RobotMove(f"move4", tree.node, "B", 2.2),
-                    # RobotRotate(f"rotate4", -90, tree.node),
+                    LineFollowing(f"line1", tree.node, "F"),
+                    RobotMove(f"move1", tree.node, "F", 0.39),
+                    RobotRotate(f"rotate1", -90, tree.node),
+                    RobotArm(
+                        f"arm2",
+                        tree.node,
+                        [0.16, 0.08, -60.0, False],
+                    ),
+                    AIFollowing(f"ai1", tree.node, "R"),
+                    RobotArm(
+                        f"arm3",
+                        tree.node,
+                        [0.37, 0.08, 30.0, False],
+                    ),
+                    RobotArm(
+                        f"arm4",
+                        tree.node,
+                        [0.37, 0.08, 30.0, True],
+                    ),
+                    RobotArm(
+                        f"arm5",
+                        tree.node,
+                        [0.37, 0.15, 30.0, True],
+                    ),
+                    RobotArm(
+                        f"arm6",
+                        tree.node,
+                        [0.1, 0.08, -95.0, True],
+                    ),
+                    RobotRotate(f"rotate2", 0, tree.node),
+                    LineFollowingColor(f"color1", tree.node, color),
+                    RobotMove(f"move2", tree.node, "F", 1.0),
+                    RobotRotate(f"rotate3", 0, tree.node),
+                    ColorFollowing(f"color2", tree.node, color),
+                    RobotRotate(f"rotate4", 90, tree.node),
+                    RobotMove(f"move3", tree.node, "F", 1.8),
+                    RobotArm(
+                        f"arm7",
+                        tree.node,
+                        [0.16, 0.08, -60.0, True],
+                    ),
+                    CircleFollowing("moveCircle1", tree.node, "R"),  # ! Tuning
+                    CircleFollowing("moveCircle2", tree.node, "F"),
+                    RobotArm(
+                        f"arm8",
+                        tree.node,
+                        [0.39, 0.135, 20.0, True],
+                    ),
+                    RobotArm(
+                        f"arm9",
+                        tree.node,
+                        [0.39, 0.13, 20.0, True],
+                    ),
+                    RobotArm(
+                        f"arm10",
+                        tree.node,
+                        [0.39, 0.13, 20.0, False],
+                    ),
+                    RobotArm(
+                        f"arm11",
+                        tree.node,
+                        [0.32, 0.2, 20.0, False],
+                    ),
+                    RobotArm(
+                        f"arm12",
+                        tree.node,
+                        [0.1, 0.08, -95.0, False],
+                    ),
+                    RobotMove(f"move4", tree.node, "B", 2.0),
+                    RobotRotate(f"rotate4", -90, tree.node),
                     ColorFollowingLine(f"color3", tree.node, color),
                     RobotMove(f"move5", tree.node, "F", 0.3),
                     RobotRotate(f"rotate5", 90, tree.node),
-                    LineFollowingCircle("circle1", tree.node),
+                    LineFollowingCircle("circle1", tree.node),  # ! Tuning
                     RobotMove(f"move7", tree.node, "F", 2.0),
                 ]
             )

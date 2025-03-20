@@ -114,7 +114,7 @@ class LineFollowingCircle(py_trees.behaviour.Behaviour):
 
             roi = gray_image[y_start:y_end, :]
 
-            _, mask = cv2.threshold(roi, 70, 255, cv2.THRESH_BINARY_INV)
+            _, mask = cv2.threshold(roi, 80, 255, cv2.THRESH_BINARY_INV)
             contours, _ = cv2.findContours(
                 mask, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE
             )
