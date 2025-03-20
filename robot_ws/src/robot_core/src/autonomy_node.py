@@ -30,6 +30,15 @@ class AutonomyBehavior(Node):
         self.declare_parameter("tree_type", value="queue")
         self.declare_parameter("enable_vision", value=True)
 
+        path = os.path.join(
+            os.path.expanduser("~"),
+            "3GP6-bot",
+            "color.txt",
+        )
+
+        with open(path, "r") as file:
+            self.color = file.read()
+
         self.tree_type = self.get_parameter("tree_type").value
         self.enable_vision = self.get_parameter("enable_vision").value
         self.create_behavior_tree(self.tree_type)
@@ -43,8 +52,6 @@ class AutonomyBehavior(Node):
     def create_queue_tree(self):
         # bb = py_trees.blackboard.Blackboard()
         # bb.set("loc_list", self.loc_list)
-
-        color = "red"
 
         seq = py_trees.composites.Sequence(name="search", memory=True)
         root = py_trees.decorators.OneShot(
@@ -91,10 +98,10 @@ class AutonomyBehavior(Node):
                         [0.1, 0.08, -95.0, True],
                     ),
                     RobotRotate(f"rotate2", 0, tree.node),
-                    LineFollowingColor(f"color1", tree.node, color),
+                    LineFollowingColor(f"color1", tree.node, self.color),
                     RobotMove(f"move2", tree.node, "F", 1.0),
                     RobotRotate(f"rotate3", 0, tree.node),
-                    ColorFollowing(f"color2", tree.node, color),
+                    ColorFollowing(f"color2", tree.node, self.color),
                     RobotRotate(f"rotate4", 90, tree.node),
                     RobotMove(f"move3", tree.node, "F", 1.8),
                     RobotArm(
@@ -131,7 +138,7 @@ class AutonomyBehavior(Node):
                     ),
                     RobotMove(f"move4", tree.node, "B", 2.0),
                     RobotRotate(f"rotate4", -90, tree.node),
-                    ColorFollowingLine(f"color3", tree.node, color),
+                    ColorFollowingLine(f"color3", tree.node, self.color),
                     RobotMove(f"move5", tree.node, "F", 0.3),
                     RobotRotate(f"rotate5", 90, tree.node),
                     LineFollowingCircle("circle1", tree.node),  # ! Tuning
