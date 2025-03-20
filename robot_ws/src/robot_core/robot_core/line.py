@@ -101,7 +101,7 @@ class LineFollowing(py_trees.behaviour.Behaviour):
     def process(self, img, gray_image):
 
         height, width = gray_image.shape
-        intital = 0.4
+        intital = 0.3
         slice_intervals = [
             intital,
             intital + 0.1,
