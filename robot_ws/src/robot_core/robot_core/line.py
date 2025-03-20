@@ -76,7 +76,7 @@ class LineFollowing(py_trees.behaviour.Behaviour):
             if centroids[0]["area"] <= 1500:
                 twist.linear.x = 0.2
                 twist.angular.z = np.interp(
-                    centroids[0]["distance"] - angle, [-160, 160], [2.5, -2.5]
+                    centroids[0]["distance"] - angle, [-250, 250], [2.5, -2.5]
                 )
                 self.cmd_vel_pub.publish(twist)
                 return py_trees.common.Status.RUNNING
@@ -242,7 +242,7 @@ class LineFollowingColor(py_trees.behaviour.Behaviour):
             if hsv_area[0] <= 50:
                 self.last_angular_z = getattr(self, "last_angular_z", 0.0)
                 try:
-                    twist.linear.x = 0.25
+                    twist.linear.x = 0.2
                     twist.angular.z = np.interp(
                         centroids[0]["distance"] - angle, [-250, 250], [4.1, -4.1]
                     )
@@ -458,9 +458,9 @@ class ColorFollowing(py_trees.behaviour.Behaviour):
         if self.direction.upper() == "F":
             if (delta_ratio1 >= 0.5) and (delta_ratio2 >= 0.5):
                 try:
-                    twist.linear.x = 0.23
+                    twist.linear.x = 0.2
                     twist.angular.z = np.interp(
-                        centroids[0]["distance"] - angle, [-250, 250], [1.5, -1.5]
+                        centroids[0]["distance"] - angle, [-250, 250], [4.1, -4.1]
                     )
                 except:
                     twist.linear.x = 0.0
