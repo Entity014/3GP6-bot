@@ -69,7 +69,7 @@ class AutonomyBehavior(Node):
                         [0.1, 0.08, -95.0, False],
                     ),
                     LineFollowing(f"line1", tree.node, "F"),
-                    RobotMove(f"move1", tree.node, "F", 0.8),
+                    RobotMove(f"move1", tree.node, "F", 1.3),
                     RobotRotate(f"rotate1", -90, tree.node),
                     RobotArm(
                         f"arm2",
@@ -151,7 +151,7 @@ class AutonomyBehavior(Node):
             )
         return tree
 
-    def execute(self, period=0.5):
+    def execute(self, period=0.1):
         self.tree.tick_tock(period_ms=period * 1000.0)
         rclpy.spin(self.tree.node)
         rclpy.shutdown()

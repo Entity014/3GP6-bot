@@ -30,7 +30,7 @@ gray_threshold_dict = {
 
 
 class LineFollowing(py_trees.behaviour.Behaviour):
-    def __init__(self, name, node, direction="F", img_timeout=10.0, visualize=False):
+    def __init__(self, name, node, direction="F", img_timeout=10.0, visualize=True):
         super(LineFollowing, self).__init__(name)
         self.node = node
         self.direction = direction
@@ -71,10 +71,12 @@ class LineFollowing(py_trees.behaviour.Behaviour):
         twist = Twist()
 
         if self.direction.upper() == "F":
+            area = centroids[0]["area"]
+            self.logger.info(f"{area}")
             if centroids[0]["area"] <= 1500:
-                twist.linear.x = 0.3
+                twist.linear.x = 0.2
                 twist.angular.z = np.interp(
-                    centroids[0]["distance"] - angle, [-160, 160], [3.0, -3.0]
+                    centroids[0]["distance"] - angle, [-160, 160], [2.5, -2.5]
                 )
                 self.cmd_vel_pub.publish(twist)
                 return py_trees.common.Status.RUNNING
@@ -101,7 +103,7 @@ class LineFollowing(py_trees.behaviour.Behaviour):
     def process(self, img, gray_image):
 
         height, width = gray_image.shape
-        intital = 0.4
+        intital = 0.5
         slice_intervals = [
             intital,
             intital + 0.1,
@@ -118,7 +120,7 @@ class LineFollowing(py_trees.behaviour.Behaviour):
 
             roi = gray_image[y_start:y_end, :]
 
-            _, mask = cv2.threshold(roi, 70, 255, cv2.THRESH_BINARY_INV)
+            _, mask = cv2.threshold(roi, 110, 255, cv2.THRESH_BINARY_INV)
             contours, _ = cv2.findContours(
                 mask, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE
             )
