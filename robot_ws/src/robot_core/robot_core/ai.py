@@ -111,7 +111,7 @@ class AIFollowing(py_trees.behaviour.Behaviour):
                 cy = int((y_min + y_max) / 2)
 
                 # Compute distance from mid-screen
-                distance = (cx - mid_screen) - 10
+                distance = (cx - mid_screen) - 5
                 width = x_max - x_min
                 height = y_max - y_min
                 diff_area = 40000 - int(width * height)
