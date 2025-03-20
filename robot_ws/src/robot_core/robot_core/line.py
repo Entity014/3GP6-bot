@@ -12,7 +12,7 @@ import py_trees
 hsv_detect_dict = {
     "red": ((0, 150, 60), (180, 255, 255)),
     "green": ((40, 45, 83), (90, 255, 255)),
-    "blue": ((90, 120, 0), (130, 255, 255)),
+    "blue": ((90, 90, 0), (130, 255, 255)),
 }
 
 
@@ -367,7 +367,7 @@ class LineFollowingColor(py_trees.behaviour.Behaviour):
 
     def hsv_process(self, img, hsv_image):
         height, width = hsv_image.shape[:2]
-        intital = 0.5
+        intital = 0.2
         slice_intervals = [
             intital,
             intital + 0.1,

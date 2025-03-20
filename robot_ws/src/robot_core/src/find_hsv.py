@@ -23,7 +23,7 @@ class ImageSubscriber(Node):
     def __init__(self):
         super().__init__("image_subscriber")
         self.subscription = self.create_subscription(
-            CompressedImage, "camera/ai/image/compressed", self.image_callback, 10
+            CompressedImage, "camera/line/image/compressed", self.image_callback, 10
         )
         self.subscription
 
