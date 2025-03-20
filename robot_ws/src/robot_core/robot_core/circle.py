@@ -67,7 +67,7 @@ class LineFollowingCircle(py_trees.behaviour.Behaviour):
                 if not detected:
                     twist.linear.x = 0.1
                     twist.angular.z = np.interp(
-                        centroids[0]["distance"] - angle, [-250, 250], [2.5, -2.5]
+                        centroids[0]["distance"] - angle, [-250, 250], [3.0, -3.0]
                     )
                     self.last_angular_z = twist.angular.z
                     self.cmd_vel_pub.publish(twist)
