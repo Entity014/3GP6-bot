@@ -69,7 +69,7 @@ class AutonomyBehavior(Node):
                         [0.1, 0.08, -95.0, False],
                     ),
                     LineFollowing(f"line1", tree.node, "F"),
-                    RobotMove(f"move1", tree.node, "F", 1.1),
+                    RobotMove(f"move1", tree.node, "F", 0.8),
                     RobotRotate(f"rotate1", -90, tree.node),
                     RobotArm(
                         f"arm2",

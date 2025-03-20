@@ -71,7 +71,7 @@ class LineFollowing(py_trees.behaviour.Behaviour):
         twist = Twist()
 
         if self.direction.upper() == "F":
-            if centroids[0]["area"] <= 1000:
+            if centroids[0]["area"] <= 1500:
                 twist.linear.x = 0.3
                 twist.angular.z = np.interp(
                     centroids[0]["distance"] - angle, [-160, 160], [3.0, -3.0]
@@ -118,7 +118,7 @@ class LineFollowing(py_trees.behaviour.Behaviour):
 
             roi = gray_image[y_start:y_end, :]
 
-            _, mask = cv2.threshold(roi, 100, 255, cv2.THRESH_BINARY_INV)
+            _, mask = cv2.threshold(roi, 70, 255, cv2.THRESH_BINARY_INV)
             contours, _ = cv2.findContours(
                 mask, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE
             )
