@@ -110,7 +110,7 @@ class CircleFollowing(py_trees.behaviour.Behaviour):
                 cy = int((y_min + y_max) / 2)
 
                 # Compute distance from mid-screen
-                distance = (cx - mid_screen) - 20
+                distance = cx - mid_screen
                 distance2 = cy
                 width = x_max - x_min
                 height = y_max - y_min
