@@ -71,10 +71,10 @@ class LineFollowing(py_trees.behaviour.Behaviour):
         twist = Twist()
 
         if self.direction.upper() == "F":
-            if centroids[-1]["area"] <= 1500:
-                twist.linear.x = 0.1
+            if centroids[0]["area"] <= 1300:
+                twist.linear.x = 0.35
                 twist.angular.z = np.interp(
-                    centroids[0]["distance"] - angle, [-160, 160], [1.0, -1.0]
+                    centroids[0]["distance"] - angle, [-160, 160], [3.0, -3.0]
                 )
                 self.cmd_vel_pub.publish(twist)
                 return py_trees.common.Status.RUNNING
@@ -101,7 +101,14 @@ class LineFollowing(py_trees.behaviour.Behaviour):
     def process(self, img, gray_image):
 
         height, width = gray_image.shape
-        slice_intervals = [0.6, 0.7, 0.8, 0.9, 1.0]
+        intital = 0.4
+        slice_intervals = [
+            intital,
+            intital + 0.1,
+            intital + 0.2,
+            intital + 0.3,
+            intital + 0.4,
+        ]
 
         centroids = []
 
@@ -233,19 +240,19 @@ class LineFollowingColor(py_trees.behaviour.Behaviour):
             if hsv_area[0] <= 100:
                 self.last_angular_z = getattr(self, "last_angular_z", 0.0)
                 try:
-                    twist.linear.x = 0.1
+                    twist.linear.x = 0.25
                     twist.angular.z = np.interp(
-                        centroids[0]["distance"] - angle, [-250, 250], [2.5, -2.5]
+                        centroids[0]["distance"] - angle, [-250, 250], [4.0, -4.0]
                     )
                     self.last_angular_z = twist.angular.z
                 except IndexError:
                     twist.linear.x = 0.0
                     if self.last_angular_z > 0:
-                        twist.angular.z = 1.0  # ถ้าค่าล่าสุดเป็นบวก ใช้ค่า +1.0
+                        twist.angular.z = 1.0
                     elif self.last_angular_z < 0:
-                        twist.angular.z = -1.0  # ถ้าค่าล่าสุดเป็นลบ ใช้ค่า -1.0
+                        twist.angular.z = -1.0
                     else:
-                        twist.angular.z = 0.0  # ถ้าค่าล่าสุดเป็นศูนย์
+                        twist.angular.z = 0.0
                 self.cmd_vel_pub.publish(twist)
                 return py_trees.common.Status.RUNNING
             else:
@@ -360,7 +367,14 @@ class LineFollowingColor(py_trees.behaviour.Behaviour):
 
     def hsv_process(self, img, hsv_image):
         height, width = hsv_image.shape[:2]
-        slice_intervals = [0.6, 0.7, 0.8, 0.9, 1.0]
+        intital = 0.3
+        slice_intervals = [
+            intital,
+            intital + 0.1,
+            intital + 0.2,
+            intital + 0.3,
+            intital + 0.4,
+        ]
         max_area_list = []
 
         for i in range(len(slice_intervals) - 1):
@@ -442,13 +456,13 @@ class ColorFollowing(py_trees.behaviour.Behaviour):
         if self.direction.upper() == "F":
             if (delta_ratio1 >= 0.5) and (delta_ratio2 >= 0.5):
                 try:
-                    twist.linear.x = 0.21
+                    twist.linear.x = 0.24
                     twist.angular.z = np.interp(
                         centroids[0]["distance"] - angle, [-250, 250], [1.5, -1.5]
                     )
                 except:
                     twist.linear.x = 0.0
-                    twist.angular.z = 1.0
+                    twist.angular.z = 2.0
                 self.cmd_vel_pub.publish(twist)
                 return py_trees.common.Status.RUNNING
             else:

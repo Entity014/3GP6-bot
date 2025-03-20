@@ -88,8 +88,8 @@ class RobotRotate(py_trees.behaviour.Behaviour):
         twist = Twist()
         if not (abs(delta_angle) <= 5):
             twist.angular.z = np.interp(delta_angle, [-180, 180], [-2.0, 2.0])
-            if abs(twist.angular.z) < 0.3:
-                twist.angular.z = np.sign(twist.angular.z) * 0.3
+            if abs(twist.angular.z) < 0.4:
+                twist.angular.z = np.sign(twist.angular.z) * 0.4
             self.cmd_vel_pub.publish(twist)
             return py_trees.common.Status.RUNNING
         else:

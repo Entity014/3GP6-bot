@@ -7,8 +7,8 @@
 #define RRR3DOF_ROBOT
 #define USE_BNO055_IMU
 
-#define KP_DRIVE 1.0
-#define KI_DRIVE 0.1
+#define KP_DRIVE 2.0
+#define KI_DRIVE 0.45
 #define KD_DRIVE 0
 
 #define KP_JOINT1 0.2

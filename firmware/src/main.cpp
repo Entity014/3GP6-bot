@@ -435,11 +435,11 @@ void moveArm()
   {
     if (joint_arr[0] * RAD_TO_DEG - current_joint1 <= 2)
     {
-      moveServo(4, 40);
+      moveServo(4, 0);
     }
     else if (joint_arr[0] * RAD_TO_DEG - current_joint1 >= 2)
     {
-      moveServo(4, 140);
+      moveServo(4, 180);
     }
     else
     {
