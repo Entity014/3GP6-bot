@@ -80,20 +80,25 @@ class AutonomyBehavior(Node):
                     RobotArm(
                         f"arm3",
                         tree.node,
-                        [0.37, 0.08, 30.0, False],
+                        [0.37, 0.09, 30.0, False],
                     ),
                     RobotArm(
                         f"arm4",
                         tree.node,
-                        [0.37, 0.08, 30.0, True],
+                        [0.37, 0.08, 30.0, False],
                     ),
                     RobotArm(
                         f"arm5",
                         tree.node,
-                        [0.37, 0.15, 30.0, True],
+                        [0.37, 0.08, 30.0, True],
                     ),
                     RobotArm(
                         f"arm6",
+                        tree.node,
+                        [0.37, 0.15, 30.0, True],
+                    ),
+                    RobotArm(
+                        f"arm7",
                         tree.node,
                         [0.1, 0.08, -95.0, True],
                     ),
@@ -105,17 +110,12 @@ class AutonomyBehavior(Node):
                     RobotRotate(f"rotate4", 90, tree.node),
                     RobotMove(f"move3", tree.node, "F", 1.8),
                     RobotArm(
-                        f"arm7",
+                        f"arm8",
                         tree.node,
                         [0.16, 0.08, -60.0, True],
                     ),
                     CircleFollowing("moveCircle1", tree.node, "R"),  # ! Tuning
                     CircleFollowing("moveCircle2", tree.node, "F"),
-                    RobotArm(
-                        f"arm8",
-                        tree.node,
-                        [0.39, 0.135, 20.0, True],
-                    ),
                     RobotArm(
                         f"arm9",
                         tree.node,
@@ -124,15 +124,20 @@ class AutonomyBehavior(Node):
                     RobotArm(
                         f"arm10",
                         tree.node,
-                        [0.39, 0.135, 20.0, False],
+                        [0.39, 0.134, 20.0, True],
                     ),
                     RobotArm(
                         f"arm11",
                         tree.node,
-                        [0.32, 0.25, 20.0, False],
+                        [0.39, 0.134, 20.0, False],
                     ),
                     RobotArm(
                         f"arm12",
+                        tree.node,
+                        [0.32, 0.25, 20.0, False],
+                    ),
+                    RobotArm(
+                        f"arm13",
                         tree.node,
                         [0.1, 0.08, -95.0, False],
                     ),
