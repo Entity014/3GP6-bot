@@ -61,10 +61,10 @@ class AIFollowing(py_trees.behaviour.Behaviour):
         twist = Twist()
 
         if self.type.upper() == "R":
-            if abs(distance) >= 45:
+            if abs(distance) >= 42:
                 twist.angular.z = np.interp(distance, [-320, 320], [0.6, -0.6])
-                if abs(twist.angular.z) < 0.2:
-                    twist.angular.z = np.sign(twist.angular.z) * 0.2
+                if abs(twist.angular.z) < 0.3:
+                    twist.angular.z = np.sign(twist.angular.z) * 0.3
                 self.cmd_vel_pub.publish(twist)
                 return py_trees.common.Status.RUNNING
             else:
