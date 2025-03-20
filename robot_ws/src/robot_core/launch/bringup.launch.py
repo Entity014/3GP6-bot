@@ -42,10 +42,10 @@ def generate_launch_description():
         executable="autonomy_node.py",
     )
 
-    # ld.add_action(node_webcam_ai)
-    # ld.add_action(node_webcam_line)
-    # ld.add_action(node_microros)
-    ld.add_action(node_localization)
-    # ld.add_action(node_autonomy)
+    ld.add_action(node_webcam_ai)
+    ld.add_action(node_webcam_line)
+    ld.add_action(node_microros)
+    # ld.add_action(node_localization)
+    ld.add_action(node_autonomy)
 
     return ld
