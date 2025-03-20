@@ -237,12 +237,12 @@ class LineFollowingColor(py_trees.behaviour.Behaviour):
         twist = Twist()
 
         if self.direction.upper() == "F":
-            if hsv_area[0] <= 100:
+            if hsv_area[0] <= 50:
                 self.last_angular_z = getattr(self, "last_angular_z", 0.0)
                 try:
                     twist.linear.x = 0.2
                     twist.angular.z = np.interp(
-                        centroids[0]["distance"] - angle, [-250, 250], [4.0, -4.0]
+                        centroids[0]["distance"] - angle, [-250, 250], [4.1, -4.1]
                     )
                     self.last_angular_z = twist.angular.z
                 except IndexError:
@@ -367,7 +367,7 @@ class LineFollowingColor(py_trees.behaviour.Behaviour):
 
     def hsv_process(self, img, hsv_image):
         height, width = hsv_image.shape[:2]
-        intital = 0.2
+        intital = 0.3
         slice_intervals = [
             intital,
             intital + 0.1,
