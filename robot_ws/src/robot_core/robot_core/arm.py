@@ -60,6 +60,7 @@ class RobotArm(py_trees.behaviour.Behaviour):
             twist.linear.y = self.pose_y
             twist.linear.z = self.angle
             twist.angular.x = 70.0 if self.pick else 0.0
+            self.arm_pub.publish(twist)
             self.delta_1 = (
                 self.latest_feedback_msg.angular.x - self.latest_feedback_msg.linear.x
             )
