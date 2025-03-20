@@ -242,7 +242,7 @@ class LineFollowingColor(py_trees.behaviour.Behaviour):
                 try:
                     twist.linear.x = 0.2
                     twist.angular.z = np.interp(
-                        centroids[0]["distance"] - angle, [-250, 250], [3.5, -3.5]
+                        centroids[0]["distance"] - angle, [-250, 250], [4.0, -4.0]
                     )
                     self.last_angular_z = twist.angular.z
                 except IndexError:
