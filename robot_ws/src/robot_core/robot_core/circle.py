@@ -65,11 +65,21 @@ class LineFollowingCircle(py_trees.behaviour.Behaviour):
         if self.direction.upper() == "F":
             try:
                 if not detected:
-                    twist.linear.x = 0.15
-                    twist.angular.z = np.interp(
-                        centroids[0]["distance"] - angle, [-250, 250], [2.5, -2.5]
-                    )
-                    self.last_angular_z = twist.angular.z
+                    self.last_angular_z = getattr(self, "last_angular_z", 0.0)
+                    try:
+                        twist.linear.x = 0.2
+                        twist.angular.z = np.interp(
+                            centroids[0]["distance"] - angle, [-250, 250], [3.5, -3.5]
+                        )
+                        self.last_angular_z = twist.angular.z
+                    except IndexError:
+                        twist.linear.x = 0.0
+                        if self.last_angular_z > 0:
+                            twist.angular.z = 1.0
+                        elif self.last_angular_z < 0:
+                            twist.angular.z = -1.0
+                        else:
+                            twist.angular.z = 0.0
                     self.cmd_vel_pub.publish(twist)
                     return py_trees.common.Status.RUNNING
                 else:
