@@ -50,8 +50,8 @@ class AIFollowing(py_trees.behaviour.Behaviour):
 
         np_arr = np.frombuffer(self.latest_img_msg.data, np.uint8)
         img = cv2.imdecode(np_arr, cv2.IMREAD_UNCHANGED)
-        distance = 20
         distance, diff_area = self.process(img)
+        # self.logger.info(f"{distance}")
 
         if self.visualize:
             cv2.destroyAllWindows()
@@ -61,7 +61,7 @@ class AIFollowing(py_trees.behaviour.Behaviour):
         twist = Twist()
 
         if self.type.upper() == "R":
-            if abs(distance) >= 42:
+            if abs(distance) >= 50:
                 twist.angular.z = np.interp(distance, [-320, 320], [0.6, -0.6])
                 if abs(twist.angular.z) < 0.3:
                     twist.angular.z = np.sign(twist.angular.z) * 0.3
