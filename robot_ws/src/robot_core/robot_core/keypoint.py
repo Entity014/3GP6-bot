@@ -70,7 +70,7 @@ class CircleFollowing(py_trees.behaviour.Behaviour):
                     self.cmd_vel_pub.publish(twist)
                     return py_trees.common.Status.SUCCESS
             elif self.direction.upper() == "F":
-                if abs(distance2) <= 318:
+                if abs(distance2) <= 310:
                     twist.linear.x = 0.05
                     self.cmd_vel_pub.publish(twist)
                     return py_trees.common.Status.RUNNING

@@ -61,7 +61,7 @@ class AIFollowing(py_trees.behaviour.Behaviour):
         twist = Twist()
 
         if self.type.upper() == "R":
-            if abs(distance) >= 46:
+            if abs(distance) >= 20:
                 twist.angular.z = np.interp(distance, [-320, 320], [0.5, -0.5])
                 if abs(twist.angular.z) < 0.25:
                     twist.angular.z = np.sign(twist.angular.z) * 0.25
@@ -111,7 +111,7 @@ class AIFollowing(py_trees.behaviour.Behaviour):
                 cy = int((y_min + y_max) / 2)
 
                 # Compute distance from mid-screen
-                distance = (cx - mid_screen) - 5
+                distance = cx - mid_screen
                 width = x_max - x_min
                 height = y_max - y_min
                 diff_area = 40000 - int(width * height)
