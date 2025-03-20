@@ -367,7 +367,7 @@ class LineFollowingColor(py_trees.behaviour.Behaviour):
 
     def hsv_process(self, img, hsv_image):
         height, width = hsv_image.shape[:2]
-        intital = 0.3
+        intital = 0.5
         slice_intervals = [
             intital,
             intital + 0.1,
