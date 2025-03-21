@@ -73,7 +73,12 @@ class LineFollowingCircle(py_trees.behaviour.Behaviour):
 
         if self.direction.upper() == "F":
             try:
-                if area is None or not (1200 <= area <= 1500):
+                if area is not None and (1200 <= area <= 1500):
+                    twist.linear.x = 0.0
+                    twist.angular.z = 0.0
+                    self.cmd_vel_pub.publish(twist)
+                    return py_trees.common.Status.SUCCESS
+                else:
                     self.last_angular_z = getattr(self, "last_angular_z", 0.0)
                     try:
                         twist.linear.x = 0.2
@@ -91,11 +96,6 @@ class LineFollowingCircle(py_trees.behaviour.Behaviour):
                             twist.angular.z = 0.0
                     self.cmd_vel_pub.publish(twist)
                     return py_trees.common.Status.RUNNING
-                else:
-                    twist.linear.x = 0.0
-                    twist.angular.z = 0.0
-                    self.cmd_vel_pub.publish(twist)
-                    return py_trees.common.Status.SUCCESS
             except IndexError:
                 twist.angular.z = 2.0
                 self.cmd_vel_pub.publish(twist)
