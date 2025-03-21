@@ -237,7 +237,7 @@ class LineFollowingColor(py_trees.behaviour.Behaviour):
         twist = Twist()
 
         if self.direction.upper() == "F":
-            if hsv_area[0] <= 50:
+            if hsv_area[-1] <= 50:
                 self.last_angular_z = getattr(self, "last_angular_z", 0.0)
                 try:
                     twist.linear.x = 0.25
@@ -367,7 +367,7 @@ class LineFollowingColor(py_trees.behaviour.Behaviour):
 
     def hsv_process(self, img, hsv_image):
         height, width = hsv_image.shape[:2]
-        intital = 0.3
+        intital = 0.5
         slice_intervals = [
             intital,
             intital + 0.1,
