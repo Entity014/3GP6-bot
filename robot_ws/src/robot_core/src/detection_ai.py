@@ -20,7 +20,7 @@ class ImageSubscriber(Node):
             os.path.join(
                 os.path.expanduser("~"),
                 "3GP6-bot",
-                "bestPlate.pt",
+                "best.pt",
             )
         )
 
