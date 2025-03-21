@@ -107,6 +107,7 @@ class AutonomyBehavior(Node):
                     RobotMove(f"move2", tree.node, "F", 0.7),
                     RobotRotate(f"rotate3", 0, tree.node),
                     ColorFollowing(f"color2", tree.node, self.color),
+                    RobotMove(f"move3", tree.node, "F", 0.3),
                     RobotRotate(f"rotate4", 90, tree.node),
                     ColorFollowing(f"color3", tree.node, self.color),
                     RobotRotate(f"rotate5", 90, tree.node),
