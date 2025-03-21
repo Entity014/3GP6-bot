@@ -58,7 +58,7 @@ class CircleFollowing(py_trees.behaviour.Behaviour):
         if distance is not None and distance2 is not None:
             self.logger.info(f"{distance} {distance2}")
             if self.direction.upper() == "R":
-                if abs(distance) >= 40:
+                if abs(distance) >= 30:
                     twist.angular.z = np.interp(distance, [-320, 320], [0.75, -0.75])
                     if abs(twist.angular.z) < 0.2:
                         twist.angular.z = np.sign(twist.angular.z) * 0.2

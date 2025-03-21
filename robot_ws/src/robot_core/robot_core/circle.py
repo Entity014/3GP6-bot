@@ -69,7 +69,7 @@ class LineFollowingCircle(py_trees.behaviour.Behaviour):
                     try:
                         twist.linear.x = 0.2
                         twist.angular.z = np.interp(
-                            centroids[2]["distance"] - angle, [-250, 250], [4.1, -4.1]
+                            centroids[0]["distance"] - angle, [-250, 250], [4.1, -4.1]
                         )
                         self.last_angular_z = twist.angular.z
                     except IndexError:
