@@ -454,22 +454,24 @@ class ColorFollowing(py_trees.behaviour.Behaviour):
         twist = Twist()
 
         if self.direction.upper() == "F":
-            if centroids[-1]["area"] <= 1000:
-                try:
+            try:
+                if centroids[-1]["area"] <= 1000:
                     twist.linear.x = 0.2
                     twist.angular.z = np.interp(
                         centroids[0]["distance"] - angle, [-250, 250], [3.0, -3.0]
                     )
-                except:
+                    self.cmd_vel_pub.publish(twist)
+                    return py_trees.common.Status.RUNNING
+                else:
                     twist.linear.x = 0.0
-                    twist.angular.z = 2.0
+                    twist.angular.z = 0.0
+                    self.cmd_vel_pub.publish(twist)
+                    return py_trees.common.Status.SUCCESS
+            except IndexError:
+                twist.linear.x = 0.0
+                twist.angular.z = 2.0
                 self.cmd_vel_pub.publish(twist)
                 return py_trees.common.Status.RUNNING
-            else:
-                twist.linear.x = 0.0
-                twist.angular.z = 0.0
-                self.cmd_vel_pub.publish(twist)
-                return py_trees.common.Status.SUCCESS
         else:
             self.logger.info(f"Invalid direction {self.direction.upper()}.")
             return py_trees.common.Status.FAILURE
