@@ -107,7 +107,7 @@ class AIFollowing(py_trees.behaviour.Behaviour):
                 x_min, y_min, x_max, y_max = box.xyxy[0].cpu().numpy()
 
                 # Compute centroid
-                cx = int((x_min + x_max) / 2) + 20
+                cx = int((x_min + x_max) / 2)
                 cy = int((y_min + y_max) / 2)
 
                 # Compute distance from mid-screen
