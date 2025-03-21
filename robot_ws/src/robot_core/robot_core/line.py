@@ -71,9 +71,7 @@ class LineFollowing(py_trees.behaviour.Behaviour):
         twist = Twist()
 
         if self.direction.upper() == "F":
-            area = centroids[0]["area"]
-            self.logger.info(f"{area}")
-            if centroids[0]["area"] <= 1500:
+            if centroids[-1]["area"] <= 1500:
                 twist.linear.x = 0.35
                 twist.angular.z = np.interp(
                     centroids[0]["distance"] - angle, [-250, 250], [2.5, -2.5]
@@ -244,7 +242,7 @@ class LineFollowingColor(py_trees.behaviour.Behaviour):
                 try:
                     twist.linear.x = 0.25
                     twist.angular.z = np.interp(
-                        centroids[0]["distance"] - angle, [-250, 250], [4.5, -4.5]
+                        centroids[0]["distance"] - angle, [-250, 250], [4.7, -4.7]
                     )
                     self.last_angular_z = twist.angular.z
                 except IndexError:
