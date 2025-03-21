@@ -58,7 +58,7 @@ class CircleFollowing(py_trees.behaviour.Behaviour):
         if distance is not None and distance2 is not None:
             self.logger.info(f"{distance} {distance2}")
             if self.direction.upper() == "R":
-                if abs(distance) >= 35:
+                if abs(distance) >= 40:
                     twist.angular.z = np.interp(distance, [-320, 320], [0.75, -0.75])
                     if abs(twist.angular.z) < 0.2:
                         twist.angular.z = np.sign(twist.angular.z) * 0.2
@@ -106,7 +106,7 @@ class CircleFollowing(py_trees.behaviour.Behaviour):
                 x_min, y_min, x_max, y_max = box.xyxy[0].cpu().numpy()
 
                 # Compute centroid
-                cx = int((x_min + x_max) / 2) - 20
+                cx = int((x_min + x_max) / 2)
                 cy = int((y_min + y_max) / 2)
 
                 # Compute distance from mid-screen
