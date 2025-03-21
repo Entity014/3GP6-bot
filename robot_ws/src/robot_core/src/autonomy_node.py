@@ -148,7 +148,7 @@ class AutonomyBehavior(Node):
                     RobotMove(f"move5", tree.node, "F", 0.5),
                     RobotRotate(f"rotate7", 90, tree.node),
                     LineFollowingCircle("circle1", tree.node),  # ! Tuning
-                    RobotMove(f"move7", tree.node, "F", 1.9),
+                    RobotMove(f"move7", tree.node, "F", 1.0),
                     LineFollowingCircle("circle2", tree.node),  # ! Tuning
                     RobotMove(f"move8", tree.node, "F", 1.9),
                 ]
