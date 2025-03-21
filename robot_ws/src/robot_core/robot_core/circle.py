@@ -33,6 +33,14 @@ class LineFollowingCircle(py_trees.behaviour.Behaviour):
         self.ai_sub
         self.cmd_vel_pub = self.node.create_publisher(Twist, "/cmd_vel", 10)
 
+        self.model = YOLO(
+            os.path.join(
+                os.path.expanduser("~"),
+                "3GP6-bot",
+                "best.pt",
+            )
+        )
+
         self.start_time = self.node.get_clock().now()
         self.latest_img_msg = None
         self.latest_ai_msg = None
@@ -50,10 +58,11 @@ class LineFollowingCircle(py_trees.behaviour.Behaviour):
         np_arr_ai = np.frombuffer(self.latest_ai_msg.data, np.uint8)
         img = cv2.imdecode(np_arr, cv2.IMREAD_UNCHANGED)
         img_ai = cv2.imdecode(np_arr_ai, cv2.IMREAD_UNCHANGED)
-        img_ai = img_ai[200:360, 160:480]
+        img_ai = img_ai[250:360, 230:410]
         gray_image = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
         centroids, angle = self.process(img, gray_image)
-        detected = self.circle_process(img_ai)
+        # detected = self.circle_process(img_ai)
+        area = self.ai_process(img_ai)
 
         if self.visualize:
             cv2.destroyAllWindows()
@@ -64,7 +73,7 @@ class LineFollowingCircle(py_trees.behaviour.Behaviour):
 
         if self.direction.upper() == "F":
             try:
-                if not detected:
+                if area is None or not (1200 <= area <= 1500):
                     self.last_angular_z = getattr(self, "last_angular_z", 0.0)
                     try:
                         twist.linear.x = 0.2
@@ -222,3 +231,47 @@ class LineFollowingCircle(py_trees.behaviour.Behaviour):
             return True  # Circle detected
 
         return False  # No circle detected
+
+    def ai_process(self, img):
+
+        img_width = img.shape[1]  # Get image width
+        mid_screen = img_width // 2  # Midpoint of the screen
+
+        results = self.model(img)
+
+        # Process detection results
+        for result in results:
+            for box in result.boxes:
+                x_min, y_min, x_max, y_max = box.xyxy[0].cpu().numpy()
+
+                # Compute centroid
+                cx = int((x_min + x_max) / 2)
+                cy = int((y_min + y_max) / 2)
+
+                # Compute distance from mid-screen
+                distance = cx - mid_screen
+                width = x_max - x_min
+                height = y_max - y_min
+                diff_area = int(width * height)
+
+                # Draw bounding box and centroid
+                if self.visualize:
+                    cv2.rectangle(
+                        img,
+                        (int(x_min), int(y_min)),
+                        (int(x_max), int(y_max)),
+                        (0, 255, 0),
+                        2,
+                    )
+                    cv2.circle(img, (cx, cy), 5, (0, 0, 255), -1)
+                    cv2.putText(
+                        img,
+                        f"({cx}, {cy}) Dist: {distance} Area: {diff_area}",
+                        (cx + 5, cy - 5),
+                        cv2.FONT_HERSHEY_SIMPLEX,
+                        0.5,
+                        (255, 255, 255),
+                        2,
+                    )
+                return diff_area
+        return None

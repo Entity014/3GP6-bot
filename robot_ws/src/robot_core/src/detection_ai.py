@@ -28,7 +28,7 @@ class ImageSubscriber(Node):
         try:
             np_arr = np.frombuffer(msg.data, np.uint8)
             img = cv2.imdecode(np_arr, cv2.IMREAD_UNCHANGED)
-            # img = img[200:360, 160:480]
+            img = img[250:360, 230:410]
             img_width = img.shape[1]  # Get image width
             mid_screen = img_width // 2  # Midpoint of the screen
 
