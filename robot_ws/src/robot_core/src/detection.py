@@ -18,7 +18,7 @@ class ImageSubscriber(Node):
         super().__init__("image_subscriber")
 
         self.subscription = self.create_subscription(
-            CompressedImage, "camera/ai/image/compressed", self.image_callback, 10
+            CompressedImage, "camera/line/image/compressed", self.image_callback, 10
         )
         self.subscription
 
@@ -30,7 +30,7 @@ class ImageSubscriber(Node):
             centroids, angle = self.process(img, gray_image)
             # print(img.shape)
             print(centroids[-1]["area"])
-            # cv2.imshow("Contours on Image", img)
+            cv2.imshow("Contours on Image", img)
             cv2.waitKey(1)
 
         except Exception as e:
@@ -53,7 +53,7 @@ class ImageSubscriber(Node):
             contours, _ = cv2.findContours(
                 mask, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE
             )
-            cv2.imshow(f"Contours on Image{i}", mask)
+            # cv2.imshow(f"Contours on Image{i}", mask)
 
             nearest_contour = None
             min_distance = float("inf")
