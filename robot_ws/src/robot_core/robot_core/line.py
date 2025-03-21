@@ -456,7 +456,7 @@ class ColorFollowing(py_trees.behaviour.Behaviour):
         if self.direction.upper() == "F":
             if (delta_ratio1 >= 0.5) and (delta_ratio2 >= 0.5):
                 try:
-                    twist.linear.x = 0.3
+                    twist.linear.x = 0.34
                     twist.angular.z = np.interp(
                         centroids[0]["distance"] - angle, [-250, 250], [4.1, -4.1]
                     )

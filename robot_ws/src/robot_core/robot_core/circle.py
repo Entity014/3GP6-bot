@@ -27,15 +27,10 @@ class LineFollowingCircle(py_trees.behaviour.Behaviour):
             CompressedImage, "camera/line/image/compressed", self.img_callback, 10
         )
         self.subscription
-        self.ai_sub = self.node.create_subscription(
-            CompressedImage, "camera/ai/image/compressed", self.img_ai_callback, 10
-        )
-        self.ai_sub
         self.cmd_vel_pub = self.node.create_publisher(Twist, "/cmd_vel", 10)
 
         self.start_time = self.node.get_clock().now()
         self.latest_img_msg = None
-        self.latest_ai_msg = None
 
     def update(self):
         now = self.node.get_clock().now()
@@ -47,10 +42,8 @@ class LineFollowingCircle(py_trees.behaviour.Behaviour):
                 return py_trees.common.Status.FAILURE
 
         np_arr = np.frombuffer(self.latest_img_msg.data, np.uint8)
-        np_arr_ai = np.frombuffer(self.latest_ai_msg.data, np.uint8)
         img = cv2.imdecode(np_arr, cv2.IMREAD_UNCHANGED)
-        img_ai = cv2.imdecode(np_arr_ai, cv2.IMREAD_UNCHANGED)
-        img_ai = img_ai[200:360, 160:480]
+        img_ai = img[200:360, 160:480]
         gray_image = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
         centroids, angle = self.process(img, gray_image)
         detected = self.circle_process(img_ai)
@@ -69,7 +62,7 @@ class LineFollowingCircle(py_trees.behaviour.Behaviour):
                     try:
                         twist.linear.x = 0.25
                         twist.angular.z = np.interp(
-                            centroids[0]["distance"] - angle, [-250, 250], [4.7, -4.7]
+                            centroids[0]["distance"] - angle, [-250, 250], [4.8, -4.8]
                         )
                         self.last_angular_z = twist.angular.z
                     except IndexError:
@@ -106,10 +99,6 @@ class LineFollowingCircle(py_trees.behaviour.Behaviour):
     def img_callback(self, msg):
         # self.logger.info("Image received")
         self.latest_img_msg = msg
-
-    def img_ai_callback(self, msg):
-        # self.logger.info("Image received")
-        self.latest_ai_msg = msg
 
     def process(self, img, gray_image):
 

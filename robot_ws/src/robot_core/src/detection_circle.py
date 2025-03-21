@@ -11,14 +11,14 @@ class ImageSubscriber(Node):
         super().__init__("image_subscriber")
 
         self.subscription = self.create_subscription(
-            CompressedImage, "camera/ai/image/compressed", self.image_callback, 10
+            CompressedImage, "camera/line/image/compressed", self.image_callback, 10
         )
 
     def image_callback(self, msg):
         try:
             np_arr = np.frombuffer(msg.data, np.uint8)
             img = cv2.imdecode(np_arr, cv2.IMREAD_UNCHANGED)
-            img = img[240:, :]
+            img = img[60:180, 100:260]
 
             if img is None:
                 self.get_logger().error("Failed to decode image.")
@@ -51,7 +51,7 @@ class ImageSubscriber(Node):
             param1=10,
             param2=25,
             minRadius=10,
-            maxRadius=50,
+            maxRadius=30,
         )
 
         if circles is not None:
