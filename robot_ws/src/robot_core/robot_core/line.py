@@ -436,15 +436,15 @@ class ColorFollowing(py_trees.behaviour.Behaviour):
         img = cv2.imdecode(np_arr, cv2.IMREAD_UNCHANGED)
         hsv_image = cv2.cvtColor(img, cv2.COLOR_BGR2HSV)
         centroids, angle = self.process(img, hsv_image)
-        try:
-            x1, y1, w1, h1 = centroids[0]["bounding"]
-            x2, y2, w2, h2 = centroids[1]["bounding"]
-            delta_ratio1 = abs(6.3 - (w1 / h1))
-            delta_ratio2 = abs(6.3 - (w2 / h2))
-        except IndexError:
-            delta_ratio1 = 5.0
-            delta_ratio2 = 5.0
-        self.logger.info(f"{delta_ratio1} {delta_ratio2}")
+        # try:
+        #     x1, y1, w1, h1 = centroids[0]["bounding"]
+        #     x2, y2, w2, h2 = centroids[1]["bounding"]
+        #     delta_ratio1 = abs(6.3 - (w1 / h1))
+        #     delta_ratio2 = abs(6.3 - (w2 / h2))
+        # except IndexError:
+        #     delta_ratio1 = 5.0
+        #     delta_ratio2 = 5.0
+        # self.logger.info(f"{delta_ratio1} {delta_ratio2}")
 
         if self.visualize:
             cv2.destroyAllWindows()
@@ -454,9 +454,9 @@ class ColorFollowing(py_trees.behaviour.Behaviour):
         twist = Twist()
 
         if self.direction.upper() == "F":
-            if (delta_ratio1 >= 0.5) and (delta_ratio2 >= 0.5):
+            if centroids[-1]["area"] <= 1000:
                 try:
-                    twist.linear.x = 0.34
+                    twist.linear.x = 0.2
                     twist.angular.z = np.interp(
                         centroids[0]["distance"] - angle, [-250, 250], [4.1, -4.1]
                     )
