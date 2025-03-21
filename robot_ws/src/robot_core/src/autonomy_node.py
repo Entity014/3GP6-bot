@@ -109,6 +109,7 @@ class AutonomyBehavior(Node):
                     ColorFollowing(f"color2", tree.node, self.color),
                     RobotRotate(f"rotate4", 90, tree.node),
                     ColorFollowing(f"color3", tree.node, self.color),
+                    RobotRotate(f"rotate5", 90, tree.node),
                     RobotArm(
                         f"arm8",
                         tree.node,
@@ -142,12 +143,14 @@ class AutonomyBehavior(Node):
                         [0.1, 0.08, -95.0, False],
                     ),
                     RobotMove(f"move4", tree.node, "B", 2.0),
-                    RobotRotate(f"rotate4", -90, tree.node),
+                    RobotRotate(f"rotate6", -90, tree.node),
                     ColorFollowingLine(f"color4", tree.node, self.color),
                     RobotMove(f"move5", tree.node, "F", 0.5),
-                    RobotRotate(f"rotate5", 90, tree.node),
+                    RobotRotate(f"rotate7", 90, tree.node),
                     LineFollowingCircle("circle1", tree.node),  # ! Tuning
-                    RobotMove(f"move7", tree.node, "F", 1.6),
+                    RobotMove(f"move7", tree.node, "F", 1.0),
+                    LineFollowingCircle("circle2", tree.node),  # ! Tuning
+                    RobotMove(f"move8", tree.node, "F", 1.0),
                 ]
             )
         return tree

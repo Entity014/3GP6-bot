@@ -458,7 +458,7 @@ class ColorFollowing(py_trees.behaviour.Behaviour):
                 try:
                     twist.linear.x = 0.2
                     twist.angular.z = np.interp(
-                        centroids[0]["distance"] - angle, [-250, 250], [4.1, -4.1]
+                        centroids[0]["distance"] - angle, [-250, 250], [3.0, -3.0]
                     )
                 except:
                     twist.linear.x = 0.0
