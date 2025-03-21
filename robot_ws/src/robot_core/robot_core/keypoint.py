@@ -106,7 +106,7 @@ class CircleFollowing(py_trees.behaviour.Behaviour):
                 x_min, y_min, x_max, y_max = box.xyxy[0].cpu().numpy()
 
                 # Compute centroid
-                cx = int((x_min + x_max) / 2)
+                cx = int((x_min + x_max) / 2) - 10
                 cy = int((y_min + y_max) / 2)
 
                 # Compute distance from mid-screen
